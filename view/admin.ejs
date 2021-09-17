@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/font/fontawesome-free-5.15.4-web/css/all.min.css"
+    />
+    <title>Manager</title>
+  </head>
+
+  <body>
+    <div id="main">
+      <div id="header">
+        <div id="info">
+          <ul id="contact">
+            <li class="contact-info">
+              <a href="">
+                <i class="far fa-envelope"></i>
+                qhvu.phan@gmail.com
+              </a>
+            </li>
+            <li class="contact-info">
+              <a href="#">
+                <i class="fab fa-facebook"></i>
+                facebook
+              </a>
+            </li>
+          </ul>
+          <ul id="noti">
+            <li class="noti-member">
+              <a href="#">
+                <i class="far fa-bell"></i>
+                Thông báo</a
+              >
+              <div class="notification">
+                <ul id="notification_list">
+                  <li class="notification_mem-header">Thông báo</li>
+                </ul>
+              </div>
+            </li>
+            <li class="noti-member">
+              <a href="#">
+                <i class="far fa-question-circle"></i>
+                Trợ giúp
+              </a>
+              <div class="notification">
+                <ul id="notification_list">
+                  <li class="notification_mem-header">Trợ giúp</li>
+                </ul>
+              </div>
+            </li>
+            <li class="noti-member">
+              <a id="register" href="#">Đăng ký</a>
+              <div class="register">
+                <div id="register-form">
+                  <p class="notification_mem-header">Thông tin đăng ký</p>
+                  <label>Tên đăng nhập:</label><br />
+                  <input
+                    type="text"
+                    placeholder="Email hoặc số điện thoại"
+                  /><br />
+                  <label>Số điện thoại:</label><br />
+                  <input type="text" placeholder="Số điện thoại" /><br />
+                  <lable>Địa chỉ:</lable><br />
+                  <input type="text" placeholder="Điện chỉ" /><br />
+                  <label>Mật khẩu</label><br />
+                  <input type="password" placeholder="Mật khẩu" /><br />
+                  <label>Nhập lại mật khẩu:</label><br />
+                  <input
+                    type="password"
+                    placeholder="Xác nhận mật khẩu"
+                  /><br />
+                  <button>Đăng ký</button>
+                </div>
+              </div>
+            </li>
+            <li class="noti-member">
+              <a id="login" href="#">Đăng nhập</a>
+              <div class="login">
+                <div id="login-form">
+                  <p class="notification_mem-header">Đăng nhập</p>
+                  <label>Tên đăng nhập:</label><br />
+                  <input
+                    type="text"
+                    placeholder="Email hoặc số điện thoại"
+                  /><br />
+                  <label>Mật khẩu</label><br />
+                  <input type="password" placeholder="Mật khẩu" /><br />
+                  <button>Đăng nhập</button>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div id="website_search_buy">
+          <div id="website">Vmazon</div>
+          <div id="search">
+            <input class="search" type="text" />
+            <i class="fas fa-search btn-search"></i>
+          </div>
+          <div id="cart">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+        </div>
+      </div>
+      <div id="container">
+        <div id="navigation">
+          <ul id="nav_list">
+            <p class="nav-mem-header">Quản lí</p>
+            <li class="nav-mem">
+              <a id="nav-header-add" href="#">Thêm sản phẩm</a>
+              <div id="addproduct" class="addproduct">
+                <div id="register-form">
+                  <p class="notification_mem-header">Thông tin sản phẩm</p>
+                  <br />
+                  <label>Tên sản phẩm:</label><br />
+                  <input id="name" type="text" name="pro_name" /><br /><br />
+                  <label>Loại sản phẩm</label><br />
+                  <input id="type" type="text" name="pro_type" /><br /><br />
+                  <lable>Thông tin sản phẩm</lable><br />
+                  <input
+                    id="description"
+                    type="text"
+                    name="pro_description"
+                  /><br /><br />
+                  <label>Hình ảnh:</label><br />
+                  <input
+                    type="file"
+                    placeholder=""
+                    name="image_file"
+                  /><br /><br />
+                  <label>Giá sản phẩm</label><br />
+                  <input id="price" type="text" name="pro_price" /><br /><br />
+                  <button id="create">Thêm sản phẩm</button>
+                  <button id="close">Đóng</button>
+                </div>
+              </div>
+            </li>
+            <li class="nav-mem">Phản hồi</li>
+            <li class="nav-mem">Thông báo</li>
+          </ul>
+        </div>
+        <div id="content"></div>
+      </div>
+
+      <div id="footer">
+        <div class="footer-info">
+          <div class="title-footer">Vmazon</div>
+          <p>Chất lượng làm nên thương hiệu</p>
+          <p>Hân hạnh được phục vụ</p>
+        </div>
+        <div class="footer-address">
+          <p class="address-footer">Địa chỉ: nhà trên đất</p>
+          <p>Thích thì mua không thích thì mua</p>
+          <p>Liên hệ thì liên hệ không liên hệ thì liên hệ</p>
+        </div>
+      </div>
+    </div>
+    <script>
+      var select = document.querySelector("#login");
+      select.addEventListener("click", () => {
+        var add = document.querySelector(".login");
+        add.classList.add("show");
+      });
+      var select1 = document.querySelector("#register");
+      select1.addEventListener("click", () => {
+        var add = document.querySelector(".register");
+        add.classList.add("show");
+      });
+      var addproduct = document.querySelector("#nav-header-add");
+      addproduct.addEventListener("click", () => {
+        var add = document.querySelector("#addproduct");
+        add.classList.add("show");
+      });
+
+      var select2 = document.querySelector("#container");
+      select2.addEventListener("click", () => {
+        var add = document.querySelector(".login");
+        var add1 = document.querySelector(".register");
+        add.classList.remove("show");
+        add1.classList.remove("show");
+      });
+      var select3 = document.querySelector("#close");
+      select3.addEventListener("click", () => {
+        var add = document.querySelector(".addproduct");
+        add.classList.remove("show");
+      });
+    </script>
+    <script>
+      var productApi = "http://localhost:5000/product";
+      var imageApi = "http://localhost:5000/image";
+
+      function getProduct(callback) {
+        fetch(productApi)
+          .then(function (response) {
+            return response.json();
+          })
+          .then(callback);
+      }
+
+      function renderProduct(products) {
+        var listProduct = document.querySelector("#content");
+        var html = products.product.map(function (product) {
+          return `
+                         <div id="conten-mem-admin" class="delete-item-${
+                           product.visible_id
+                         }">
+                                 <div> <img src="img/${product.image_path.slice(
+                                   10
+                                 )}" alt="" width="200px" height="200px"></div>
+                                 <div class="title-content">${
+                                   product.pro_name
+                                 }</div>
+                                 <div class="price-buy">
+                                     <p>${product.pro_price}$</p>
+                                     <button id="edit" onclick="editProduct('${
+                                       product.visible_id
+                                     }'")>Sửa</button>
+                                     <button id="delete" onclick="deleteProduct('${
+                                       product.visible_id
+                                     }')">Xóa</button>
+                                 </div>
+                             </div>         
+                         `;
+        });
+        listProduct.innerHTML = html.join("");
+      }
+
+      function postProduct(data) {
+        var option = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        };
+        fetch(productApi, option) //product
+          .then((response) => {
+            return response.json();
+          })
+          .then((products) => {
+            if(products.message === "Product already exists") {
+              alert("Sản phẩm đã tồn tại!")
+            } else if(products.message ==="success") {
+            let id = products.data;
+            var name = document.querySelector('input[name="pro_name"]').value;
+            var image_path = document.querySelector(
+              'input[name="image_file"]'
+            ).value;
+            var data_image = {
+              image_pro_id: id,
+              image_name: name,
+              image_path: image_path,
+              image_size: "400kb",
+            };
+            var options = {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(data_image),
+            };
+            fetch(imageApi, options) // image
+              .then((response) => {
+                return response.json();
+              })
+              .then((response) => {
+                alert("success");
+                getProduct(renderProduct);
+              });
+            }
+          });
+      }
+
+      function handleCrateProduct() {
+        var submitBtn = document.querySelector("#create");
+        submitBtn.onclick = function () {
+          var name = document.querySelector('input[name="pro_name"]').value;
+          var type = document.querySelector('input[name="pro_type"]').value;
+          var description = document.querySelector(
+            'input[name="pro_description"]'
+          ).value;
+          var price = document.querySelector('input[name="pro_price"]').value;
+          var data = {
+            pro_name: name,
+            pro_type: type,
+            pro_description: description,
+            pro_price: price,
+          };
+
+          var add = document.querySelector("#addproduct");
+          add.classList.remove("show");
+
+          postProduct(data);
+        };
+      }
+
+      function deleteProduct(id) {
+        var option = {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        console.log(productApi + "/" + id);
+        fetch(productApi + "/" + id, option)
+          .then((response) => response.json())
+          .then((response) => alert("Delete success!"));
+        var upload = document.querySelector(".delete-item-" + id);
+        upload.remove();
+      }
+      handleCrateProduct();
+      getProduct(renderProduct);
+    </script>
+  </body>
+</html>
