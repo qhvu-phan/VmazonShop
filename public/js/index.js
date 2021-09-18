@@ -29,7 +29,7 @@ function renderProduct(products) {
                      <div class="title-content">${product.pro_name}</div>
                      <div class="price-buy">
                          <p>SL:1</p>
-                         <p>${product.pro_price}$</p>   
+                         <p>${product.pro_price}vnd</p>   
                      </div><br>
                      <div id="buy">
                       <button onClick="checkLogin('${
@@ -61,6 +61,11 @@ function register(data) {
           var close = document.querySelector(".register");
           close.classList.add("hide");
           close.classList.remove("show");
+          document.querySelector('input[name="user"]').value = "";
+          document.querySelector('input[name="phone"]').value = "";
+          document.querySelector('input[name="address"]').value = "";
+          document.querySelector('input[name="password"]').value = "";
+          document.querySelector('input[name="passwords"]').value = "";
           break;
         case "User already exists":
           alert("Tài khoản đã tồn tại");
@@ -111,7 +116,7 @@ function renderAllProduct() {
                              }</div>
                              <div class="price-buy">
                                  <p>SL:1</p>
-                                 <p>${product.pro_price}$</p>
+                                 <p>${product.pro_price}vnd</p>
                              </div><br>
                              <div id="buy">
                               <button onClick="checkLogin('${
@@ -139,7 +144,7 @@ function renderProductTypeof(pro_type) {
                              }</div>
                              <div class="price-buy">
                                  <p>SL:1</p>
-                                 <p>${product.pro_price}$</p>
+                                 <p>${product.pro_price}vnd</p>
                              </div><br>
                              <div id="buy">
                               <button onClick="checkLogin('${
@@ -234,18 +239,24 @@ function show_cart() {
         let cart_list = document.querySelector("#cart_list_mem");
         let list = products.product.map((product) => {
           return `
-       <div id="cart-mem">
+       <div id="cart-mem" class="cart-mem-${product.visible_id_pro}">
                 <div id="description">
+               <div class = "cart-delete"> <i onclick="removeProductCart('${
+                 product.visible_id_pro
+               }')" class="fas fa-minus-circle"></i></div> 
+               <div class="cart-imgae">
                   <img
                     src="/img/${product.image_path.slice(10)}"
                     width="50px"
                     height="50px"
                     alt="hinh"
                   />
-                  <label for="">${product.pro_name}</label>
-                  <label for="">1</label>
+                  </div>
+                  <div class="cart-name">
+                  <label for="">${product.pro_name}</label></div>
+                <div class="cart-number"><label for="">1</label></div>  
                 </div>
-                <div id="total">${product.pro_price}$</div>
+                <div id="total">${product.pro_price}vnd</div>
               </div>         
        `;
         });
@@ -272,10 +283,10 @@ function searchProduct() {
                              }</div>
                              <div class="price-buy">
                                  <p>SL:1</p>
-                                 <p>${product.pro_price}$</p>
+                                 <p>${product.pro_price}vnd</p>
                              </div><br>
                              <div id="buy">
-                              <button onClick="login('${
+                              <button onClick="checkLogin('${
                                 product.visible_id
                               }')">Thêm</button>
                               </div>
@@ -285,4 +296,30 @@ function searchProduct() {
     }
   });
   listProduct.innerHTML = html.join("");
+}
+function removeProductCart(id) {
+  let cart_user_id = document.querySelector("#user_id").value;
+  let cart_pro_id = id;
+  let data = {
+    cart_user_id: cart_user_id,
+    cart_pro_id: cart_pro_id,
+  };
+  let option = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  fetch(cartsApi, option)
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.message === "Delete success")
+        alert("Sản phẩm đã được lấy ra");
+      else if (response.message === "cart_pro_id not found")
+        alert("Sản phẩm không tồn tại");
+      else alert("Lỗi hệ thống");
+    });
+  var upload = document.querySelector(".cart-mem-" + id);
+  upload.remove();
 }

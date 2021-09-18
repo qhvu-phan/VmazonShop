@@ -68,7 +68,7 @@
                     placeholder="Số điện thoại"
                     name="phone"
                   /><br />
-                  <lable>Địa chỉ:</lable><br />
+                  <lable>Email:</lable><br />
                   <input
                     type="text"
                     placeholder="Điện chỉ"
@@ -135,31 +135,26 @@
           </div>
           <div id="cart">
             <div id="show-cart"><i class="fas fa-shopping-cart" onclick="show_cart()"></i></div>
-            <div id="cart_list" class="class">
-              <div id="cart_list_mem">
+            <div id="cart_list" class="class">     
               <p id="info-cart">Thông tin sản phẩm</p>
               <div id="cart-mem">
                 <div id="description">
+                  <label for="">Xóa sản phẩm</label>
                   <label for="">Hình sản phẩm</label>
                   <label for="">Tên sản phẩm</label>
                   <label for="">Số lượng</label>
                 </div>
                 <div id="total">Tổng tiền</div>
               </div>
-            </div>
+              <div id="cart_list_mem">
+              </div>
               <div id="cart-mem" class="total-amount">
                 <div id="description">
                   <lable>Tổng tiền:</lable>
                 </div>
-                <div id="total"></div>
+                <div id="total"></div><br>  
               </div>
-              <div id="info-customer">
-                <p>Thông tin khách hàng</p>
-                <label for="">Phan Quang Huy Vũ</label>
-                <Label>|</Label>
-                <label for="">0767958005</label>
-                <p>Địa chỉ: KDC 30, Nguyễn Văn Linh, HL , NK , CT</p>
-              </div>
+              <button>Đặt hàng</button>
             </div>
           </div>
         </div>
@@ -200,6 +195,7 @@
             var select1 = document.querySelector("#register");
             select1.addEventListener("click", () => {
               var add = document.querySelector(".register");
+              add.classList.remove("hide");
               add.classList.add("show");
             });
             var select_buy = document.querySelector("#open-buy");

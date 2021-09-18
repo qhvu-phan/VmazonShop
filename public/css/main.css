@@ -285,9 +285,9 @@ html {
 #cart_list {
   position: absolute;
   left: -650px;
-  width: 600px;
-  height: 600px;
-  max-height: 700px;
+  width: 800px;
+  height: 800px;
+  max-height: 800px;
   z-index: 50;
   overflow: auto;
   background-color: white;
@@ -302,15 +302,17 @@ html {
 #cart-mem {
   display: flex;
   justify-content: space-between;
+  width: 800px;
   height: 50px;
   z-index: 100;
 }
 #cart_list_mem {
-  height: 480px;
+  height: 600px;
+  width: 800px;
   overflow: auto;
 }
 #description {
-  width: 400px;
+  width: 800px;
   display: flex;
   justify-content: space-around;
 }
@@ -349,7 +351,24 @@ html {
   color: green;
   margin-left: 960px;
 }
-
+.cart-mem {
+  display: flex;
+  justify-content: space-between;
+  height: 200px;
+  z-index: 100;
+}
+.cart-delete {
+  width: 50px;
+}
+.cart-image {
+  width: 100px;
+}
+.cart-name {
+  width: 100px;
+}
+.cart-number {
+  width: 50px;
+}
 .show {
   display: block !important;
 }

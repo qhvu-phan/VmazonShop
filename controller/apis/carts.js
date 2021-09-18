@@ -9,6 +9,21 @@ let check = [
   middleware.checkUserid,
   middleware.checkProductInCart,
 ];
+router.get("/", (req, res) => {
+  query = `select * from cart where is_Active = 1`;
+  connection.query(query, (error, result) => {
+    if (error)
+      return res.status(400).json({ success: false, message: "error" });
+    if (result.length > 0) {
+      return res
+        .status(200)
+        .json({ success: true, message: "success", cart: result });
+    } else {
+      return res.status(400).json({ success: false, message: "dât not found" });
+    }
+  });
+});
+
 router.post("/", check, (req, res) => {
   const visible_id = random.generate(20);
   const { cart_user_id, cart_pro_id } = req.body;
@@ -80,5 +95,30 @@ router.get("/:id", middleware.checkId, (req, res) => {
     }
   });
 });
-
+router.delete("/", (req, res) => {
+  const { cart_user_id, cart_pro_id } = req.body;
+  let checkPro_id = `select cart_pro_id from cart where cart_pro_id = '${cart_pro_id}' and cart_user_id = '${cart_user_id}' and is_Active = 1`;
+  query = `update cart set is_Active = 0  where cart_user_id = '${cart_user_id}' and cart_pro_id= '${cart_pro_id}'`;
+  connection.query(checkPro_id, (err, result) => {
+    if (err) return res.status(400).json({ success: false, message: "err" });
+    if (result.length > 0) {
+      connection.query(query, (error, Result) => {
+        if (error)
+          return res
+            .status(400)
+            .json({ success: false, message: "err checkPro_id" });
+        return res.status(200).json({
+          success: true,
+          message: "Delete success",
+          data: cart_user_id,
+          cart_pro_id,
+        });
+      });
+    } else {
+      return res
+        .status(400)
+        .json({ success: false, message: "cart_pro_id not found" });
+    }
+  });
+});
 module.exports = router;
