@@ -49,13 +49,30 @@ router.get("/:id", (req, res) => {
   connection.query(query, (err, result) => {
     if (err) return res.status(400).json({ success: false, message: "error" });
     if (result.length > 0) {
-      return res.status(200).json({
-        success: true,
-        message: " success",
-        data: result,
+      let visible_id = result[0].visible_id;
+      let pro_name = result[0].pro_name;
+      let pro_type = result[0].pro_type;
+      let pro_description = result[0].pro_description;
+      let pro_price = result[0].pro_price;
+      let getImage = ` select * from image where image_pro_id=
+                                                                   '${visible_id}' and is_Active = 1 `;
+      connection.query(getImage, function (error, results) {
+        if (error)
+          return res
+            .status(400)
+            .json({ success: false, message: "Error getImage" });
+        let cache = {
+          image_path: results[0].image_path,
+          visible_id: visible_id,
+          pro_name: pro_name,
+          pro_type: pro_type,
+          pro_description: pro_description,
+          pro_price: pro_price,
+        };
+        return res
+          .status(200)
+          .json({ success: true, message: "success", cache });
       });
-    } else {
-      return res.status(400).json({ success: false, message: "Id not found" });
     }
   });
 });
@@ -68,7 +85,6 @@ router.post("/", middleware.checkProduct, (req, res) => {
                            '${pro_type}',
                            '${pro_description}',
                             ${pro_price})`;
-
   connection.query(query, (err, result) => {
     if (err) return res.status(400).json({ success: false, message: "err" });
     return res.status(200).json({
@@ -82,9 +98,10 @@ router.post("/", middleware.checkProduct, (req, res) => {
     });
   });
 });
-router.patch("/:id", (req, res) => {
+router.patch("/:id", middleware.checkValue, (req, res) => {
   const id = req.params.id;
-  const { pro_name, pro_type, pro_description, pro_price } = req.body;
+  const { pro_name, pro_type, pro_description, pro_price, image_path } =
+    req.body;
   let checkPro_id = `select visible_id from product where visible_id = '${id}'
     and is_Active = 1`;
   query = `update product set 
@@ -93,6 +110,8 @@ router.patch("/:id", (req, res) => {
              pro_description = '${pro_description}',
              pro_price = ${pro_price}
              where visible_id ='${id}' and is_Active = 1`;
+  imageUpdate = `update image set image_path ='${image_path}'
+             where image_pro_id='${id}' and is_Active = 1`;
   connection.query(checkPro_id, (err, result) => {
     if (err)
       return res
@@ -102,18 +121,23 @@ router.patch("/:id", (req, res) => {
       connection.query(query, (error, result) => {
         if (error)
           return res.status(400).json({ success: false, message: "error" });
-        return res.status(200).json({
-          success: true,
-          message: " success",
-          data: id,
-          pro_name,
-          pro_type,
-          pro_description,
-          pro_price,
+        connection.query(imageUpdate, (errors, resultss) => {
+          if (errors)
+            return res.status(400).json({ success: false, message: "errorr" });
+          return res.status(200).json({
+            success: true,
+            message: "success",
+            data: id,
+            pro_name,
+            pro_type,
+            pro_description,
+            pro_price,
+            image_path,
+          });
         });
       });
     } else {
-      return res.status(400).json({ success: false, message: "Id not found" });
+      return res.status(400).json({ success: false, message: "id not found" });
     }
   });
 });

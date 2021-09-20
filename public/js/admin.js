@@ -16,6 +16,14 @@ addproduct.addEventListener("click", () => {
   var add = document.querySelector("#addproduct");
   add.classList.add("show");
 });
+// var edit = document.querySelector("#edit");
+// for (let i = 0; i < edit.length; i++) {
+//   edit[i].onclick = () => {
+//     //
+//     console.log("đã click");
+//     return false;
+//   };
+// }
 
 var select2 = document.querySelector("#container");
 select2.addEventListener("click", () => {
@@ -148,5 +156,47 @@ function deleteProduct(id) {
     .then((response) => alert("Delete success!"));
   var upload = document.querySelector(".delete-item-" + id);
   upload.remove();
+}
+function editProduct(id) {
+  let name = document.querySelector('input[name="pro_name"]').value;
+  let type = document.querySelector('input[name="pro_type"]').value;
+  let description = document.querySelector(
+    'input[name="pro_description"]'
+  ).value;
+  let price = document.querySelector('input[name="pro_price"]').value;
+  var image = document.querySelector('input[name="image_file"]').value;
+  console.log(image);
+  let data = {
+    pro_name: name,
+    pro_type: type,
+    pro_description: description,
+    pro_price: price,
+    image_path: image,
+  };
+  let option = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  fetch(productApi + "/" + id, option)
+    .then((response) => response.json())
+    .then((response) => {
+      switch (response.message) {
+        case "success":
+          alert("Cập nhật hình ảnh thành công");
+          getProduct(renderProduct);
+          break;
+        case "id not found":
+          alert("Sản phẩm không tồn tại");
+          break;
+        case "image not found":
+          alert("Không tìm thấy hình ảnh");
+          break;
+        default:
+          alert("Lỗi hệ thống vui lòng thử lại sau");
+      }
+    });
 }
 getProduct(renderProduct);
