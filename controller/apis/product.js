@@ -127,7 +127,7 @@ router.patch("/:id", middleware.checkValue, (req, res) => {
           return res.status(200).json({
             success: true,
             message: "success",
-            data: id,
+            visible_id: id,
             pro_name,
             pro_type,
             pro_description,

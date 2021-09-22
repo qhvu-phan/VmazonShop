@@ -16,14 +16,6 @@ addproduct.addEventListener("click", () => {
   var add = document.querySelector("#addproduct");
   add.classList.add("show");
 });
-// var edit = document.querySelector("#edit");
-// for (let i = 0; i < edit.length; i++) {
-//   edit[i].onclick = () => {
-//     //
-//     console.log("đã click");
-//     return false;
-//   };
-// }
 
 var select2 = document.querySelector("#container");
 select2.addEventListener("click", () => {
@@ -35,6 +27,11 @@ select2.addEventListener("click", () => {
 var select3 = document.querySelector("#close");
 select3.addEventListener("click", () => {
   var add = document.querySelector(".addproduct");
+  add.classList.remove("show");
+});
+var select4 = document.querySelector("#closes");
+select4.addEventListener("click", () => {
+  var add = document.querySelector("#editproduct");
   add.classList.remove("show");
 });
 
@@ -61,7 +58,7 @@ function renderProduct(products) {
                            <div class="title-content">${product.pro_name}</div>
                            <div class="price-buy">
                                <p>${product.pro_price}vnd</p>
-                               <button id="edit" onclick="editProduct('${
+                               <button id="edit" onclick="handleEditProduct('${
                                  product.visible_id
                                }')">Sửa</button>
                                <button id="delete" onclick="deleteProduct('${
@@ -158,14 +155,13 @@ function deleteProduct(id) {
   upload.remove();
 }
 function editProduct(id) {
-  let name = document.querySelector('input[name="pro_name"]').value;
-  let type = document.querySelector('input[name="pro_type"]').value;
+  let name = document.querySelector('input[name="pro_names"]').value;
+  let type = document.querySelector('input[name="pro_types"]').value;
   let description = document.querySelector(
-    'input[name="pro_description"]'
+    'input[name="pro_descriptions"]'
   ).value;
-  let price = document.querySelector('input[name="pro_price"]').value;
-  var image = document.querySelector('input[name="image_file"]').value;
-  console.log(image);
+  let price = document.querySelector('input[name="pro_prices"]').value;
+  var image = document.querySelector('input[name="image_files"]').value;
   let data = {
     pro_name: name,
     pro_type: type,
@@ -185,8 +181,7 @@ function editProduct(id) {
     .then((response) => {
       switch (response.message) {
         case "success":
-          alert("Cập nhật hình ảnh thành công");
-          getProduct(renderProduct);
+          alert("Cập nhật sản phẩm thành công");
           break;
         case "id not found":
           alert("Sản phẩm không tồn tại");
@@ -197,6 +192,17 @@ function editProduct(id) {
         default:
           alert("Lỗi hệ thống vui lòng thử lại sau");
       }
+      getProduct(renderProduct);
+      var add = document.querySelector("#editproduct");
+      add.classList.remove("show");
     });
+}
+function handleEditProduct(id) {
+  let show = document.querySelector("#editproduct");
+  show.classList.add("show");
+  let update = document.querySelector("#updates");
+  update.onclick = () => {
+    editProduct(id);
+  };
 }
 getProduct(renderProduct);
