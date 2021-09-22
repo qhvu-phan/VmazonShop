@@ -55,6 +55,7 @@ router.get("/:id", middleware.checkId, (req, res) => {
         let visible_id = result[i].visible_id;
         let cart_user_id = result[i].cart_user_id;
         let cart_pro_id = result[i].cart_pro_id;
+        let cart_pro_quantity = result[i].cart_pro_quantity;
         let getProduct = ` select * from product where visible_id ='${cart_pro_id}' and is_Active = 1`;
         connection.query(getProduct, (err, results) => {
           if (err)
@@ -80,6 +81,7 @@ router.get("/:id", middleware.checkId, (req, res) => {
                 pro_type: pro_type,
                 pro_description: pro_description,
                 pro_price: pro_price,
+                pro_quantity: cart_pro_quantity,
               };
               product.push(cache);
               if (i === result.length - 1)
@@ -93,6 +95,20 @@ router.get("/:id", middleware.checkId, (req, res) => {
     } else {
       return res.status(400).json({ success: false, message: "empty basket" });
     }
+  });
+});
+router.patch("/", (req, res) => {
+  const { cart_user_id, cart_pro_id, cart_pro_quantity } = req.body;
+  query = `update cart set cart_pro_quantity ='${cart_pro_quantity}' where cart_user_id ='${cart_user_id}' and cart_pro_id ='${cart_pro_id}' and is_Active = 1`;
+  connection.query(query, (err, result) => {
+    if (err) return res.status(400).json({ success: false, message: "err" });
+    return res.status(200).json({
+      success: true,
+      message: "success",
+      cart_user_id,
+      cart_pro_id,
+      cart_pro_quantity,
+    });
   });
 });
 router.delete("/", (req, res) => {

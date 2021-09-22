@@ -369,6 +369,12 @@ html {
 .cart-number {
   width: 50px;
 }
+.quantity {
+  width: 50px;
+}
+#totalAmount {
+  margin-right: 100px;
+}
 .show {
   display: block !important;
 }

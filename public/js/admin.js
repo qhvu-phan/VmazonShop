@@ -42,9 +42,16 @@ function getProduct(callback) {
     .then(function (response) {
       return response.json();
     })
-    .then(callback);
+    .then(callback)
+    .then(() => {
+      const edit = document.getElementsByClassName("edit");
+      for (let i = 0; i < edit.length; i++) {
+        edit[i].addEventListener("click", function (e) {
+          console.log(e.target.getAttribute("data-id"));
+        });
+      }
+    });
 }
-
 function renderProduct(products) {
   var listProduct = document.querySelector("#content");
   var html = products.product.map(function (product) {
@@ -58,7 +65,10 @@ function renderProduct(products) {
                            <div class="title-content">${product.pro_name}</div>
                            <div class="price-buy">
                                <p>${product.pro_price}vnd</p>
-                               <button id="edit" onclick="handleEditProduct('${
+                               <button class="edit" data-id="${
+                                 product.visible_id
+                               }" 
+                               onclick="handleEditProduct('${
                                  product.visible_id
                                }')">Sửa</button>
                                <button id="delete" onclick="deleteProduct('${
@@ -126,17 +136,19 @@ function handleCrateProduct() {
       'input[name="pro_description"]'
     ).value;
     var price = document.querySelector('input[name="pro_price"]').value;
-    var data = {
-      pro_name: name,
-      pro_type: type,
-      pro_description: description,
-      pro_price: price,
-    };
-
-    var add = document.querySelector("#addproduct");
-    add.classList.remove("show");
-
-    postProduct(data);
+    if (name == "" || type == "" || description == "" || price == "") {
+      alert("Vui lòng điền đầy đủ thông tin sản phẩm");
+    } else {
+      var data = {
+        pro_name: name,
+        pro_type: type,
+        pro_description: description,
+        pro_price: price,
+      };
+      var add = document.querySelector("#addproduct");
+      add.classList.remove("show");
+      postProduct(data);
+    }
   };
 }
 

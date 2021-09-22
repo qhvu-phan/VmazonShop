@@ -2,6 +2,7 @@ var productApi = "http://localhost:5000/product";
 var usersApi = "http://localhost:5000/users";
 var cartsApi = "http://localhost:5000/carts";
 let listProducts = [];
+let listCarts = [];
 function getProduct(callback) {
   fetch(productApi)
     .then(function (response) {
@@ -237,7 +238,16 @@ function show_cart() {
       .then((response) => response.json())
       .then((products) => {
         let cart_list = document.querySelector("#cart_list_mem");
+        listCarts = [];
         let list = products.product.map((product) => {
+          let cart = {
+            visible_id: product.visible_id_pro,
+            image_path: product.image_path,
+            pro_name: product.pro_name,
+            pro_qua: product.pro_quantity,
+            pro_price: product.pro_price,
+          };
+          listCarts.push(cart);
           return `
        <div id="cart-mem" class="cart-mem-${product.visible_id_pro}">
                 <div id="description">
@@ -254,13 +264,43 @@ function show_cart() {
                   </div>
                   <div class="cart-name">
                   <label for="">${product.pro_name}</label></div>
-                <div class="cart-number"><label for="">1</label></div>  
+                <div class="cart-number"><label for=""><select data-id="${
+                  product.visible_id_pro
+                }" class="quantity">
+                <option>${product.pro_quantity}</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                </select></label></div>  
                 </div>
                 <div id="total">${product.pro_price}vnd</div>
               </div>         
        `;
         });
         cart_list.innerHTML = list.join("");
+      })
+      .then(() => {
+        total();
+        let getElement = document.getElementsByClassName("quantity");
+        for (let i = 0; i < getElement.length; i++) {
+          getElement[i].addEventListener("change", function (e) {
+            let id = e.target.getAttribute("data-id");
+            let value = getElement[i].value;
+            let user_id = document.querySelector("#user_id").value;
+            let data = {
+              cart_user_id: user_id,
+              cart_pro_id: id,
+              cart_pro_quantity: value,
+            };
+            updateQuantity(data);
+          });
+        }
       });
   } else {
     alert("Vui lòng đăng nhập");
@@ -314,12 +354,44 @@ function removeProductCart(id) {
   fetch(cartsApi, option)
     .then((response) => response.json())
     .then((response) => {
-      if (response.message === "Delete success")
+      if (response.message === "Delete success") {
         alert("Sản phẩm đã được lấy ra");
-      else if (response.message === "cart_pro_id not found")
+        show_cart();
+        total();
+      } else if (response.message === "cart_pro_id not found")
         alert("Sản phẩm không tồn tại");
       else alert("Lỗi hệ thống");
     });
   var upload = document.querySelector(".cart-mem-" + id);
   upload.remove();
+}
+console.log(listCarts);
+
+function total() {
+  let sum = 0;
+  if (listCarts.length > 0) {
+    for (i = 0; i < listCarts.length; i++) {
+      sum += parseInt(listCarts[i].pro_price * listCarts[i].pro_qua);
+    }
+  } else {
+    sum = 0;
+  }
+  let total = document.querySelector("#totalAmount");
+  total.innerHTML = sum + "vnd";
+  console.log(listCarts.length);
+}
+function updateQuantity(data) {
+  let option = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  fetch(cartsApi, option)
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.message === "success") show_cart();
+      else alert("Lỗi hệ thống");
+    });
 }
