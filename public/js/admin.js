@@ -131,7 +131,7 @@ function handleCrateProduct() {
   var submitBtn = document.querySelector("#create");
   submitBtn.onclick = function () {
     var name = document.querySelector('input[name="pro_name"]').value;
-    var type = document.querySelector('input[name="pro_type"]').value;
+    var type = document.querySelector(".pro_types").value;
     var description = document.querySelector(
       'input[name="pro_description"]'
     ).value;
@@ -168,7 +168,7 @@ function deleteProduct(id) {
 }
 function editProduct(id) {
   let name = document.querySelector('input[name="pro_names"]').value;
-  let type = document.querySelector('input[name="pro_types"]').value;
+  let type = document.querySelector(".pro_types").value;
   let description = document.querySelector(
     'input[name="pro_descriptions"]'
   ).value;

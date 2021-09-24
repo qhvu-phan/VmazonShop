@@ -130,7 +130,7 @@
             <a id="home" href="http://localhost:5000">Vmazon</a>
           </div>
           <div id="search">
-            <input class="search" type="text" onfocus="this.value=''" oninput="searchProduct()" />
+            <input class="search" type="text" onfocus="this.value=''" oninput="searchProduct()" placeholder="Tìm kiếm sản phẩm" />
             <i id="btn-search" onclick="search_product()" class="fas fa-search btn-search"></i>
           </div>
           <div id="cart">
@@ -167,21 +167,30 @@
             <li class="nav-mem" onclick="renderProductTypeof('2')">Củ , quả các loại</li>
             <li class="nav-mem" onclick="renderProductTypeof('3')">Thịt các loại</li>
             <li class="nav-mem" onclick="renderProductTypeof('5')">Cá các loại</li>
-            <li class="nav-mem" onclick="renderProductTypeof('4')">Phụ phẩm các loại</li>
+            <li class="nav-mem" onclick="renderProductTypeof('4')">Mì các loại</li>
             <li id="nav-mem-buy"class="nav-mem">
-              <p id="open-buy">Mua hàng thông minh</p>
+              <p id="open-buy">Gọi ý mua hàng</p>
               <div id="select-buy" class="select-buy">
                 <div class="icon-close"><i id="fa-times-circle"class="far fa-times-circle"></i></div>
                 <label for="">Vui lòng điền số tiền: </label>
-                <input type="text"> <br><br>
-                <label for="">Vui lòng chọn loại thực phẩm: </label> <br>
-                <label for="">Rau xanh các loại <input type="checkbox"></label> <br>
-                <label for="">Củ, quả các loại <input type="checkbox"></label><br>
-                <label for="">Thịt các loại <input type="checkbox"></label><br>
-                <label for="">Cá các loại <input type="checkbox"></label><br>
-                <label for="">Phụ phẩm các loại <input type="checkbox"></label> <br>
-                <button>Bắt đầu mua</button>
-              </div>
+                <input id ="money" type="text"> 
+                <select id="select-type">
+                  <option value="0">Chọn loại thực phẩm</option>
+                  <option value="1"> Rau xanh các loại </option>
+                  <option value="2"> Củ, quả các loại </option>
+                  <option value="3"> Thịt các loại </option>
+                  <option value="4"> Mì các loại </option>
+                  <option value="5"> Cá các loại </option>   
+                </select>
+                <button onclick="suggestion()">Bắt đầu mua</button>
+                <div>
+                  <div id="suggestion" >                
+                  </div>  
+                  <label id="product-buy-number"for="">Số sản phẩm mua được: 0 </label><br>
+                  <label id="money-total" for="">Tiền thừa:0</label><br>
+                </div>
+                                                        
+            </div>
             </li>
           </ul>
         </div>

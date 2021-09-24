@@ -1,6 +1,7 @@
 var productApi = "http://localhost:5000/product";
 var usersApi = "http://localhost:5000/users";
 var cartsApi = "http://localhost:5000/carts";
+var suggestionApi = "http://localhost:5000/suggestion_product";
 let listProducts = [];
 let listCarts = [];
 function getProduct(callback) {
@@ -237,18 +238,19 @@ function show_cart() {
     fetch(cartsApi + "/" + id)
       .then((response) => response.json())
       .then((products) => {
-        let cart_list = document.querySelector("#cart_list_mem");
-        listCarts = [];
-        let list = products.product.map((product) => {
-          let cart = {
-            visible_id: product.visible_id_pro,
-            image_path: product.image_path,
-            pro_name: product.pro_name,
-            pro_qua: product.pro_quantity,
-            pro_price: product.pro_price,
-          };
-          listCarts.push(cart);
-          return `
+        if (products.message === "success") {
+          let cart_list = document.querySelector("#cart_list_mem");
+          listCarts = [];
+          let list = products.product.map((product) => {
+            let cart = {
+              visible_id: product.visible_id_pro,
+              image_path: product.image_path,
+              pro_name: product.pro_name,
+              pro_qua: product.pro_quantity,
+              pro_price: product.pro_price,
+            };
+            listCarts.push(cart);
+            return `
        <div id="cart-mem" class="cart-mem-${product.visible_id_pro}">
                 <div id="description">
                <div class = "cart-delete"> <i onclick="removeProductCart('${
@@ -282,8 +284,13 @@ function show_cart() {
                 <div id="total">${product.pro_price}vnd</div>
               </div>         
        `;
-        });
-        cart_list.innerHTML = list.join("");
+          });
+          cart_list.innerHTML = list.join("");
+        } else {
+          listCarts = [];
+          alert("Giỏ hàng trống");
+          total();
+        }
       })
       .then(() => {
         total();
@@ -393,5 +400,60 @@ function updateQuantity(data) {
     .then((response) => {
       if (response.message === "success") show_cart();
       else alert("Lỗi hệ thống");
+    });
+}
+function suggestion() {
+  let select_type = document.querySelector("#select-type").value;
+  let money = document.querySelector("#money").value;
+  let data = {
+    money: money,
+  };
+  let option = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  console.log(select_type);
+  console.log(money);
+  console.log(suggestionApi + "/" + select_type);
+  fetch(suggestionApi + "/" + select_type, option)
+    .then((response) => response.json())
+    .then((response) => {
+      console.log("ok");
+      if (response.message === "success") {
+        let suggestion_product = document.querySelector("#suggestion");
+        let render = response.suggestion.map(function (product) {
+          return `
+          <div id="conten-mem" class="${product.visible_id}">
+         <div> <img src="/img/${product.image_path.slice(
+           10
+         )}" alt="" width="200px" height="200px"></div>
+         <div class="title-content">${product.pro_name}</div>
+         <div class="price-buy">
+             <p>SL:${product.quantity}</p>
+             <p>${product.pro_price}vnd</p>
+             
+         </div>
+         <div>
+         <p>Dinh dưỡng: ${product.nutritional}</p>
+            </div>
+          <div id="sale"><img src="img/sale.png" alt="" with="50px" height="50px" ></div>
+       </div>
+       `;
+        });
+        suggestion_product.innerHTML = render.join("");
+        document.querySelector("#product-buy-number").innerHTML =
+          "Số sản phẩm mua được:" + " " + response.count;
+        document.querySelector("#money-total").innerHTML =
+          "Tiền thừa:" + " " + response.money + "vnd";
+      } else if (response.message === "invalid type") {
+        alert("Loại sản phẩm không tồn tại");
+      } else if (response.message === "money very small") {
+        alert(response.money + "vnd" + " " + "không đủ để mua nhân phẩm");
+      } else {
+        alert("Lỗi hệ thống");
+      }
     });
 }

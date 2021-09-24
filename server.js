@@ -4,6 +4,7 @@ const product = require("./controller/apis/product.js");
 const image = require("./controller/apis/image.js");
 const users = require("./controller/apis/users.js");
 const carts = require("./controller/apis/carts.js");
+const suggestion_product = require("./controller/apis/product_suggestion.js");
 app.use(express.static("public")); //set static file
 app.set("view engine", "ejs"); //use view engine
 app.set("views", "./view"); //use view engine
@@ -25,6 +26,7 @@ app.use("/product", product);
 app.use("/image", image);
 app.use("/users", users);
 app.use("/carts", carts);
+app.use("/suggestion_product", suggestion_product);
 
 const port = 5000;
 app.listen(port, function () {

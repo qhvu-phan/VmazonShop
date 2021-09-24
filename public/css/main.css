@@ -7,7 +7,7 @@ html {
   font-family: Arial, Helvetica, sans-serif;
 }
 #main {
-  width: 1280px;
+  width: auto;
   max-width: 100%;
   margin: 0 auto;
 }
@@ -95,9 +95,10 @@ html {
   flex: 1;
 }
 #search .search {
-  width: 600px;
+  width: 1080px;
   border: 1px solid white;
-  border-radius: 25px;
+  font-size: 2rem;
+  border-radius: 10px;
   margin-right: 5px;
   outline: none;
 }
@@ -154,12 +155,14 @@ html {
 #conten-mem {
   margin: 10px 10px;
   max-width: 240px;
-  height: 280px;
+  max-height: 280px;
   padding: 5px;
   border: 1px solid green;
   border-radius: 10px;
   cursor: pointer;
   position: relative;
+}
+#conten-mem:hover {
 }
 #conten-mem-admin {
   margin: 10px 10px;
@@ -180,7 +183,7 @@ html {
   justify-content: space-around;
   font-size: 1.6rem;
 }
-#edit,
+.edit,
 #delete {
   color: white;
   background-color: green;
@@ -198,7 +201,6 @@ html {
   font-size: 1.6rem;
 }
 .price-buy button {
-  color: green;
   cursor: pointer;
 }
 .price-buy p {
@@ -286,7 +288,6 @@ html {
   position: absolute;
   left: -650px;
   width: 800px;
-  height: 800px;
   max-height: 800px;
   z-index: 50;
   overflow: auto;
@@ -307,7 +308,7 @@ html {
   z-index: 100;
 }
 #cart_list_mem {
-  height: 600px;
+  max-height: 600px;
   width: 800px;
   overflow: auto;
 }
@@ -333,23 +334,24 @@ html {
 }
 #select-buy {
   position: absolute;
-  top: -100px;
-  left: 250px;
-  width: 1000px;
-  height: 500px;
+  top: -200px;
+  left: 300px;
+  width: 1300px;
+  height: 700px;
   background-color: white;
   border: 2px solid green;
   border-radius: 10px;
   text-align: center;
   z-index: 1;
   display: none;
+  overflow: auto;
 }
 #select-buy .icon-close {
   width: 50px;
   height: 50px;
   font-size: 3.2rem;
   color: green;
-  margin-left: 960px;
+  margin-left: 1240px;
 }
 .cart-mem {
   display: flex;
@@ -374,6 +376,15 @@ html {
 }
 #totalAmount {
   margin-right: 100px;
+}
+#suggestion {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+.buy-button {
+  display: none;
 }
 .show {
   display: block !important;
