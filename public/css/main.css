@@ -308,6 +308,7 @@ html {
   z-index: 100;
 }
 #cart_list_mem {
+  height: 500px;
   max-height: 600px;
   width: 800px;
   overflow: auto;

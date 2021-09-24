@@ -32,12 +32,12 @@ let middleware = {
       if (result.length > 0) {
         let old_pro_name = result[0].pro_name;
         let old_pro_type = result[0].pro_type;
-        let old_pro_description = result[0].pro_description;
+        let old_pro_nutritional = result[0].pro_nutritional;
         let old_pro_price = result[0].pro_price;
         if (req.body.pro_name == "") req.body.pro_name = old_pro_name;
         if (req.body.pro_type == "") req.body.pro_type = old_pro_type;
-        if (req.body.pro_description == "")
-          req.body.pro_description = old_pro_description;
+        if (req.body.pro_nutritional == "")
+          req.body.pro_nutritional = old_pro_nutritional;
         if (req.body.pro_price == "") req.body.pro_price = old_pro_price;
         connection.query(getImage, (err, results) => {
           if (err)

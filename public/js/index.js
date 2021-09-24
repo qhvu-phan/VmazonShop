@@ -281,7 +281,9 @@ function show_cart() {
                 <option>10</option>
                 </select></label></div>  
                 </div>
-                <div id="total">${product.pro_price}vnd</div>
+                <div id="total">${parseInt(
+                  product.pro_price * product.pro_quantity
+                )}vnd</div>
               </div>         
        `;
           });

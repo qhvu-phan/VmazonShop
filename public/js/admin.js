@@ -47,7 +47,7 @@ function getProduct(callback) {
       const edit = document.getElementsByClassName("edit");
       for (let i = 0; i < edit.length; i++) {
         edit[i].addEventListener("click", function (e) {
-          console.log(e.target.getAttribute("data-id"));
+          //console.log(e.target.getAttribute("data-id"));
         });
       }
     });
@@ -102,27 +102,53 @@ function postProduct(data) {
         var image_path = document.querySelector(
           'input[name="image_file"]'
         ).value;
-        var data_image = {
-          image_pro_id: id,
-          image_name: name,
-          image_path: image_path,
-          image_size: "400kb",
-        };
-        var options = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data_image),
-        };
-        fetch(imageApi, options) // image
-          .then((response) => {
-            return response.json();
-          })
-          .then((response) => {
-            alert("success");
-            getProduct(renderProduct);
-          });
+        if (image_path != "") {
+          console.log(image_path);
+          var data_image = {
+            image_pro_id: id,
+            image_name: name,
+            image_path: image_path,
+            image_size: "400kb",
+          };
+          var options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data_image),
+          };
+          fetch(imageApi, options) // image
+            .then((response) => {
+              return response.json();
+            })
+            .then((response) => {
+              alert("success");
+              getProduct(renderProduct);
+            });
+        } else {
+          console.log(image_path);
+          var data_image = {
+            image_pro_id: id,
+            image_name: name,
+            image_path: "smile.png",
+            image_size: "400kb",
+          };
+          var options = {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data_image),
+          };
+          fetch(imageApi, options) // image
+            .then((response) => {
+              return response.json();
+            })
+            .then((response) => {
+              alert("success");
+              getProduct(renderProduct);
+            });
+        }
       }
     });
 }
@@ -132,17 +158,17 @@ function handleCrateProduct() {
   submitBtn.onclick = function () {
     var name = document.querySelector('input[name="pro_name"]').value;
     var type = document.querySelector(".pro_types").value;
-    var description = document.querySelector(
+    var nutritional = document.querySelector(
       'input[name="pro_description"]'
     ).value;
     var price = document.querySelector('input[name="pro_price"]').value;
-    if (name == "" || type == "" || description == "" || price == "") {
+    if (name == "" || type == "" || nutritional == "" || price == "") {
       alert("Vui lòng điền đầy đủ thông tin sản phẩm");
     } else {
       var data = {
         pro_name: name,
         pro_type: type,
-        pro_description: description,
+        pro_nutritional: nutritional,
         pro_price: price,
       };
       var add = document.querySelector("#addproduct");
@@ -159,7 +185,6 @@ function deleteProduct(id) {
       "Content-Type": "application/json",
     },
   };
-  console.log(productApi + "/" + id);
   fetch(productApi + "/" + id, option)
     .then((response) => response.json())
     .then((response) => alert("Delete success!"));
@@ -169,7 +194,7 @@ function deleteProduct(id) {
 function editProduct(id) {
   let name = document.querySelector('input[name="pro_names"]').value;
   let type = document.querySelector(".pro_types").value;
-  let description = document.querySelector(
+  let nutritional = document.querySelector(
     'input[name="pro_descriptions"]'
   ).value;
   let price = document.querySelector('input[name="pro_prices"]').value;
@@ -177,7 +202,7 @@ function editProduct(id) {
   let data = {
     pro_name: name,
     pro_type: type,
-    pro_description: description,
+    pro_nutritional: nutritional,
     pro_price: price,
     image_path: image,
   };

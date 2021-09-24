@@ -17,6 +17,7 @@ router.post("/:type", (req, res) => {
         let visible_id = result[i].visible_id;
         let pro_name = result[i].pro_name;
         let pro_type = result[i].pro_type;
+        let pro_nutritional = result[i].pro_nutritional;
         let pro_description = result[i].pro_description;
         let pro_price = result[i].pro_price;
         let getImage = ` select * from image where image_pro_id=
@@ -31,10 +32,11 @@ router.post("/:type", (req, res) => {
             visible_id: visible_id,
             pro_name: pro_name,
             pro_type: pro_type,
+            pro_nutritional: pro_nutritional,
             pro_description: pro_description,
             pro_price: pro_price,
             quantity: 0,
-            nutritional: parseFloat((pro_description / pro_price).toFixed(4)),
+            nutritional: parseFloat((pro_nutritional / pro_price).toFixed(4)),
           };
           listProduct.push(product);
           listProducts.push(product);
