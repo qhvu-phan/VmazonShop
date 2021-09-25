@@ -102,8 +102,8 @@ function postProduct(data) {
         var image_path = document.querySelector(
           'input[name="image_file"]'
         ).value;
+        console.log(image_path);
         if (image_path != "") {
-          console.log(image_path);
           var data_image = {
             image_pro_id: id,
             image_name: name,
@@ -126,11 +126,10 @@ function postProduct(data) {
               getProduct(renderProduct);
             });
         } else {
-          console.log(image_path);
           var data_image = {
             image_pro_id: id,
             image_name: name,
-            image_path: "smile.png",
+            image_path: "C:\fakepathcartnull.png",
             image_size: "400kb",
           };
           var options = {
