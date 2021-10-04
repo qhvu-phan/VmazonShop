@@ -32,16 +32,20 @@ window.addEventListener("load", function () {
     if (direction === 1) {
       if (index >= sliderLength - 1) {
         index = sliderLength - 1;
+        nextBtn.style = `display: none`;
         return;
       }
+      prevBtn.style = `display: hide`;
       postionX = postionX - sliderItemsWidth;
       sliderMain.style = `transform: translateX(${postionX}px)`;
       index++;
     } else if (direction === -1) {
       if (index <= 0) {
         index = 0;
+        prevBtn.style = `display: none`;
         return;
       }
+      nextBtn.style = `display: hide`;
       postionX = postionX + sliderItemsWidth;
       sliderMain.style = `transform: translateX(${postionX}px)`;
       index--;

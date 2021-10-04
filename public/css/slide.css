@@ -37,11 +37,9 @@ body {
   padding: 25px;
 }
 .content-slider {
-  position: relative;
   margin-top: 30px;
   width: 980px;
   height: 100px;
-  left: 395px;
 }
 .slider-next,
 .slider-prev {
@@ -63,18 +61,17 @@ body {
 }
 .slider-next {
   right: 25px;
-  top: 90px;
+  top: 125px;
 }
 .slider-prev {
   left: 25px;
-  top: 90px;
+  top: 125px;
 }
 .slider-dots {
   position: absolute;
-  top: 180%;
+  top: 13%;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 25px;
   display: flex;
   justify-content: center;
   align-items: center;

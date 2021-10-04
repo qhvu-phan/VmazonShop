@@ -9,15 +9,22 @@ html {
 body {
   background-color: #e9edf0;
 }
+#main {
+  position: relative;
+  max-width: 1280px;
+  max-height: 500px;
+  margin: auto;
+}
 .content-discount-code {
   margin-top: 110px;
-  margin-left: 395px;
 }
 .content-hot-product {
   margin-top: 10px;
-  margin-left: 395px;
 }
 .content-product {
   margin-top: 10px;
-  margin-left: 395px;
+}
+.content {
+  position: absolute;
+  left: 257px;
 }

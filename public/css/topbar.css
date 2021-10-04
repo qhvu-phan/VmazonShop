@@ -10,6 +10,7 @@ html {
   background-color: #008848;
   position: fixed;
   width: 100%;
+  z-index: 20;
   top: 0;
   left: 0;
 }
@@ -35,13 +36,14 @@ html {
   border-radius: 5px;
   outline: none;
   text-indent: 10px;
-  position: absolute;
+  position: relative;
   top: 8px;
-  right: 440px;
+  left: 10px;
   font-size: 14px;
 }
 .topbar-search-btn {
   position: relative;
+  top: -20px;
   left: 175px;
   color: #dddddd;
   font-size: 18px;
