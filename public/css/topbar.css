@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 62.5%;
+  font-family: Helvetica, Arial, sans-serif;
+}
+#topbar {
+  background-color: #008848;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+.topbar-header {
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 1200px;
+  height: 50px;
+  margin: auto;
+  text-align: center;
+  font-size: 100%;
+  align-items: center;
+  color: aliceblue;
+}
+.topbar-search {
+  width: 400px;
+}
+.topbar-search .topbar-search-input {
+  width: 380px;
+  height: 34px;
+  padding: 0 30px 0 0;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  outline: none;
+  text-indent: 10px;
+  position: absolute;
+  top: 8px;
+  right: 440px;
+  font-size: 14px;
+}
+.topbar-search-btn {
+  position: relative;
+  left: 175px;
+  color: #dddddd;
+  font-size: 18px;
+}
+.topbar-home {
+  width: 140px;
+  cursor: pointer;
+}
+.topbar-map {
+  margin-left: 20px;
+  width: 180px;
+  cursor: pointer;
+}
+#topbar-map-gps {
+  background-color: #057541;
+  align-items: center;
+  font-size: 11px;
+  height: 34px;
+  line-height: 34px;
+}
+.fa-map-marker-alt {
+  width: 13px;
+  height: 18px;
+  font-size: 18px;
+  margin-right: 5px;
+}
+.topbar-bill {
+  width: 92px;
+  font-size: 12px;
+  height: 50px;
+  text-align: center;
+  margin-top: 20px;
+}
+.topbar-cart {
+  width: 140px;
+  font-size: 12px;
+  background-color: #057541;
+  height: 50px;
+  line-height: 50px;
+}
+.fa-shopping-basket {
+  width: 24px;
+  height: 22px;
+  font-size: 22px;
+  color: #fff;
+  height: 50px;
+  margin-right: 5px;
+}
+.topbar-list {
+  height: 50px;
+  max-height: 1400px;
+  width: 210px;
+}
+.fa-list-alt {
+  font-size: 24px;
+}
+a {
+  text-decoration: none;
+  color: #fff;
+}

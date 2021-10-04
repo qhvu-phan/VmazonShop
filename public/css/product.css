@@ -1,0 +1,64 @@
+.content-product-container {
+  width: 980px;
+  max-height: 1200px;
+}
+.content-product-main {
+  width: 980px;
+}
+.content-product-list {
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+}
+.content-product-item {
+  max-width: 245px;
+  text-align: center;
+  align-items: center;
+  margin: 0 0 20px 0;
+  border: 1px solid #eee;
+}
+.buy a {
+  font-size: 17px;
+  border: 1px solid #037841;
+  border-radius: 4px;
+  padding: 10px 40px;
+  color: #037841;
+  text-transform: uppercase;
+}
+.buy {
+  margin-top: 30px;
+}
+.price-buy,
+.title-content {
+  margin-top: 20px;
+}
+.content-product-title {
+  text-transform: uppercase;
+  border-left: 5px solid #037841;
+  padding-left: 10px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: #4a4a4a;
+}
+.title-content-hot {
+  margin-left: 5px;
+  width: 180px;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+.price-buy-hot {
+  width: 200px;
+  text-align: right;
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 10px;
+}
+.bg-content-item {
+  background-image: url("/img/bgpin.jpg");
+  padding-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
