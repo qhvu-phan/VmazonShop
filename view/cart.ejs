@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/font/fontawesome-free-5.15.4-web/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/cart.css">
+    <title>Justin Store</title>
+</head>
+<body>
+    <div id="main">
+        <div class="header">
+            <%- include('topbar.ejs') %>
+        </div>
+        <div class="content">
+            <div class="content-cart-container">
+                <div class="cart-title">
+                      <p>Giỏ hàng của bạn</p> 
+                </div>
+                <div class="cart-list">
+                    <div class="cart-item">
+                       <div class="cart-item-img">
+                           <img src="/img/cachua.png" width="60px" height="60px" alt="">
+                       </div>
+                       <div class="cart-item-content">
+                           <div class="cart-item-title">
+                            <a href="#">Cà chua nhập khẩu từ Hàn Quốc</a>
+                           </div>
+                           <div class="cart-item-quanity">
+                               <div class="item-quanity">
+                                <i class="fas fa-minus"></i>
+                                <input type="text" class="quanity-input">
+                                <i class="fas fa-plus"></i>
+                               </div>
+                               <div class="item-delete">
+                                   Xóa
+                               </div>
+                           </div>
+                       </div>
+                       <div class="cart-item-total">
+                           100.000đ
+                       </div>
+                    </div> 
+                    <div class="cart-item">
+                        <div class="cart-item-img">
+                            <img src="/img/cachua.png" width="60px" height="60px" alt="">
+                        </div>
+                        <div class="cart-item-content">
+                            <div class="cart-item-title">
+                             <a href="#">Cà chua nhập khẩu từ Hàn Quốc</a>
+                            </div>
+                            <div class="cart-item-quanity">
+                                <div class="item-quanity">
+                                 <i class="fas fa-minus"></i>
+                                 <input type="text" class="quanity-input">
+                                 <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="item-delete">
+                                    Xóa
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-item-total">
+                            100.000đ
+                        </div>
+                     </div> 
+                     <div class="cart-item">
+                        <div class="cart-item-img">
+                            <img src="/img/cachua.png" width="60px" height="60px" alt="">
+                        </div>
+                        <div class="cart-item-content">
+                            <div class="cart-item-title">
+                             <a href="#">Cà chua nhập khẩu từ Hàn Quốc</a>
+                            </div>
+                            <div class="cart-item-quanity">
+                                <div class="item-quanity">
+                                 <i class="fas fa-minus"></i>
+                                 <input type="text" class="quanity-input">
+                                 <i class="fas fa-plus"></i>
+                                </div>
+                                <div class="item-delete">
+                                    Xóa
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-item-total">
+                            100.000đ
+                        </div>
+                     </div> 
+                </div>
+                <div class="cart-sale">
+                   Thời gian giao hàng có thể thay đổi vì dịch bệnh covid-19!
+                </div>
+                <div class="cart-amount">
+                    <div class="total">
+                        <span>Tổng tiền: </span>
+                        <label for="">100.000<u>đ</u></label>
+                    </div>
+                    <div class="discount">
+                        <span>Phí giao dự kiến: </span>
+                        <label for="">20.000<u>đ</u></label>
+                    </div>
+                    <div class="total">
+                        <span>Tổng tiền thanh toán: </span>
+                        <label for="">120.000<u>đ</u></label>
+                    </div>
+                </div>
+                <div class="cart-buy-btn cart-btn">
+                    <a href="#">Đặt hàng</a>
+                </div>
+                <div class="cart-cancle-btn cart-btn">
+                    <a href="#">Xóa giỏ hàng</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

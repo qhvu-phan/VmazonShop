@@ -7,22 +7,32 @@
             <div class="topbar-home">
                 <img src="/img/logo-bxh.png" height="50px" width="160px" alt="logo">
             </div>
-            <div class="topbar-map">
-                <div id="topbar-map-gps">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>Giao tại:</span>
-                    <span>Cần thơ</span>
-                    <span><u>Thay đổi</u></span>
-                </div>
-            </div>
             <div class="topbar-search">
                 <input type="text" class="topbar-search-input" placeholder="Tìm kiếm hơn 10k sản phẩm">
                 <i class="fas fa-search topbar-search-btn"></i>
             </div>
+            <div class="topbar-suggestion">
+                <div id="topbar-suggestion-content">
+                    <i class="fas fa-baby-carriage"></i>
+                   <a href="http://localhost:5000/suggestion">Gợi ý mua hàng</a>
+                </div>
+            </div>
             <div class="topbar-bill"><a href="">Đơn hàng <br> của bạn</a></div>
             <div class="topbar-cart">
-                <i class="fas fa-shopping-basket"></i>
-                <a href=""><b>GIỎ HÀNG</b></a>
+                <div class="topbar-cart-icon" style="display: none">
+                    <i class="fas fa-shopping-basket"></i>
+                    <div class="topbar-cart-number">1</div>
+                </div>     
+                <div class="topbar-cart-content"  style="display: none">
+                    <a class="topbar-cart-cart" href="http://localhost:5000/cart"><b>THANH TOÁN</b></a> <br>
+                    <p class="topbar-cart-price">248.000</p>
+                </div>
+                <div class="topbar-cart-icon" >
+                    <i class="fas fa-shopping-basket"></i>
+                </div>     
+                <div class="topbar-cart-content">
+                    <a  href="http://localhost:5000/cart"><b>GIỎ HÀNG</b></a> <br>
+                </div>
             </div>
     </div>  
 </div>

@@ -37,7 +37,6 @@ body {
   padding: 25px;
 }
 .content-slider {
-  margin-top: 30px;
   width: 980px;
   height: 100px;
 }
@@ -61,15 +60,15 @@ body {
 }
 .slider-next {
   right: 25px;
-  top: 125px;
+  top: 100px;
 }
 .slider-prev {
   left: 25px;
-  top: 125px;
+  top: 100px;
 }
 .slider-dots {
   position: absolute;
-  top: 13%;
+  top: 11%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;

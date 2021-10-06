@@ -1,155 +1,117 @@
 <link rel="stylesheet" href="/css/product.css">
 <div class="content-product-container">
     <div class="content-product-main">
-        <div class="content-product-title">Rau , củ , quả</div>
+        <div class="content-product-title">Rau xanh các loại</div>
         <div class="content-product-list">
-            <div class="content-product-item">
+            <!-- <div class="content-product-item">
                 <div class="bg-content-item">
                     <div class="title-content-hot">Nước xã vãi comfort em be cho da nhạy cảm 3.2l</div>
                     <div class="price-buy-hot">
                            <span>15.000 đ</span>
                     </div>
-                    <div> <img src="/img/comfor.png" alt="" width="200px" height="200px"></div>
+                    <div> <img src="/img/comfor.png" alt="" width="200px" height="205px"></div>
                 </div>
                 <div class="buy">
                     <a href="#">CHỌN MUA</a>
                 </div>    
-             </div>
-             <div class="content-product-item">
-                <div> <img src="/img/caixanh.jpg" alt="" width="200px" height="200px"></div>
-                     <div class="title-content">Càỉ xanh</div>
-                         <div class="price-buy">
-                               <span>SL:1</span>
-                                <span>15000 vnd</span>
-                           </div><br>
-                           <div class="buy">
-                                <a href="#">CHỌN MUA</a>
-                         </div>
-             </div>
-             <div class="content-product-item">
-                <div> <img src="/img/caixanh.jpg" alt="" width="200px" height="200px"></div>
-                     <div class="title-content">Càỉ xanh</div>
-                         <div class="price-buy">
-                               <span>SL:1</span>
-                                <span>15000 vnd</span>
-                           </div><br>
-                           <div class="buy">
-                                <a href="#">CHỌN MUA</a>
-                         </div>
-             </div>
-             <div class="content-product-item">
-                <div> <img src="/img/caixanh.jpg" alt="" width="200px" height="200px"></div>
-                     <div class="title-content">Càỉ xanh</div>
-                         <div class="price-buy">
-                               <span>SL:1</span>
-                                <span>15000 vnd</span>
-                           </div><br>
-                           <div class="buy">
-                                <a href="#">CHỌN MUA</a>
-                         </div>
-             </div>
+             </div> -->
+             <%if(data){%>
+                <% for(let i = 0;i < 8;i++) {%>
+                    <div class="content-product-item">
+                        <div> <img src="/img/<%=data.vegetable[i].image_path.slice(10)%>" alt="" width="245px" height="200px"></div>
+                             <div class="title-content"><%=data.vegetable[i].pro_name%></div>
+                                 <div class="price-buy">
+                                       <span>SL:<%=data.vegetable[i].pro_quantity%></span>
+                                        <span><%=data.vegetable[i].pro_price%><u>đ</u></span>
+                                   </div><br>
+                                   <div class="buy">
+                                        <a href="#">CHỌN MUA</a>
+                                   </div>
+                     </div>
+                <%}%>
+            <%}%>
+           
+        </div>     
+        <div class="content-product-extend">
+            <span>Xem thêm 1.321 sản phẩm</span>
+            <i class="fas fa-caret-down"></i>
         </div>
-       
     </div>
+
+    <!-- product # -->
     <div class="content-product-main">
-        <div class="content-product-title">Rau , củ , quả</div>
+        <div class="content-product-title">Củ , quả các loại</div>
         <div class="content-product-list">
-            <div class="content-product-item">
-                <div class="bg-content-item">
-                    <div class="title-content-hot">Nước xã vãi comfort em be cho da nhạy cảm 3.2l</div>
-                    <div class="price-buy-hot">
-                           <span>15.000 đ</span>
-                    </div>
-                    <div> <img src="/img/comfor.png" alt="" width="200px" height="200px"></div>
-                </div>
-                <div class="buy">
-                    <a href="#">CHỌN MUA</a>
-                </div>    
-             </div>
-             <div class="content-product-item">
-                <div> <img src="/img/caixanh.jpg" alt="" width="200px" height="200px"></div>
-                     <div class="title-content">Càỉ xanh</div>
-                         <div class="price-buy">
-                               <span>SL:1</span>
-                                <span>15000 vnd</span>
-                           </div><br>
-                           <div class="buy">
-                                <a href="#">CHỌN MUA</a>
-                         </div>
-             </div>
-             <div class="content-product-item">
-                <div> <img src="/img/caixanh.jpg" alt="" width="200px" height="200px"></div>
-                     <div class="title-content">Càỉ xanh</div>
-                         <div class="price-buy">
-                               <span>SL:1</span>
-                                <span>15000 vnd</span>
-                           </div><br>
-                           <div class="buy">
-                                <a href="#">CHỌN MUA</a>
-                         </div>
-             </div>
-             <div class="content-product-item">
-                <div> <img src="/img/caixanh.jpg" alt="" width="200px" height="200px"></div>
-                     <div class="title-content">Càỉ xanh</div>
-                         <div class="price-buy">
-                               <span>SL:1</span>
-                                <span>15000 vnd</span>
-                           </div><br>
-                           <div class="buy">
-                                <a href="#">CHỌN MUA</a>
-                         </div>
-             </div>
-        </div>
-       
+             <%if(data){%>
+                <% for(let i = 0;i < 8;i++) {%>
+                    <div class="content-product-item">
+                        <div> <img src="/img/<%=data.fruit[i].image_path.slice(10)%>" alt="" width="245px" height="200px"></div>
+                             <div class="title-content"><%=data.fruit[i].pro_name%></div>
+                                 <div class="price-buy">
+                                       <span>SL:<%=data.fruit[i].pro_quantity%></span>
+                                        <span><%=data.fruit[i].pro_price%><u>đ</u></span>
+                                   </div><br>
+                                   <div class="buy">
+                                        <a href="#">CHỌN MUA</a>
+                                   </div>
+                     </div>
+                <%}%>
+            <%}%>
+      </div>
+      <div class="content-product-extend">
+        <span>Xem thêm 1.321 sản phẩm</span>
+        <i class="fas fa-caret-down"></i>
     </div>
+   </div>
+    <!-- product # -->
     <div class="content-product-main">
-        <div class="content-product-title">Rau , củ , quả</div>
+        <div class="content-product-title">Mì các loại</div>
         <div class="content-product-list">
-            <div class="content-product-item">
-                <div class="bg-content-item">
-                    <div class="title-content-hot">Nước xã vãi comfort em be cho da nhạy cảm 3.2l</div>
-                    <div class="price-buy-hot">
-                           <span>15.000 đ</span>
-                    </div>
-                    <div> <img src="/img/comfor.png" alt="" width="200px" height="200px"></div>
-                </div>
-                <div class="buy">
-                    <a href="#">CHỌN MUA</a>
-                </div>    
-             </div>
-             <div class="content-product-item">
-                <div> <img src="/img/caixanh.jpg" alt="" width="200px" height="200px"></div>
-                     <div class="title-content">Càỉ xanh</div>
-                         <div class="price-buy">
-                               <span>SL:1</span>
-                                <span>15000 vnd</span>
-                           </div><br>
-                           <div class="buy">
-                                <a href="#">CHỌN MUA</a>
-                         </div>
-             </div>
-             <div class="content-product-item">
-                <div> <img src="/img/caixanh.jpg" alt="" width="200px" height="200px"></div>
-                     <div class="title-content">Càỉ xanh</div>
-                         <div class="price-buy">
-                               <span>SL:1</span>
-                                <span>15000 vnd</span>
-                           </div><br>
-                           <div class="buy">
-                                <a href="#">CHỌN MUA</a>
-                         </div>
-             </div>
-             <div class="content-product-item">
-                <div> <img src="/img/caixanh.jpg" alt="" width="200px" height="200px"></div>
-                     <div class="title-content">Càỉ xanh</div>
-                         <div class="price-buy">
-                               <span>SL:1</span>
-                                <span>15000 vnd</span>
-                           </div><br>
-                           <div class="buy">
-                                <a href="#">CHỌN MUA</a>
-                         </div>
-             </div>
-        </div>
+             <%if(data){%>
+                <% for(let i = 0;i <  8;i++) {%>
+                    <div class="content-product-item">
+                        <div> <img src="/img/<%=data.noodles[i].image_path.slice(10)%>" alt="" width="245px" height="200px"></div>
+                             <div class="title-content"><%=data.noodles[i].pro_name%></div>
+                                 <div class="price-buy">
+                                       <span>SL:<%=data.noodles[i].pro_quantity%></span>
+                                        <span><%=data.noodles[i].pro_price%><u>đ</u></span>
+                                   </div><br>
+                                   <div class="buy">
+                                        <a href="#">CHỌN MUA</a>
+                                   </div>
+                     </div>
+                <%}%>
+            <%}%>
+    </div>
+    <div class="content-product-extend">
+        <span>Xem thêm 1.321 sản phẩm</span>
+        <i class="fas fa-caret-down"></i>
+    </div>
+    </div>
+
+    <div class="content-product-main">
+        <div class="content-product-title">Thịt các loại</div>
+        <div class="content-product-list">
+             <%if(data){%>
+                <% for(let i = 0;i <  8;i++) {%>
+                    <div class="content-product-item">
+                        <div> <img src="/img/<%=data.meat[i].image_path.slice(10)%>" alt="" width="245px" height="200px"></div>
+                             <div class="title-content"><%=data.meat[i].pro_name%></div>
+                                 <div class="price-buy">
+                                       <span>SL:<%=data.meat[i].pro_quantity%></span>
+                                        <span><%=data.meat[i].pro_price%><u>đ</u></span>
+                                   </div><br>
+                                   <div class="buy">
+                                        <a href="#">CHỌN MUA</a>
+                                   </div>
+                     </div>
+                <%}%>
+            <%}%>
+    </div>
+    <div class="content-product-extend">
+        <span>Xem thêm 1.321 sản phẩm</span>
+        <i class="fas fa-caret-down"></i>
+    </div>
     </div>
 </div>
+

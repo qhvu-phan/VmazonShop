@@ -5,9 +5,14 @@ const connection = require("../../public/connection.js"); // use connection
 const middleware = require("../middleware/product.middleware.js");
 let query;
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   let product = [];
-  query = ` select * from product where is_Active = 1`;
+  const pro_type = req.query.pro_type;
+  if (pro_type !== undefined) {
+    query = ` select * from product where pro_type='${pro_type}' and is_Active = 1`;
+  } else {
+    query = ` select * from product where is_Active = 1`;
+  }
   connection.query(query, (err, result) => {
     if (err) return res.status(400).json({ success: false, message: "error" });
     if (result.length > 0) {
@@ -17,6 +22,7 @@ router.get("/", (req, res) => {
         let pro_type = result[i].pro_type;
         let pro_nutritional = result[i].pro_nutritional;
         let pro_description = result[i].pro_description;
+        let pro_quantity = result[i].pro_quantity;
         let pro_price = result[i].pro_price;
         let getImage = ` select * from image where image_pro_id=
                                                                    '${visible_id}' and is_Active = 1 `;
@@ -32,6 +38,7 @@ router.get("/", (req, res) => {
             pro_type: pro_type,
             pro_nutritional: pro_nutritional,
             pro_description: pro_description,
+            pro_quantity: pro_quantity,
             pro_price: pro_price,
           };
           product.push(cache);
