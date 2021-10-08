@@ -23,6 +23,10 @@
   height: 30px;
   line-height: 30px;
 }
+.cart-list {
+  max-height: 400px;
+  overflow: auto;
+}
 .cart-item {
   display: flex;
   justify-content: space-evenly;
@@ -43,7 +47,10 @@
   height: 28px;
   border: 1px solid #eee;
   outline: none;
+  text-align: center;
+  font-size: 14px;
 }
+
 .cart-item-title {
   margin: 0 0 10px 10px;
 }
@@ -58,6 +65,7 @@
 .fa-minus,
 .fa-plus {
   padding: 0 10px;
+  cursor: pointer;
 }
 .item-delete {
   font-size: 14px;
@@ -126,5 +134,16 @@
   text-transform: uppercase;
 }
 .category {
+  display: none;
+}
+.item-delete {
+  cursor: pointer;
+}
+.cart-message {
+  position: relative;
+  top: 200px;
+  left: 450px;
+}
+.message-hide {
   display: none;
 }

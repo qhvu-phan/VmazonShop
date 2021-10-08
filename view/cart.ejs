@@ -24,75 +24,33 @@
                       <p>Giỏ hàng của bạn</p> 
                 </div>
                 <div class="cart-list">
-                    <div class="cart-item">
+                    <%if(data){%>
+                        <% for(let i = 0;i < data.cart.length;i++) {%>
+                    <div class="cart-item cart-item-<%=data.cart[i].visible_id_pro%>">
                        <div class="cart-item-img">
-                           <img src="/img/cachua.png" width="60px" height="60px" alt="">
+                           <img src="/img/<%=data.cart[i].image_path.slice(10)%>" width="60px" height="60px" alt="">
                        </div>
                        <div class="cart-item-content">
                            <div class="cart-item-title">
-                            <a href="#">Cà chua nhập khẩu từ Hàn Quốc</a>
+                            <a href="#"><%=data.cart[i].pro_name%></a>
                            </div>
                            <div class="cart-item-quanity">
                                <div class="item-quanity">
                                 <i class="fas fa-minus"></i>
-                                <input type="text" class="quanity-input">
+                                <input type="text" value ="<%=data.cart[i].pro_quantity%>"class="quanity-input">
                                 <i class="fas fa-plus"></i>
                                </div>
-                               <div class="item-delete">
+                               <div class="item-delete" data-id="<%=data.cart[i].visible_id_pro%>">
                                    Xóa
                                </div>
                            </div>
                        </div>
                        <div class="cart-item-total">
-                           100.000đ
+                        <%=data.cart[i].pro_price%>
                        </div>
                     </div> 
-                    <div class="cart-item">
-                        <div class="cart-item-img">
-                            <img src="/img/cachua.png" width="60px" height="60px" alt="">
-                        </div>
-                        <div class="cart-item-content">
-                            <div class="cart-item-title">
-                             <a href="#">Cà chua nhập khẩu từ Hàn Quốc</a>
-                            </div>
-                            <div class="cart-item-quanity">
-                                <div class="item-quanity">
-                                 <i class="fas fa-minus"></i>
-                                 <input type="text" class="quanity-input">
-                                 <i class="fas fa-plus"></i>
-                                </div>
-                                <div class="item-delete">
-                                    Xóa
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cart-item-total">
-                            100.000đ
-                        </div>
-                     </div> 
-                     <div class="cart-item">
-                        <div class="cart-item-img">
-                            <img src="/img/cachua.png" width="60px" height="60px" alt="">
-                        </div>
-                        <div class="cart-item-content">
-                            <div class="cart-item-title">
-                             <a href="#">Cà chua nhập khẩu từ Hàn Quốc</a>
-                            </div>
-                            <div class="cart-item-quanity">
-                                <div class="item-quanity">
-                                 <i class="fas fa-minus"></i>
-                                 <input type="text" class="quanity-input">
-                                 <i class="fas fa-plus"></i>
-                                </div>
-                                <div class="item-delete">
-                                    Xóa
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cart-item-total">
-                            100.000đ
-                        </div>
-                     </div> 
+                    <%}%>
+                <%}%>
                 </div>
                 <div class="cart-sale">
                    Thời gian giao hàng có thể thay đổi vì dịch bệnh covid-19!
@@ -119,6 +77,12 @@
                 </div>
             </div>
         </div>
+        <div class="cart-message message-hide">
+            <%- include('message.ejs') %>
+        </div>
     </div>
+    
 </body>
 </html>
+
+<script src="/js/cart.js"></script>

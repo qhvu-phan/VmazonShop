@@ -16,11 +16,11 @@ app.use(
     extended: true,
   })
 ); //use req.body req.params
-app.get("/cart", (req, res) => {
-  res.render("cart.ejs");
-});
 app.get("/suggestion", (req, res) => {
   res.render("suggestion.ejs");
+});
+app.get("/message", (req, res) => {
+  res.render("message.ejs");
 });
 app.use("/product", product);
 app.use("/image", image);

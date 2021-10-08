@@ -32,4 +32,20 @@ module.exports = (app) => {
       });
     });
   });
+  app.get("/cart", (req, res) => {
+    let fileName = "cart.ejs";
+    fs.readFile(path.resolve(__dirname, fileName), async (err, data) => {
+      if (err) {
+        return res.render("cart.ejs");
+      }
+      const cart = await axios.get(
+        `${process.env.LOCALHOST}/${process.env.CART}/${process.env.ID}`
+      );
+      return res.render(fileName, {
+        data: {
+          cart: cart.data.product,
+        },
+      });
+    });
+  });
 };

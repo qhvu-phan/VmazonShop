@@ -17,7 +17,7 @@
              </div> -->
              <%if(data){%>
                 <% for(let i = 0;i < 8;i++) {%>
-                    <div class="content-product-item">
+                    <div class="content-product-item" >
                         <div> <img src="/img/<%=data.vegetable[i].image_path.slice(10)%>" alt="" width="245px" height="200px"></div>
                              <div class="title-content"><%=data.vegetable[i].pro_name%></div>
                                  <div class="price-buy">
@@ -25,7 +25,7 @@
                                         <span><%=data.vegetable[i].pro_price%><u>đ</u></span>
                                    </div><br>
                                    <div class="buy">
-                                        <a href="#">CHỌN MUA</a>
+                                        <button class="product-item-selection" data-id="<%=data.vegetable[i].visible_id%>">CHỌN MUA</button>
                                    </div>
                      </div>
                 <%}%>
@@ -52,7 +52,7 @@
                                         <span><%=data.fruit[i].pro_price%><u>đ</u></span>
                                    </div><br>
                                    <div class="buy">
-                                        <a href="#">CHỌN MUA</a>
+                                    <button class="product-item-selection" data-id="<%=data.fruit[i].visible_id%>">CHỌN MUA</button>
                                    </div>
                      </div>
                 <%}%>
@@ -77,7 +77,7 @@
                                         <span><%=data.noodles[i].pro_price%><u>đ</u></span>
                                    </div><br>
                                    <div class="buy">
-                                        <a href="#">CHỌN MUA</a>
+                                    <button class="product-item-selection" data-id="<%=data.noodles[i].visible_id%>">CHỌN MUA</button>
                                    </div>
                      </div>
                 <%}%>
@@ -102,7 +102,7 @@
                                         <span><%=data.meat[i].pro_price%><u>đ</u></span>
                                    </div><br>
                                    <div class="buy">
-                                        <a href="#">CHỌN MUA</a>
+                                    <button class="product-item-selection" data-id="<%=data.meat[i].visible_id%>">CHỌN MUA</button>
                                    </div>
                      </div>
                 <%}%>
@@ -115,3 +115,4 @@
     </div>
 </div>
 
+<script src="/js/product.js"></script>
