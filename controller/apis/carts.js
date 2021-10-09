@@ -87,15 +87,19 @@ router.get("/:id", middleware.checkId, (req, res) => {
               };
               product.push(cache);
               if (i === result.length - 1)
-                return res
-                  .status(200)
-                  .json({ success: true, message: "success", product });
+                return res.status(200).json({
+                  success: true,
+                  message: "success",
+                  product: product,
+                });
             });
           }
         });
       }
     } else {
-      return res.status(400).json({ success: false, message: "empty basket" });
+      return res
+        .status(200)
+        .json({ success: true, message: "empty basket", product: [] });
     }
   });
 });

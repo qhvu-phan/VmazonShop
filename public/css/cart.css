@@ -49,6 +49,7 @@
   outline: none;
   text-align: center;
   font-size: 14px;
+  border-bottom: none;
 }
 
 .cart-item-title {
@@ -66,6 +67,7 @@
 .fa-plus {
   padding: 0 10px;
   cursor: pointer;
+  user-select: none;
 }
 .item-delete {
   font-size: 14px;
@@ -101,6 +103,10 @@
 .total {
   color: #999999;
   margin: 10px 0;
+  font-weight: 600;
+}
+.total label {
+  color: #057541;
 }
 .discount {
   color: #0081bd;

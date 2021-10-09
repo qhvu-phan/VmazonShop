@@ -33,7 +33,7 @@
   cursor: pointer;
 }
 .buy {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 .buy:hover button {
   background-color: #037841;
@@ -42,6 +42,7 @@
 .price-buy,
 .title-content {
   margin-top: 20px;
+  font-size: 14px;
 }
 .content-product-title {
   text-transform: uppercase;
@@ -78,4 +79,5 @@
   height: 30px;
   text-align: center;
   color: #0064c2;
+  font-size: 14px;
 }

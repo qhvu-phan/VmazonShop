@@ -114,7 +114,7 @@
   border: 1px solid #057541;
 }
 .suggestion-product-null {
-  width: 300px;
+  width: 260px;
   margin: 80px auto;
 }
 .product-null p {
@@ -124,4 +124,12 @@
 }
 .suggestion-total-money label {
   color: #057541;
+}
+.price-buy {
+  font-size: 16px;
+  color: #057541;
+}
+.info-nutritional {
+  margin-top: 20px;
+  font-size: 16px;
 }

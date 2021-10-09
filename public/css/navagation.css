@@ -20,6 +20,9 @@ html {
 .container li {
   list-style: none;
 }
+.container li a {
+  color: #1d1d1d;
+}
 .category {
   background-color: #fff;
   height: 10000px;

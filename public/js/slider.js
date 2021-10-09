@@ -15,6 +15,8 @@ window.addEventListener("load", function () {
       [...dotItem].forEach((element) => {
         element.classList.remove("active");
       });
+      prevBtn.style = `display: hide`;
+      nextBtn.style = `display: hide`;
       e.target.classList.add("active");
       const slideIndex = parseInt(e.target.dataset.index);
       index = slideIndex;

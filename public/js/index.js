@@ -389,21 +389,7 @@
 //   total.innerHTML = sum + "vnd";
 //   console.log(listCarts.length);
 // }
-// function updateQuantity(data) {
-//   let option = {
-//     method: "PATCH",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify(data),
-//   };
-//   fetch(cartsApi, option)
-//     .then((response) => response.json())
-//     .then((response) => {
-//       if (response.message === "success") show_cart();
-//       else alert("Lỗi hệ thống");
-//     });
-// }
+
 // function suggestion() {
 //   let select_type = document.querySelector("#select-type").value;
 //   let money = document.querySelector("#money").value;
@@ -438,9 +424,7 @@
 //              <p>${product.pro_price}vnd</p>
 
 //          </div>
-//          <div>
-//          <p>Dinh dưỡng: ${product.nutritional}</p>
-//             </div>
+//
 //           <div id="sale"><img src="img/sale.png" alt="" with="50px" height="50px" ></div>
 //        </div>
 //        `;

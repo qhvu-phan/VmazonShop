@@ -48,4 +48,68 @@ module.exports = (app) => {
       });
     });
   });
+  app.get("/vegetable", (req, res) => {
+    let fileName = "vegetable.ejs";
+    fs.readFile(path.resolve(__dirname, fileName), async (err, data) => {
+      if (err) {
+        return res.render("vegetable.ejs");
+      }
+      const vegetable = await axios.get(
+        `${process.env.LOCALHOST}/${process.env.PRODUCT}/?${process.env.TYPE}=${process.env.VEGETABLE}`
+      );
+      return res.render(fileName, {
+        data: {
+          vegetable: vegetable.data.product,
+        },
+      });
+    });
+  });
+  app.get("/fruit", (req, res) => {
+    let fileName = "fruit.ejs";
+    fs.readFile(path.resolve(__dirname, fileName), async (err, data) => {
+      if (err) {
+        return res.render("fruit.ejs");
+      }
+      const fruit = await axios.get(
+        `${process.env.LOCALHOST}/${process.env.PRODUCT}/?${process.env.TYPE}=${process.env.FRUIT}`
+      );
+      return res.render(fileName, {
+        data: {
+          fruit: fruit.data.product,
+        },
+      });
+    });
+  });
+  app.get("/meat", (req, res) => {
+    let fileName = "meat.ejs";
+    fs.readFile(path.resolve(__dirname, fileName), async (err, data) => {
+      if (err) {
+        return res.render("meat.ejs");
+      }
+      const meat = await axios.get(
+        `${process.env.LOCALHOST}/${process.env.PRODUCT}/?${process.env.TYPE}=${process.env.MEAT}`
+      );
+      return res.render(fileName, {
+        data: {
+          meat: meat.data.product,
+        },
+      });
+    });
+  });
+  app.get("/noodles", (req, res) => {
+    let fileName = "noodles.ejs";
+    fs.readFile(path.resolve(__dirname, fileName), async (err, data) => {
+      if (err) {
+        return res.render("noodles.ejs");
+      }
+      const noodles = await axios.get(
+        `${process.env.LOCALHOST}/${process.env.PRODUCT}/?${process.env.TYPE}=${process.env.NOODLES}`
+      );
+      return res.render(fileName, {
+        data: {
+          noodles: noodles.data.product,
+        },
+      });
+    });
+  });
 };
