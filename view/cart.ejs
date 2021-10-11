@@ -23,9 +23,10 @@
                 <div class="cart-title">
                       <p>Giỏ hàng của bạn</p> 
                 </div>
+                <div class="background-html-action"></div>
                 <div class="cart-list">
                     <% if(0 < data.cart.length){ %>
-                        <% for (let i = 0;i < data.cart.length;i++) { %>
+                        <% for (let i = 0; i < data.cart.length ;i++) { %>
                     <div class="cart-item cart-item-<%=data.cart[i].visible_id_pro%>">
                        <div class="cart-item-img">
                            <img src="/img/<%=data.cart[i].image_path.slice(10)%>" width="60px" height="60px" alt="">
@@ -44,10 +45,14 @@
                                    Xóa
                                </div>
                            </div>
+                           <div class="tooltip-price">
+                            <p><%=data.cart[i].pro_price%><u>đ</u> / SL 1</p> 
+                        </div>
                        </div>
                        <div class="cart-item-total">
                         <%=data.cart[i].pro_price * data.cart[i].pro_quantity%>
                        </div>
+                      
                     </div> 
                     <% } %>
                 <% } else { %>
@@ -85,5 +90,6 @@
         </div>
     </div>
     <script src="/js/cart.js"></script>
+    <script src="/js/product.js"></script>
 </body>
 </html>

@@ -20,7 +20,7 @@ app.get("/suggestion", (req, res) => {
   res.render("suggestion.ejs");
 });
 app.get("/message", (req, res) => {
-  res.render("message.ejs");
+  res.render("search_product.ejs");
 });
 app.use("/product", product);
 app.use("/image", image);

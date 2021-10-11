@@ -51,7 +51,6 @@
   font-size: 14px;
   border-bottom: none;
 }
-
 .cart-item-title {
   margin: 0 0 10px 10px;
 }
@@ -78,6 +77,8 @@
   font-size: 14px;
   font-weight: 600;
   margin-top: 10px;
+  width: 80px;
+  text-align: right;
 }
 .cart-sale {
   background-color: #fff7e2;
@@ -149,7 +150,42 @@
   position: relative;
   top: 200px;
   left: 450px;
+  width: 400px;
 }
 .message-hide {
   display: none;
+}
+.tooltip-price {
+  margin: 5px 25px 0 25px;
+  font-size: 12px;
+  display: none;
+  height: 10px;
+  line-height: 10px;
+}
+.background-html-action {
+  position: absolute;
+  width: 1600px;
+  height: 700px;
+  top: 0px;
+  left: -420px;
+  background-color: #111111;
+  opacity: 0.8;
+  display: none;
+}
+.container {
+  background-color: #057541 !important;
+  color: #fff !important;
+}
+.container:hover {
+  background-color: #fff !important;
+  color: #656565 !important;
+}
+.container:hover .category {
+  display: block !important;
+}
+.container:hover .background-html {
+  display: block;
+}
+.background-html:hover {
+  display: none !important;
 }

@@ -130,6 +130,22 @@
   color: #057541;
 }
 .info-nutritional {
-  margin-top: 20px;
   font-size: 16px;
+}
+.container {
+  background-color: #057541 !important;
+  color: #fff !important;
+}
+.container:hover {
+  background-color: #fff !important;
+  color: #656565 !important;
+}
+.container:hover .category {
+  display: block !important;
+}
+.container:hover .background-html {
+  display: block;
+}
+.background-html:hover {
+  display: none !important;
 }

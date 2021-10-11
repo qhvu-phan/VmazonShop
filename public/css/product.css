@@ -15,11 +15,14 @@
 }
 .content-product-item {
   width: 244px;
-  height: 355px;
+  max-height: 300px;
   text-align: center;
   align-items: center;
   margin: 0 0 20px 0;
   border: 1px solid #eee;
+  transition: all 0.5s;
+  cursor: pointer;
+  overflow: hidden;
 }
 .buy button {
   font-size: 17px;
@@ -33,16 +36,27 @@
   cursor: pointer;
 }
 .buy {
-  margin-top: 20px;
+  margin-top: 0px;
+  transition: all 0.5s;
 }
+.content-product-item:hover .buy {
+  display: block;
+  margin-top: -140px;
+}
+.content-product-item:hover {
+  background-color: #eee;
+  opacity: 0.6;
+}
+
 .buy:hover button {
   background-color: #037841;
   color: #fff;
 }
 .price-buy,
 .title-content {
-  margin-top: 20px;
   font-size: 14px;
+  font-weight: 600;
+  margin: 20px 5px;
 }
 .content-product-title {
   text-transform: uppercase;

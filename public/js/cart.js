@@ -10,8 +10,9 @@ window.addEventListener("load", () => {
   const ship_money = document.querySelector(".cart-ship-money");
   const total_product = document.querySelector(".cart-total-all_product");
   const total_money = document.querySelector(".cart-total-money");
-  const cache = document.querySelectorAll(".cart-item-total");
-  // const black = document.querySelector("html");
+  const total_money_one_product = document.querySelectorAll(".cart-item-total");
+  const tooltip_price = document.querySelectorAll(".tooltip-price");
+  const background_hover = document.querySelector(".background-html-action");
   let listCarts = [];
   function getProductCart() {
     listCarts = [];
@@ -52,41 +53,51 @@ window.addEventListener("load", () => {
       parseFloat(sum + parseFloat(ship_money.innerHTML)) + `<u>đ</u>`;
   }
   function handleCountDownInput() {
+    let id;
+    let value;
     for (let i = 0; i < down.length; i++) {
+      handleTooltipPrice(input[i].value, i);
       down[i].addEventListener("click", (e) => {
         if (input[i].value <= 1) {
           return;
         }
         input[i].value--;
-        let cache1 = parseFloat(input[i].value * listCarts[i].pro_price);
-        cache[i].innerHTML = cache1;
-        let id = e.target.getAttribute("data-id");
-        let value = input[i].value;
-        let user_id = "Yw8m41eVXwv4PS9HlDNJ";
-        let data = {
-          cart_user_id: user_id,
-          cart_pro_id: id,
-          cart_pro_quantity: value,
-        };
-        updateQuantity(data);
+        handleTooltipPrice(input[i].value, i);
+        handleSumOneProduct(input[i].value, listCarts[i].pro_price, i);
+        id = e.target.getAttribute("data-id");
+        value = input[i].value;
+        handleUpdateQuantityProduct(id, value);
       });
       count[i].addEventListener("click", (e) => {
         if (input[i].value >= 10) {
           return;
         }
         input[i].value++;
-        let cache1 = parseFloat(input[i].value * listCarts[i].pro_price);
-        cache[i].innerHTML = cache1;
-        let id = e.target.getAttribute("data-id");
-        let value = input[i].value;
-        let user_id = "Yw8m41eVXwv4PS9HlDNJ";
-        let data = {
-          cart_user_id: user_id,
-          cart_pro_id: id,
-          cart_pro_quantity: value,
-        };
-        updateQuantity(data);
+        handleTooltipPrice(input[i].value, i);
+        handleSumOneProduct(input[i].value, listCarts[i].pro_price, i);
+        id = e.target.getAttribute("data-id");
+        value = input[i].value;
+        handleUpdateQuantityProduct(id, value);
       });
+    }
+  }
+  function handleUpdateQuantityProduct(id, value) {
+    let data = {
+      cart_user_id: "Yw8m41eVXwv4PS9HlDNJ",
+      cart_pro_id: id,
+      cart_pro_quantity: value,
+    };
+    updateQuantity(data);
+  }
+  function handleSumOneProduct(x, y, z) {
+    let sum_one_product = parseFloat(x * y);
+    total_money_one_product[z].innerHTML = sum_one_product;
+  }
+  function handleTooltipPrice(x, i) {
+    if (x > 1) {
+      tooltip_price[i].style.display = "block";
+    } else {
+      tooltip_price[i].style.display = "none";
     }
   }
   function handleDeleteProductCart() {
@@ -96,16 +107,24 @@ window.addEventListener("load", () => {
           cart_user_id: "Yw8m41eVXwv4PS9HlDNJ",
           cart_pro_id: `${e.target.getAttribute("data-id")}`,
         };
-        message_box.style.display = "block";
+        handleStyleDisplayBlock();
         cancel.onclick = () => {
-          message_box.style.display = "none";
+          handleStyleDislayNone();
         };
         agree.onclick = () => {
           handleRemoveProduct(data, e.target.getAttribute("data-id"));
-          message_box.style.display = "none";
+          handleStyleDislayNone();
         };
       });
     }
+  }
+  function handleStyleDisplayBlock() {
+    message_box.style.display = "block";
+    background_hover.style.display = "block";
+  }
+  function handleStyleDislayNone() {
+    message_box.style.display = "none";
+    background_hover.style.display = "none";
   }
   function updateQuantity(data) {
     let option = {
