@@ -19,8 +19,11 @@ app.use(
 app.get("/suggestion", (req, res) => {
   res.render("suggestion.ejs");
 });
-app.get("/message", (req, res) => {
-  res.render("search_product.ejs");
+app.get("/admin1", (req, res) => {
+  res.render("admin1.ejs");
+});
+app.get("/login", (req, res) => {
+  res.render("login.ejs");
 });
 app.use("/product", product);
 app.use("/image", image);

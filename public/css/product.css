@@ -34,6 +34,8 @@
   transition: all 0.5s;
   background-color: #fff;
   cursor: pointer;
+  z-index: 20;
+  font-weight: 600;
 }
 .buy {
   margin-top: 0px;
@@ -42,10 +44,12 @@
 .content-product-item:hover .buy {
   display: block;
   margin-top: -140px;
+  z-index: 20;
 }
 .content-product-item:hover {
   background-color: #eee;
   opacity: 0.6;
+  z-index: 1;
 }
 
 .buy:hover button {

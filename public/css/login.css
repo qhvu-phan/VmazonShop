@@ -1,0 +1,26 @@
+.login-container {
+  position: relative;
+  width: auto;
+  height: auto;
+  text-align: center;
+}
+.login-form {
+  width: 350px;
+  height: 150px;
+  text-align: center;
+  margin: 15% auto auto;
+}
+.login-btn {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+.login-user,
+.login-password {
+  margin-top: 10px;
+}
+.login-form label {
+  width: 100px;
+}
+
+/* #008848 */

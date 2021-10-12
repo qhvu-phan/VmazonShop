@@ -64,6 +64,7 @@ window.addEventListener("load", () => {
         input[i].value--;
         handleTooltipPrice(input[i].value, i);
         handleSumOneProduct(input[i].value, listCarts[i].pro_price, i);
+        handleCheckCart();
         id = e.target.getAttribute("data-id");
         value = input[i].value;
         handleUpdateQuantityProduct(id, value);
@@ -75,6 +76,7 @@ window.addEventListener("load", () => {
         input[i].value++;
         handleTooltipPrice(input[i].value, i);
         handleSumOneProduct(input[i].value, listCarts[i].pro_price, i);
+        handleCheckCart();
         id = e.target.getAttribute("data-id");
         value = input[i].value;
         handleUpdateQuantityProduct(id, value);
