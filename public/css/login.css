@@ -1,26 +1,98 @@
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.login-main {
+  background: linear-gradient(#008848, #057541);
+  width: 1600px;
+  height: 757px;
+}
 .login-container {
-  position: relative;
-  width: auto;
-  height: auto;
+  position: absolute;
+  width: 1000px;
+  height: 700px;
+  top: 4%;
+  left: 18%;
   text-align: center;
-}
-.login-form {
-  width: 350px;
-  height: 150px;
-  text-align: center;
-  margin: 15% auto auto;
-}
-.login-btn {
+  margin: auto;
   display: flex;
   justify-content: space-around;
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 10px;
+}
+.login-form {
+  width: 500px;
+  text-align: center;
+  height: 400px;
+  margin: 150px auto;
+}
+.login-btn {
   margin-top: 30px;
 }
 .login-user,
 .login-password {
-  margin-top: 10px;
+  font-size: 18px;
+  margin: 30px 50px;
+  height: 40px;
+  border: 1px solid #eee;
+  height: 60px;
+  border-radius: 30px;
+  line-height: 60px;
+  width: 400px;
 }
 .login-form label {
+  font-size: 20px;
   width: 100px;
+  color: #333333;
 }
-
+.login-form input {
+  height: 40px;
+  width: 200px;
+  border: none;
+  outline: none;
+  color: #333333;
+}
+.login-logo {
+  width: 300px;
+  height: 500px;
+  flex: 1;
+  margin: 100px auto;
+}
+.login-background {
+  width: 300px;
+  height: 300px;
+  margin: 100px auto 100px auto;
+}
+.login-background img {
+  border-radius: 50%;
+}
+.login-title {
+  text-align: center;
+  font-weight: 600px;
+  text-transform: uppercase;
+}
+.login-title p {
+  font-size: 40px;
+  color: #008848;
+}
+.login-btn {
+  height: 50px;
+  margin: 30px 0;
+}
+.login-btn button {
+  text-align: center;
+  font-size: 40px;
+  text-transform: uppercase;
+  padding: 10px 140px;
+  background: linear-gradient(to right, #008848, #057541);
+  color: #fff;
+  border-radius: 30px;
+  border: 1px solid #eee;
+  cursor: pointer;
+  transition: all 2s ease-in-out;
+}
+.login-btn button:hover {
+  background: linear-gradient(to right, #057541, #008848);
+  transition: all 2s;
+}
 /* #008848 */

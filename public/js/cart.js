@@ -111,11 +111,11 @@ window.addEventListener("load", () => {
         };
         handleStyleDisplayBlock();
         cancel.onclick = () => {
-          handleStyleDislayNone();
+          handleMessageDisplayNone();
         };
         agree.onclick = () => {
           handleRemoveProduct(data, e.target.getAttribute("data-id"));
-          handleStyleDislayNone();
+          handleMessageDisplayNone();
         };
       });
     }
@@ -124,7 +124,7 @@ window.addEventListener("load", () => {
     message_box.style.display = "block";
     background_hover.style.display = "block";
   }
-  function handleStyleDislayNone() {
+  function handleMessageDisplayNone() {
     message_box.style.display = "none";
     background_hover.style.display = "none";
   }
@@ -160,6 +160,7 @@ window.addEventListener("load", () => {
         if (response.message === "Delete success") {
           getProductCart();
           total();
+          handleCheckCart();
         } else if (response.message === "cart_pro_id not found")
           alert("Sản phẩm không tồn tại");
         else alert("Lỗi hệ thống");

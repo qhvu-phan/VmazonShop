@@ -1,17 +1,19 @@
 var productsApi = "http://localhost:5000/product";
 var cartsApi = "http://localhost:5000/cart";
-// window.addEventListener("load", () => {
 let search_value = document.querySelector(".topbar-search-input");
 const search_container = document.querySelector(".topbar-search_product_item");
 let listProducts = [];
-search_value.addEventListener("input", () => {
-  if (search_value.value !== "") {
-    searchProduct(search_value.value);
-    search_container.style.display = "block";
-  } else {
-    search_container.style.display = "none";
-  }
-});
+function handleEventOninput() {
+  search_value.addEventListener("input", () => {
+    if (search_value.value !== "") {
+      searchProduct(search_value.value);
+      search_container.style.display = "block";
+    } else {
+      search_container.style.display = "none";
+    }
+  });
+}
+
 function getProductCart() {
   listProducts = [];
   fetch(productsApi)
@@ -87,4 +89,4 @@ function handleBuyProduct(id) {
     });
 }
 getProductCart();
-// });
+handleEventOninput();

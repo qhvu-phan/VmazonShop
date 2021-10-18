@@ -48,7 +48,7 @@ function suggestion(money, select_type) {
        `;
         });
         suggestion_product.innerHTML = render.join("");
-        let abc = document.querySelector(".suggestion-product-total");
+        let description = document.querySelector(".suggestion-product-total");
         let text = ` <div class="suggestion-total-product suggestion-total">
                             <span>Sản phẩm mua được:</span> 
                             <label for="">${response.count}</label>
@@ -60,7 +60,7 @@ function suggestion(money, select_type) {
                         <div class="suggestion-total-button">
                             <button>Thêm vào giỏ</button>
                         </div> `;
-        abc.innerHTML = text;
+        description.innerHTML = text;
       } else if (response.message === "invalid type") {
         alert("Loại sản phẩm không tồn tại");
       } else if (response.message === "money very small") {
