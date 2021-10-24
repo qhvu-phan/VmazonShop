@@ -1,5 +1,4 @@
 var cartsApi = "http://localhost:5000/carts";
-// window.addEventListener("load", () => {
 let topbar_cart_icon = document.querySelector(".topbar-cart-icon");
 let topbar_cart_content = document.querySelector(".topbar-cart-content");
 let cart_icon_show = document.querySelector(".cart-icon-show");
@@ -69,4 +68,3 @@ function handleBuyProduct(id) {
 }
 handleCheckCart();
 handleEventBuyButton();
-// });

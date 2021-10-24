@@ -99,7 +99,7 @@ router.get("/:id", middleware.checkId, (req, res) => {
     } else {
       return res
         .status(200)
-        .json({ success: true, message: "empty basket", product: [] });
+        .json({ success: false, message: "empty basket", product: [] });
     }
   });
 });

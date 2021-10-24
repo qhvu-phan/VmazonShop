@@ -6,11 +6,11 @@ select.addEventListener("click", () => {
   var add = document.querySelector(".login");
   add.classList.add("show");
 });
-var select1 = document.querySelector("#register");
-select1.addEventListener("click", () => {
-  var add = document.querySelector(".register");
-  add.classList.add("show");
-});
+// var select1 = document.querySelector("#register");
+// select1.addEventListener("click", () => {
+//   var add = document.querySelector(".register");
+//   add.classList.add("show");
+// });
 var addproduct = document.querySelector("#nav-header-add");
 addproduct.addEventListener("click", () => {
   var add = document.querySelector("#addproduct");
@@ -241,4 +241,15 @@ function handleEditProduct(id) {
     editProduct(id);
   };
 }
+function delete_cookie(name) {
+  document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+}
+function handleLogout() {
+  const logout = document.querySelector(".logout-btn");
+  logout.addEventListener("click", () => {
+    delete_cookie("myToken");
+    location.reload();
+  });
+}
+handleLogout();
 getProduct(renderProduct);

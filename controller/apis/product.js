@@ -84,6 +84,10 @@ router.get("/:id", (req, res) => {
           .status(200)
           .json({ success: true, message: "success", cache });
       });
+    } else {
+      return res
+        .status(200)
+        .json({ success: false, message: "empty product", cache: [] });
     }
   });
 });

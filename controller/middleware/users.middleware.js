@@ -1,6 +1,7 @@
 const express = require("express");
 const connection = require("../../public/connection.js");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 let middleware = {
   checkUser: (req, res, next) => {
@@ -74,6 +75,38 @@ let middleware = {
       next();
     } catch (err) {
       return res.status(400).json({ success: false, message: "err" });
+    }
+  },
+  verifyToken: (req, res, next) => {
+    //  const authHeader = req.header("myToken");
+    const token = req.cookies.myToken;
+    // const token = authHeader && authHeader.split(" ")[1];
+    if (!token) {
+      return res.redirect("/login");
+    }
+    try {
+      const decoded = jwt.verify(token, process.env.ID);
+      visible_id = decoded.visible_id;
+      username = decoded.username;
+      next();
+    } catch (error) {
+      return res.redirect("/login");
+    }
+  },
+  verifyTokenLogin: (req, res, next) => {
+    //  const authHeader = req.header("myToken");
+    const token = req.cookies.myToken;
+    // const token = authHeader && authHeader.split(" ")[1];
+    if (!token) {
+      next();
+    }
+    try {
+      const decoded = jwt.verify(token, process.env.ID);
+      visible_id = decoded.visible_id;
+      username = decoded.username;
+      res.redirect("/admin1");
+    } catch (error) {
+      next();
     }
   },
 };

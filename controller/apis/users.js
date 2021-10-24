@@ -4,6 +4,7 @@ const connection = require("../../public/connection.js");
 const random = require("randomString");
 const middleware = require("../middleware/users.middleware.js");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 let query;
 
 router.get("/", (req, res) => {
@@ -18,7 +19,6 @@ router.get("/", (req, res) => {
     }
   });
 });
-
 const check = [
   middleware.checkUser,
   middleware.checkPhone,
@@ -60,11 +60,11 @@ router.post("/login", (req, res) => {
         result[0].passwords
       );
       if (verify) {
+        const accessToken = jwt.sign({ visible_id, username }, process.env.ID);
         return res.status(200).json({
           success: true,
           message: "login success",
-          visible_id,
-          username,
+          accessToken,
         });
       }
       return res

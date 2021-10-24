@@ -40,6 +40,7 @@ router.post("/:type", (req, res) => {
           };
           listProduct.push(product);
           listProducts.push(product);
+          // sort max nutritional
           if (i === result.length - 1) {
             for (let k = 0; k < listProduct.length - 1; k++) {
               for (let v = k + 1; v < listProduct.length; v++) {
@@ -50,6 +51,7 @@ router.post("/:type", (req, res) => {
                 }
               }
             }
+            // sort max price
             for (let k = 0; k < listProducts.length - 1; k++) {
               for (let v = k + 1; v < listProducts.length; v++) {
                 if (listProducts[v].pro_price > listProducts[k].pro_price) {

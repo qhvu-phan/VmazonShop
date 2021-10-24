@@ -140,9 +140,7 @@
   font-size: 16px;
   text-transform: uppercase;
 }
-.category {
-  display: none;
-}
+
 .item-delete {
   cursor: pointer;
 }
@@ -172,6 +170,9 @@
   opacity: 0.8;
   display: none;
 }
+.category {
+  display: none;
+}
 .container {
   background-color: #057541 !important;
   color: #fff !important;
@@ -188,4 +189,156 @@
 }
 .background-html:hover {
   display: none !important;
+}
+.content-customer-container {
+  position: relative;
+  top: 20px;
+  left: 80px;
+  background-color: #e9edf0;
+  width: 600px;
+  height: 700px;
+  max-height: 1000px;
+  text-align: center;
+  display: none;
+}
+.customer-back_cart {
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  text-align: left;
+  color: #008848;
+  cursor: pointer;
+}
+.customer-address_old {
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  background-color: #fff;
+  text-transform: uppercase;
+  color: #0064c2;
+  cursor: pointer;
+}
+.customer-info {
+  margin-top: 10px;
+  background-color: #fff;
+  height: 260px;
+}
+.customer-info-member {
+  text-align: left;
+  height: 40px;
+  font-size: 18px;
+  line-height: 40px;
+  background-color: #fff;
+  text-indent: 10px;
+}
+.info-input-style {
+  width: 580px;
+  height: 50px;
+  text-align: center;
+  border: 1px solid #343434;
+  margin: auto;
+  border-radius: 5px;
+}
+.info-input-style label {
+  position: absolute;
+  top: 185px;
+  font-size: 18px;
+  text-indent: 10px;
+  color: #656565;
+}
+.info-input-style_input {
+  width: 570px;
+  height: 48px;
+  border: none;
+  outline: none;
+  text-indent: 10px;
+  font-size: 14px;
+}
+.customer-info-input_phone {
+  margin-top: 10px;
+}
+.customer-info-input_email {
+  margin-top: 10px;
+}
+
+.customer-info-input_phone label {
+  top: 245px;
+}
+.customer-address {
+  margin-top: 10px;
+  background-color: #fff;
+  text-align: left;
+  height: 180px;
+}
+.customer-address-title {
+  height: 40px;
+  line-height: 40px;
+  text-indent: 10px;
+  font-size: 18px;
+}
+.customer-address-selection {
+  width: 580px;
+  margin: auto;
+}
+.customer-address-textarea {
+  outline: none;
+  text-indent: 10px;
+  font-size: 16px;
+}
+.customer-time_receive {
+  text-align: left;
+  margin-top: 10px;
+  text-indent: 10px;
+  background-color: #fff;
+}
+.customer-time_title {
+  height: 40px;
+  line-height: 40px;
+  font-size: 18px;
+}
+.customer-time-schedule {
+  width: 580px;
+  margin: auto;
+  font-size: 14px;
+  background-color: #fff7e2;
+  border-radius: 5px;
+  padding: 3px 0;
+}
+.customer-time_note {
+  margin-top: 10px;
+}
+.customer-time-textarea {
+  font-size: 14px;
+  text-indent: 10px;
+  outline: none;
+}
+.customer-time-price {
+  text-align: right;
+  margin-right: 10px;
+}
+.customer-time-price label {
+  width: 100px;
+  display: inline-block;
+}
+.customer-time-genarate {
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  color: #343434;
+}
+.customer-price-submit {
+  height: 60px;
+  line-height: 40px;
+  text-align: center;
+}
+.customer-price-submit button {
+  padding: 15px 100px;
+  font-size: 14px;
+  background-color: #008848;
+  border: none;
+  outline: none;
+  color: #fff;
+}
+.customer-price_ship span {
+  color: #0064c2;
 }

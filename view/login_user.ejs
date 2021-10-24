@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/font/fontawesome-free-5.15.4-web/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    />
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/login_user.css">
+    <title>Justin Store</title>
+</head>
+<body>
+    <div id="main">
+        <div class="header">
+            <%- include('topbar.ejs') %>
+        </div>
+        <div class="content">
+           <div class="login_user-container">
+               <div class="login_user-title">
+                Để xem "Đơn hàng của bạn" vui lòng đăng
+                nhập 
+               </div>
+               <div class="login_user-username login-username-password">
+                   <i class="fas fa-phone-square-alt login_user-icon"></i>
+                   <input class="login_user-input" type="text" placeholder="Số điện thoại">
+               </div>
+               <div class="login_user-password login-username-password">
+                   <i class="fas fa-key login_user-icon"></i>
+                   <input class="login_user-input" type="text" placeholder="Số CMT">
+               </div>
+               <div class="login_user-continue">
+                   <button>Tiếp tục</button>
+               </div>
+               <div class="login_user-another_option">
+                   <div class="another_option-title">
+                        <label  for="">Hoặc sử dụng tài khoản</label>
+                   </div>
+                  <div class="another_option-selection">
+                      <div class="selection-facebook selection-another">
+                          <i class="fab fa-facebook"></i>
+                          <button>Facebook</button>
+                      </div>
+                      <div class="selection-google selection-another">
+                          <i class="fab fa-google"></i>
+                          <button>Google</button>
+                      </div>
+                  </div>
+               </div>
+           </div>
+        </div>
+    </div>
+    <script src="/js/cart.js"></script>
+    <script src="/js/product.js"></script>
+</body>
+</html>

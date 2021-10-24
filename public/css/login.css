@@ -9,8 +9,8 @@ html {
 .login-container {
   position: absolute;
   width: 1000px;
-  height: 700px;
-  top: 4%;
+  height: 500px;
+  top: 16%;
   left: 18%;
   text-align: center;
   margin: auto;
@@ -24,7 +24,7 @@ html {
   width: 500px;
   text-align: center;
   height: 400px;
-  margin: 150px auto;
+  margin: 50px auto;
 }
 .login-btn {
   margin-top: 30px;
@@ -34,29 +34,62 @@ html {
   font-size: 18px;
   margin: 30px 50px;
   height: 40px;
-  border: 1px solid #eee;
+  border: 1px solid #999999;
   height: 60px;
   border-radius: 30px;
   line-height: 60px;
   width: 400px;
 }
 .login-form label {
+  position: absolute;
+  left: 600px;
   font-size: 20px;
-  width: 100px;
+  width: 140px;
+  text-align: left;
+  height: 40px;
+  line-height: 40px;
   color: #333333;
+  transition: all 0.5s;
+  z-index: 10;
+  background-color: #fff;
+}
+.login-user-title {
+  top: 185px;
+}
+.login-password-title {
+  top: 280px;
+  width: 85px !important;
 }
 .login-form input {
   height: 40px;
-  width: 200px;
+  width: 350px;
   border: none;
   outline: none;
   color: #333333;
 }
+/* .login-user:hover {
+  border: 1px solid #008848;
+} */
+/*   */
+/* .login-user:hover .login-user-title {
+  top: 155px;
+  left: 580px;
+  color: #008848;
+  z-index: 20;
+  transition: all 0.5s;
+} */
+/* .login-password:hover .login-password-title {
+  top: 245px;
+  left: 580px;
+  color: #008848;
+  z-index: 20;
+  transition: all 0.5s;
+} */
 .login-logo {
   width: 300px;
   height: 500px;
   flex: 1;
-  margin: 100px auto;
+  margin: 0px auto;
 }
 .login-background {
   width: 300px;
@@ -81,9 +114,9 @@ html {
 }
 .login-btn button {
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
   text-transform: uppercase;
-  padding: 10px 140px;
+  padding: 15px 100px;
   background: linear-gradient(to right, #008848, #057541);
   color: #fff;
   border-radius: 30px;

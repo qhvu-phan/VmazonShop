@@ -20,11 +20,14 @@ html {
   margin-top: 0;
 }
 #info {
-  display: flex;
-  justify-content: space-between;
-  margin: 0px 10px;
+  text-align: center;
+  font-size: 30px;
   height: 48px;
   line-height: 48px;
+}
+#info a {
+  text-decoration: none;
+  color: #fff;
 }
 #contact,
 #noti {
@@ -106,14 +109,20 @@ html {
 .btn-search {
   cursor: pointer;
   position: absolute;
-  color: green;
-  right: 90px;
-  top: 2px;
+  color: #eee;
+  right: 20px;
+  font-size: 25px;
+  top: 4px;
 }
 #cart {
   width: 300px;
   cursor: pointer;
   position: relative;
+}
+#cart a {
+  text-decoration: none;
+  font-size: 30px;
+  color: #fff;
 }
 #container {
   display: flex;
