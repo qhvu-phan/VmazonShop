@@ -9,21 +9,21 @@ const login_user_title = document.querySelector(".login-user-title");
 const login_password_title = document.querySelector(".login-password-title");
 const login_user_input = document.querySelector("#login-username");
 const login_password_input = document.querySelector("#login-password");
+
 login_btn_action.addEventListener("click", () => {
-  let user = {
+  let admin = {
     username: username.value,
     passwords: password.value,
   };
-  loginUser(user);
+  loginUser(admin, "jwt_ad");
 });
-
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
   let expires = "expires=" + d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
-function loginUser(user) {
+function loginUser(user, accessToken) {
   let option = {
     method: "POST",
     headers: {
@@ -31,13 +31,13 @@ function loginUser(user) {
     },
     body: JSON.stringify(user),
   };
-  fetch(loginApi + "/login", option)
+  fetch(loginApi + "/loginAdmin", option)
     .then((response) => response.json())
     .then((response) => {
       if (response.message === "login success") {
-        setCookie("myToken", response.accessToken, 1);
+        setCookie(accessToken, response.accessToken, 1);
         alert("Login success!");
-        window.location.href = "http://localhost:5000/admin1";
+        location.reload();
       } else {
         alert("Login fail!");
       }

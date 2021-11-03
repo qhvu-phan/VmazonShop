@@ -79,7 +79,7 @@ let middleware = {
   },
   verifyToken: (req, res, next) => {
     //  const authHeader = req.header("myToken");
-    const token = req.cookies.myToken;
+    const token = req.cookies.jwt_ad;
     // const token = authHeader && authHeader.split(" ")[1];
     if (!token) {
       return res.redirect("/login");
@@ -95,7 +95,7 @@ let middleware = {
   },
   verifyTokenLogin: (req, res, next) => {
     //  const authHeader = req.header("myToken");
-    const token = req.cookies.myToken;
+    const token = req.cookies.jwt_ad;
     // const token = authHeader && authHeader.split(" ")[1];
     if (!token) {
       next();
@@ -105,6 +105,36 @@ let middleware = {
       visible_id = decoded.visible_id;
       username = decoded.username;
       res.redirect("/admin1");
+    } catch (error) {
+      next();
+    }
+  },
+  verifyTokenUser: (req, res, next) => {
+    //  const authHeader = req.header("myToken");
+    const token = req.cookies.jwt_us;
+    // const token = authHeader && authHeader.split(" ")[1];
+    if (!token) {
+      return res.redirect("/login_user");
+    }
+    try {
+      const decoded = jwt.verify(token, process.env.ID);
+      visible_id = decoded.visible_id;
+      next();
+    } catch (error) {
+      return res.redirect("/login_user");
+    }
+  },
+  verifyTokenUserLogin: (req, res, next) => {
+    //  const authHeader = req.header("myToken");
+    const token = req.cookies.jwt_us;
+    // const token = authHeader && authHeader.split(" ")[1];
+    if (!token) {
+      next();
+    }
+    try {
+      const decoded = jwt.verify(token, process.env.ID);
+      visible_id = decoded.visible_id;
+      res.redirect("/login_user_success");
     } catch (error) {
       next();
     }

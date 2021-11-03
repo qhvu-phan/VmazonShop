@@ -131,6 +131,9 @@
 .info-nutritional {
   font-size: 16px;
 }
+.content-product-item {
+  height: 600px;
+}
 .container {
   background-color: #057541 !important;
   color: #fff !important;

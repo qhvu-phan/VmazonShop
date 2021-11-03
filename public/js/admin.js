@@ -53,7 +53,7 @@ function getProduct(callback) {
     });
 }
 function renderProduct(products) {
-  var listProduct = document.querySelector("#content");
+  var listProduct = document.querySelector(".content");
   var html = products.product.map(function (product) {
     return `
                    <div id="conten-mem-admin" class="delete-item-${
@@ -247,7 +247,7 @@ function delete_cookie(name) {
 function handleLogout() {
   const logout = document.querySelector(".logout-btn");
   logout.addEventListener("click", () => {
-    delete_cookie("myToken");
+    delete_cookie("jwt_ad");
     location.reload();
   });
 }

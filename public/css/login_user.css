@@ -7,6 +7,46 @@
   top: 40px;
   left: 100px;
 }
+.register_user-register {
+  position: relative;
+  background-color: #fff;
+  width: 555px;
+  height: 500px;
+  text-align: center;
+  top: 40px;
+  left: 100px;
+  display: none;
+}
+.forget_user-register {
+  position: relative;
+  background-color: #fff;
+  width: 555px;
+  height: 250px;
+  text-align: center;
+  top: 40px;
+  left: 100px;
+  display: none;
+}
+.enter_otp_code {
+  position: relative;
+  background-color: #fff;
+  width: 555px;
+  height: 250px;
+  text-align: center;
+  top: 40px;
+  left: 100px;
+  display: none;
+}
+.change_password_code {
+  position: relative;
+  background-color: #fff;
+  width: 555px;
+  height: 250px;
+  text-align: center;
+  top: 40px;
+  left: 100px;
+  display: none;
+}
 .login_user-title {
   height: 100px;
   font-size: 20px;
@@ -60,12 +100,12 @@
   width: 400px;
   height: 20px;
   border-top: 1px solid #cecece;
-  margin: auto;
+  margin: 10px auto 0 auto;
 }
 .another_option-title label {
   position: absolute;
   left: 220px;
-  top: 300px;
+  top: 315px;
   background-color: #fff;
 }
 .another_option-selection {
@@ -119,4 +159,15 @@
 }
 .background-html:hover {
   display: none !important;
+}
+.login_user-no_acccount {
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  width: 300px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.all_css_form {
+  margin-top: 20px;
 }

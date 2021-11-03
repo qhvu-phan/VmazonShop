@@ -21,7 +21,7 @@
         <div class="content">
             <div class="content-cart-container">
                 <div class="cart-title">
-                      <p>Giỏ hàng của bạn</p> 
+                      <p class="cart-customer-id" data-id="<%- visible_id %>">Giỏ hàng của bạn</p> 
                 </div>
                 <div class="background-html-action"></div>
                 <div class="cart-list">
@@ -66,7 +66,7 @@
                 <div class="cart-amount">
                     <div class="total">
                         <span>Tổng tiền: </span>
-                        <label class="cart-total-all_product"for="">0<u>đ</u></label>
+                        <label class="cart-total-all_product" for="">0<u>đ</u></label>
                     </div>
                     <div class="discount">
                         <span>Phí giao dự kiến: </span>
@@ -84,7 +84,7 @@
                     <a href="#">Xóa giỏ hàng</a>
                 </div>
             </div>
-            <div class="content-customer-container">
+            <div class="content-customer-container" >
                 <div class="customer-back_cart">
                     <p class="customer-back-cart"> < Quay lại giỏ hàng</p>
                 </div>
@@ -95,22 +95,19 @@
                     <div class="customer-info-title customer-info-member">
                         1.Thông tin người mua hàng
                     </div>
-                    <div class="customer-info-gender customer-info-member">
-                        <input type="radio" name="gender"> <label for="">Name</label>
-                        <input type="radio" name="gender"> <label for="">Nữ</label>
-                    </div>
+                  
                     <div class="customer-info-input">
                         <div class="customer-info-input_name info-input-style">
                             <!-- <label for="">Họ và tên</label> -->
-                            <input class="info-input-style_input"type="text" placeholder="Họ và tên">
+                            <input id="customer-name" class="info-input-style_input"type="text" placeholder="Họ và tên" required>
                         </div>
                         <div class="customer-info-input_phone info-input-style">
                             <!-- <label for="">Số điện thoại</label> -->
-                            <input class="info-input-style_input" type="text" placeholder="Số điện thoại">
+                            <input id="customer-phone" class="info-input-style_input" type="text" placeholder="Số điện thoại" required>
                         </div>
                         <div class="customer-info-input_email info-input-style">
                             <!-- <label for="">Email</label> -->
-                            <input class="info-input-style_input" type="text" placeholder="Email">
+                            <input id="customer-email" class="info-input-style_input" type="text" placeholder="Email" required>
                         </div>
                     </div>
                 </div>
@@ -119,7 +116,7 @@
                          2.Địa chỉ nhận hàng
                      </div>
                      <div class="customer-address-selection">
-                         <textarea name="" class="customer-address-textarea" id="" cols="63" rows="6"></textarea>
+                         <textarea id="customer-address" name="" class="customer-address-textarea" cols="63" rows="6"></textarea>
                      </div>
                 </div>
                 <div class="customer-time_receive">
@@ -134,16 +131,16 @@
                      </div>
                      <div class="customer-time-price">
                          <div class="customer-price_product customer-time-genarate">
-                            <span>Tiền hàng:</label><label >100.000<u>đ</u></label>
+                            <span>Tiền hàng:</span><label class="customer-total-all_product">0<u>đ</u></label>
                          </div>
                          <div class="customer-price_ship customer-time-genarate">
-                            <span>Phí giao hàng dự kiến:</span><label>20.000<u>đ</u></label>
+                            <span>Phí giao hàng dự kiến:</span><label class="customer-ship-money">0<u>đ</u></label>
                         </div>
                         <div class="customer-price_total customer-time-genarate">
-                            <span>Tổng tiền:</label><label>120.000<u>đ</u></label>
+                            <span>Tổng tiền:</span><label class="customer-total-money">0<u>đ</u></label>
                         </div>
                         <div class="customer-price-submit">
-                            <button>XÁC NHẬN ĐƠN HÀNG</button>
+                            <button class="customer-price-submit_btn">XÁC NHẬN ĐƠN HÀNG</button>
                         </div>
                      </div>
                 </div>
@@ -151,6 +148,9 @@
         </div>
         <div class="cart-message message-hide">
             <%- include('message.ejs') %>
+        </div>
+        <div class="cart-message message_cart_confirm message-hide">
+            <%- include('message_cart.ejs') %>
         </div>
     </div>
     <script src="/js/cart.js"></script>

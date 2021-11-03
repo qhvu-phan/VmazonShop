@@ -338,6 +338,7 @@
   border: none;
   outline: none;
   color: #fff;
+  cursor: pointer;
 }
 .customer-price_ship span {
   color: #0064c2;

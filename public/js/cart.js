@@ -1,4 +1,6 @@
 var cartsApi = "http://localhost:5000/carts";
+var usersApi = "http://localhost:5000/users";
+var ordersApi = "http://localhost:5000/orders";
 const down = document.querySelectorAll(".fa-minus");
 const count = document.querySelectorAll(".fa-plus");
 const input = document.querySelectorAll(".quanity-input");
@@ -9,6 +11,11 @@ const cancel = document.querySelector(".message-btn-no");
 const ship_money = document.querySelector(".cart-ship-money");
 const total_product = document.querySelector(".cart-total-all_product");
 const total_money = document.querySelector(".cart-total-money");
+const customer_ship_money = document.querySelector(".customer-ship-money");
+const customer_total_product = document.querySelector(
+  ".customer-total-all_product"
+);
+const customer_total_money = document.querySelector(".customer-total-money");
 const total_money_one_product = document.querySelectorAll(".cart-item-total");
 const tooltip_price = document.querySelectorAll(".tooltip-price");
 const background_hover = document.querySelector(".background-html-action");
@@ -16,17 +23,26 @@ const buying = document.querySelector(".cart-buy-action");
 const back_to_cart = document.querySelector(".customer-back-cart");
 const customer_info = document.querySelector(".content-customer-container");
 const cart_info = document.querySelector(".content-cart-container");
-let listCarts = [];
+const confirmation_order = document.querySelector(".customer-price-submit");
+const message_cart_confirm = document.querySelector(".message_cart_confirm");
+const cart_customer_id = document.querySelector(".cart-customer-id");
+const customer_price_submit_btn = document.querySelector(
+  ".customer-price-submit_btn"
+);
+let user_address = document.querySelector("#customer-address");
+let user_name = document.querySelector("#customer-name");
+let user_phone = document.querySelector("#customer-phone");
+let user_email = document.querySelector("#customer-email");
 function getProductCart() {
   listCarts = [];
-  fetch(cartsApi + "/" + "Yw8m41eVXwv4PS9HlDNJ")
+  fetch(cartsApi + "/" + cart_customer_id.getAttribute("data-id"))
     .then(function (response) {
       return response.json();
     })
     .then((products) => {
       products.product.map((product) => {
         let listProduct = {
-          cart_user_id: "Yw8m41eVXwv4PS9HlDNJ",
+          cart_user_id: cart_customer_id.getAttribute("data-id"),
           image_path: product.image_path,
           pro_description: product.pro_description,
           pro_name: product.pro_name,
@@ -47,12 +63,17 @@ function total() {
       sum += parseInt(listCarts[i].pro_price * listCarts[i].pro_quantity);
     }
     ship_money.innerHTML = 20000 + `<u>đ</u>`;
+    customer_ship_money.innerHTML = 20000 + `<u>đ</u>`;
   } else {
     sum = 0;
     ship_money.innerHTML = 0 + `<u>đ</u>`;
+    customer_ship_money.innerHTML = 0 + `<u>đ</u>`;
   }
   total_product.innerHTML = sum + `<u>đ</u>`;
   total_money.innerHTML =
+    parseFloat(sum + parseFloat(ship_money.innerHTML)) + `<u>đ</u>`;
+  customer_total_product.innerHTML = sum + `<u>đ</u>`;
+  customer_total_money.innerHTML =
     parseFloat(sum + parseFloat(ship_money.innerHTML)) + `<u>đ</u>`;
 }
 function handleCountDownInput() {
@@ -88,7 +109,7 @@ function handleCountDownInput() {
 }
 function handleUpdateQuantityProduct(id, value) {
   let data = {
-    cart_user_id: "Yw8m41eVXwv4PS9HlDNJ",
+    cart_user_id: cart_customer_id.getAttribute("data-id"),
     cart_pro_id: id,
     cart_pro_quantity: value,
   };
@@ -109,7 +130,7 @@ function handleDeleteProductCart() {
   for (let i = 0; i < delete_btn.length; i++) {
     delete_btn[i].addEventListener("click", function (e) {
       let data = {
-        cart_user_id: "Yw8m41eVXwv4PS9HlDNJ",
+        cart_user_id: cart_customer_id.getAttribute("data-id"),
         cart_pro_id: `${e.target.getAttribute("data-id")}`,
       };
       handleStyleDisplayBlock();
@@ -156,7 +177,6 @@ function handleRemoveProduct(data, id) {
     },
     body: JSON.stringify(data),
   };
-  console.log(data);
   fetch(cartsApi, option)
     .then((response) => response.json())
     .then((response) => {
@@ -181,7 +201,80 @@ function handleConfirmBuyProduct() {
     customer_info.style.display = "none";
   });
 }
+function handleConfirmationOrder() {
+  confirmation_order.addEventListener("click", () => {
+    message_cart_confirm.classList.remove("message-hide");
+    background_hover.style.display = "block";
+    customer_info.style.display = "none";
+  });
+}
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+function handleRenderInfoUser() {
+  fetch(usersApi + "/" + getCookie("user-id"))
+    .then((response) => response.json())
+    .then((user) => {
+      user_name.value = user.user[0].username;
+      user_phone.value = user.user[0].phone;
+      user_email.value = user.user[0].email;
+      user_address.value = user.user[0].address;
+    });
+}
+function handleOrderSubmit() {
+  customer_price_submit_btn.onclick = function () {
+    let data = {
+      order_address: user_address.value,
+    };
+    let option = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+    fetch(ordersApi + "/" + getCookie("user-id"), option)
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.message === "success") {
+          let info = {
+            cart_user_id: response.order_code_customer,
+            cart_order_code: response.order_code,
+          };
+          let option_new = {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(info),
+          };
+          fetch(cartsApi + "/order", option_new)
+            .then((response) => response.json())
+            .then((response) => {
+              if (response.message !== "Order success") {
+                alert("Đặt hàng thất bại");
+              }
+            });
+        } else alert("Lỗi bước 1");
+      });
+  };
+}
 getProductCart();
 handleCountDownInput();
 handleDeleteProductCart();
 handleConfirmBuyProduct();
+handleConfirmationOrder();
+handleRenderInfoUser();
+handleOrderSubmit();

@@ -117,6 +117,32 @@ router.patch("/", (req, res) => {
     });
   });
 });
+router.patch("/order", (req, res) => {
+  const { cart_user_id, cart_order_code } = req.body;
+  let checkPro_id = `select cart_user_id from cart where cart_user_id = '${cart_user_id}' and is_Active = 1`;
+  query = `update cart set cart_order_code ='${cart_order_code}', is_Active = 0  where cart_user_id = '${cart_user_id}' and is_Active = 1`;
+  connection.query(checkPro_id, (err, result) => {
+    if (err) return res.status(400).json({ success: false, message: "err" });
+    if (result.length > 0) {
+      connection.query(query, (error, Result) => {
+        if (error)
+          return res
+            .status(400)
+            .json({ success: false, message: "err checkPro_id" });
+        return res.status(200).json({
+          success: true,
+          message: "Order success",
+          cart_user_id,
+          cart_order_code,
+        });
+      });
+    } else {
+      return res
+        .status(400)
+        .json({ success: false, message: "cart_user_id not found" });
+    }
+  });
+});
 router.delete("/", (req, res) => {
   const { cart_user_id, cart_pro_id } = req.body;
   let checkPro_id = `select cart_pro_id from cart where cart_pro_id = '${cart_pro_id}' and cart_user_id = '${cart_user_id}' and is_Active = 1`;
@@ -143,4 +169,5 @@ router.delete("/", (req, res) => {
     }
   });
 });
+
 module.exports = router;

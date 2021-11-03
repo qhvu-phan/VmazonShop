@@ -36,12 +36,18 @@ function suggestion(money, select_type) {
                          <div class="price-buy">
                                <span>SL:${product.quantity}</span>
                                 <span>${product.pro_price}<u>đ</u></span>
-                           </div><br>
+                           </div>
+                           <br>
                            <div class="info-nutritional">
                                 <p>Dinh dưỡng: ${
                                   product.nutritional
                                 }/1000<u>đ</u></p>          
-                           </div>
+                           </div><br>
+                           <div class="buy">
+                                    <button class="product-item-selection" onclick="handleBuyProduct('${
+                                      product.visible_id
+                                    }')">CHỌN MUA</button>
+                            </div>
                 </div>
              
             </div>

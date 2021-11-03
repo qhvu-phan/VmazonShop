@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const axios = require("axios");
 const localStorage = require("local-storage");
+const verify = require("../controller/middleware/users.middleware.js");
 require("dotenv").config();
 
 module.exports = (app) => {
@@ -33,14 +34,14 @@ module.exports = (app) => {
       });
     });
   });
-  app.get("/cart", (req, res) => {
+  app.get("/cart", verify.verifyTokenUser, (req, res) => {
     let fileName = "cart.ejs";
     fs.readFile(path.resolve(__dirname, fileName), async (err, data) => {
       if (err) {
         return res.render("cart.ejs");
       }
       const cart = await axios.get(
-        `${process.env.LOCALHOST}/${process.env.CART}/${process.env.ID}`
+        `${process.env.LOCALHOST}/${process.env.CART}/${visible_id}`
       );
       return res.render(fileName, {
         data: {
