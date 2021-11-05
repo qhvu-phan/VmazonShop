@@ -38,16 +38,14 @@ router.get("/:id", middleware.checkId, (req, res) => {
             order: results,
           });
         }
-        return res
-          .status(200)
-          .json({
-            success: false,
-            message: "empty order",
-            name,
-            phone,
-            address,
-            order: [],
-          });
+        return res.status(200).json({
+          success: false,
+          message: "empty order",
+          name,
+          phone,
+          address,
+          order: [],
+        });
       });
     } else {
       return res
@@ -75,49 +73,18 @@ router.post("/:id", middleware.checkId, (req, res) => {
     });
   });
 });
-// router.patch("/:id", (req, res) => {
-//   const id = req.params.id;
-//   const { pro_name, pro_type, pro_nutritional, pro_price, image_path } =
-//     req.body;
-//   let checkPro_id = `select visible_id from product where visible_id = '${id}'
-//     and is_Active = 1`;
-//   query = `update product set
-//              pro_name = '${pro_name}',
-//              pro_type = '${pro_type}',
-//              pro_nutritional = '${pro_nutritional}',
-//              pro_price = ${pro_price}
-//              where visible_id ='${id}' and is_Active = 1`;
-//   imageUpdate = `update image set image_path ='${image_path}'
-//              where image_pro_id='${id}' and is_Active = 1`;
-//   connection.query(checkPro_id, (err, result) => {
-//     if (err)
-//       return res
-//         .status(400)
-//         .json({ success: false, message: "err checkPro_id" });
-//     if (result.length > 0) {
-//       connection.query(query, (error, result) => {
-//         if (error)
-//           return res.status(400).json({ success: false, message: "error" });
-//         connection.query(imageUpdate, (errors, resultss) => {
-//           if (errors)
-//             return res.status(400).json({ success: false, message: "errorr" });
-//           return res.status(200).json({
-//             success: true,
-//             message: "success",
-//             visible_id: id,
-//             pro_name,
-//             pro_type,
-//             pro_nutritional,
-//             pro_price,
-//             image_path,
-//           });
-//         });
-//       });
-//     } else {
-//       return res.status(400).json({ success: false, message: "id not found" });
-//     }
-//   });
-// });
+router.patch("/status", (req, res) => {
+  const { order_code, order_code_customer, order_status } = req.body;
+  query = `update orders set order_status = '${order_status}' where order_code ='${order_code}' and 
+  order_code_customer ='${order_code_customer}'`;
+  connection.query(query, (err, result) => {
+    if (err)
+      return res.status(400).json({ success: false, message: "err update" });
+    return res
+      .status(200)
+      .json({ success: false, message: "update status success" });
+  });
+});
 // router.delete("/:id", (req, res) => {
 //   const id = req.params.id;
 //   let checkPro_id = `select visible_id from product where visible_id = '${id}'

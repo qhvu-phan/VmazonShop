@@ -49,10 +49,12 @@ function handleRenderOrder(id) {
       let phone = orders.phone;
       let member_order = orders.order.map((order) => {
         let status = "Đang chờ duyệt";
-        if (order.order_status === 2) {
+        if (order.order_status === "2") {
           status = "Đang giao";
-        } else if (order.order_status === 3) {
+        } else if (order.order_status === "3") {
           status = "Đã nhận";
+        } else if (order.order_status === "4") {
+          status = "Đã hủy";
         }
         order_time = order.order_date;
         return `

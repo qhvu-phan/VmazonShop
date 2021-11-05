@@ -36,8 +36,9 @@
         <div id="navigation">
           <ul id="nav_list">
             <p class="nav-mem-header">Quản lí</p>
-            <li class="nav-mem">Đơn hàng mới</li>
-            <li class="nav-mem">Quản lí đơn hàng</li>
+            <li class="nav-mem admin-manager-order_new">Đơn hàng mới <span class="index_new_order">0</span></li>
+            <li class="nav-mem admin-manager-order">Quản lí đơn hàng</li>
+            <li class="nav-mem admin-manager-product">Quản lí sản phẩm</li>
             <li class="nav-mem">
               <a id="nav-header-add" href="#">Thêm sản phẩm</a>
               <div id="addproduct" class="addproduct">
@@ -113,102 +114,34 @@
         </div>
         <div id="content">
           <div class="content" ></div>        
-          <div class="content-order-table" style="display: none;">
+          <div class="content-order-table">
             <div class="content-selection-type">
               <span>Lọc đơn hàng theo: </span>
-              <select name="" id="">
-                <option value="1">Tất cả sản đơn hàng</option>
-                <option value="2">Đơn hàng đã hủy</option>
-                <option value="3">Đơn hàng đã nhận</option>
-              </select>
+              <select class="select_order_type_value" id="">
+                <option value="" >Tất cả đơn hàng</option>
+                <option value="1" class="select_type_1">Đang chờ duyệt</option>
+                <option value="2" class="select_type_2">Đơn hàng đang giao</option>
+                <option value="3" class="select_type_3">Đơn hàng đã nhận</option>
+                <option value="4" class="select_type_4">Đơn hàng đã hủy</option>
+              </select> <p class="select-filter select_type_all_btn">Tìm kiếm</p>
             </div>
             <table>
-              <tr>
-                <th class="table_history-STT">STT</th>
-                <th class="table_history-code">Mã đơn hàng</th>
-                <th class="table_history-name">Người nhận</th>
-                <th class="table_history-details">Chi tiết đơn hàng</th>
-                <th class="table_history-address">Địa chỉ</th>
-                <th class="table_history-date">Trạng thái</th>
-                <th class="table_history-date">Ngày nhận</th>             
-              </tr>
-              <tr class="table_history-member">
-                <td>1</td>
-                <td>DI1896A3</td>
-                <td>Phan Quang Huy Vũ <br> 0767958005</td>
-                <td class="history-details">Chi tiết đơn hàng</td>
-                <td>382, ấp 8 xã Long Trị, Tx. Long Mỹ, tỉnh Hậu Giang</td>
-                <td>Đã nhận</td>
-                <td>28-10-2021</td>
-              </tr>
-              <tr class="table_history-member">
-                <td>1</td>
-                <td>DI1896A3</td>
-                <td>Phan Quang Huy Vũ <br> 0767958005</td>
-                <td class="history-details">Chi tiết đơn hàng</td>
-                <td>382, ấp 8 xã Long Trị, Tx. Long Mỹ, tỉnh Hậu Giang</td>
-                <td>Đã nhận</td>
-                <td>28-10-2021</td>
-              </tr>
-              <tr class="table_history-member">
-                <td>1</td>
-                <td>DI1896A3</td>
-                <td>Phan Quang Huy Vũ <br> 0767958005</td>
-                <td class="history-details">Chi tiết đơn hàng</td>
-                <td>382, ấp 8 xã Long Trị, Tx. Long Mỹ, tỉnh Hậu Giang</td>
-                <td>Đã nhận</td>
-                <td>28-10-2021</td>
-              </tr>
-              <tr class="table_history-member">
-                <td>1</td>
-                <td>DI1896A3</td>
-                <td>Phan Quang Huy Vũ <br> 0767958005</td>
-                <td class="history-details">Chi tiết đơn hàng</td>
-                <td>382, ấp 8 xã Long Trị, Tx. Long Mỹ, tỉnh Hậu Giang</td>
-                <td>Đã nhận</td>
-                <td>28-10-2021</td>
-              </tr>
-              <tr class="table_history-member">
-                <td>1</td>
-                <td>DI1896A3</td>
-                <td>Phan Quang Huy Vũ <br> 0767958005</td>
-                <td class="history-details">Chi tiết đơn hàng</td>
-                <td>382, ấp 8 xã Long Trị, Tx. Long Mỹ, tỉnh Hậu Giang</td>
-                <td>Đã nhận</td>
-                <td>28-10-2021</td>
-              </tr>
-              <tr class="table_history-member">
-                <td>1</td>
-                <td>DI1896A3</td>
-                <td>Phan Quang Huy Vũ <br> 0767958005</td>
-                <td class="history-details">Chi tiết đơn hàng</td>
-                <td>382, ấp 8 xã Long Trị, Tx. Long Mỹ, tỉnh Hậu Giang</td>
-                <td>Đã nhận</td>
-                <td>28-10-2021</td>
-              </tr>
-              <tr class="table_history-member">
-                <td>1</td>
-                <td>DI1896A3</td>
-                <td>Phan Quang Huy Vũ <br> 0767958005</td>
-                <td class="history-details">Chi tiết đơn hàng</td>
-                <td>382, ấp 8 xã Long Trị, Tx. Long Mỹ, tỉnh Hậu Giang</td>
-                <td>Đã nhận</td>
-                <td>28-10-2021</td>
-              </tr>
-              <tr class="table_history-member">
-                <td>1</td>
-                <td>DI1896A3</td>
-                <td>Phan Quang Huy Vũ <br> 0767958005</td>
-                <td class="history-details">Chi tiết đơn hàng</td>
-                <td>382, ấp 8 xã Long Trị, Tx. Long Mỹ, tỉnh Hậu Giang</td>
-                <td>Đã nhận</td>
-                <td>28-10-2021</td>
-              </tr>
+              <thead>
+                <tr>
+                  <th class="table_history-STT">STT</th>
+                  <th class="table_history-code">Mã đơn hàng</th>
+                  <th class="table_history-name">Mã khách hàng</th>
+                  <th class="table_history-details">Chi tiết đơn hàng</th>
+                  <th class="table_history-address">Địa chỉ</th>
+                  <th class="table_history-date">Trạng thái</th>
+                  <th class="table_history-date">Ngày nhận</th>             
+                </tr>
+              </thead>   
+              <tbody class="table_history-member_all"></tbody>
             </table>
           </div>
         </div>
       </div>
-
       <div id="footer">
         <div class="footer-info">
           <div class="title-footer">Vmazon</div>
@@ -223,5 +156,6 @@
       </div>
     </div>
     <script src="/js/admin.js"></script>
+    <script src="/js/admin_new.js"></script>
   </body>
 </html>

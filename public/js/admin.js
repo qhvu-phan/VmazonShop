@@ -6,11 +6,6 @@ select.addEventListener("click", () => {
   var add = document.querySelector(".login");
   add.classList.add("show");
 });
-// var select1 = document.querySelector("#register");
-// select1.addEventListener("click", () => {
-//   var add = document.querySelector(".register");
-//   add.classList.add("show");
-// });
 var addproduct = document.querySelector("#nav-header-add");
 addproduct.addEventListener("click", () => {
   var add = document.querySelector("#addproduct");

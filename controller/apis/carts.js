@@ -53,6 +53,7 @@ router.get("/:id", middleware.checkId, (req, res) => {
     if (result.length > 0) {
       for (let i = 0; i < result.length; i++) {
         let visible_id = result[i].visible_id;
+        let cart_order_code = result[i].cart_order_code;
         let cart_user_id = result[i].cart_user_id;
         let cart_pro_id = result[i].cart_pro_id;
         let cart_pro_quantity = result[i].cart_pro_quantity;
@@ -76,6 +77,7 @@ router.get("/:id", middleware.checkId, (req, res) => {
               let cache = {
                 visible_id: visible_id,
                 cart_user_id: cart_user_id,
+                cart_order_code: cart_order_code,
                 visible_id_pro: visible_id_pro,
                 image_path: resultss[0].image_path,
                 pro_name: pro_name,

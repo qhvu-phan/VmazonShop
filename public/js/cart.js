@@ -1,6 +1,7 @@
 var cartsApi = "http://localhost:5000/carts";
 var usersApi = "http://localhost:5000/users";
 var ordersApi = "http://localhost:5000/orders";
+var orderDetailApi = "http://localhost:5000/order_details";
 const down = document.querySelectorAll(".fa-minus");
 const count = document.querySelectorAll(".fa-plus");
 const input = document.querySelectorAll(".quanity-input");
@@ -29,6 +30,9 @@ const cart_customer_id = document.querySelector(".cart-customer-id");
 const customer_price_submit_btn = document.querySelector(
   ".customer-price-submit_btn"
 );
+const cart_cancle_btn_action = document.querySelector(
+  ".cart-cancle-btn-action"
+);
 let user_address = document.querySelector("#customer-address");
 let user_name = document.querySelector("#customer-name");
 let user_phone = document.querySelector("#customer-phone");
@@ -36,6 +40,7 @@ let user_email = document.querySelector("#customer-email");
 let background_loading_waiting_cart = document.querySelector(
   ".background-loading-waiting"
 );
+//handel get all product in cart
 function getProductCart() {
   listCarts = [];
   fetch(cartsApi + "/" + cart_customer_id.getAttribute("data-id"))
@@ -79,6 +84,8 @@ function total() {
   customer_total_money.innerHTML =
     parseFloat(sum + parseFloat(ship_money.innerHTML)) + `<u>đ</u>`;
 }
+
+// handle update quantity
 function handleCountDownInput() {
   let id;
   let value;
@@ -118,9 +125,22 @@ function handleUpdateQuantityProduct(id, value) {
   };
   updateQuantity(data);
 }
-function handleSumOneProduct(x, y, z) {
-  let sum_one_product = parseFloat(x * y);
-  total_money_one_product[z].innerHTML = sum_one_product;
+function updateQuantity(data) {
+  let option = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  };
+  fetch(cartsApi, option)
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.message === "success") {
+        getProductCart();
+        total();
+      } else alert("Lỗi hệ thống");
+    });
 }
 function handleTooltipPrice(x, i) {
   if (x > 1) {
@@ -129,6 +149,11 @@ function handleTooltipPrice(x, i) {
     tooltip_price[i].style.display = "none";
   }
 }
+function handleSumOneProduct(x, y, z) {
+  let sum_one_product = parseFloat(x * y);
+  total_money_one_product[z].innerHTML = sum_one_product;
+}
+//handle delete product
 function handleDeleteProductCart() {
   for (let i = 0; i < delete_btn.length; i++) {
     delete_btn[i].addEventListener("click", function (e) {
@@ -146,31 +171,6 @@ function handleDeleteProductCart() {
       };
     });
   }
-}
-function handleStyleDisplayBlock() {
-  message_box.style.display = "block";
-  background_hover.style.display = "block";
-}
-function handleMessageDisplayNone() {
-  message_box.style.display = "none";
-  background_hover.style.display = "none";
-}
-function updateQuantity(data) {
-  let option = {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  };
-  fetch(cartsApi, option)
-    .then((response) => response.json())
-    .then((response) => {
-      if (response.message === "success") {
-        getProductCart();
-        total();
-      } else alert("Lỗi hệ thống");
-    });
 }
 function handleRemoveProduct(data, id) {
   let option = {
@@ -194,17 +194,14 @@ function handleRemoveProduct(data, id) {
   var upload = document.querySelector(".cart-item-" + id);
   upload.remove();
 }
-function handleConfirmBuyProduct() {
-  buying.addEventListener("click", () => {
-    if (total_money.innerHTML != 0 + `<u>đ</u>`) {
-      customer_info.style.display = "block";
-      cart_info.style.display = "none";
-    }
-  });
-  back_to_cart.addEventListener("click", () => {
-    cart_info.style.display = "block";
-    customer_info.style.display = "none";
-  });
+
+function handleStyleDisplayBlock() {
+  message_box.style.display = "block";
+  background_hover.style.display = "block";
+}
+function handleMessageDisplayNone() {
+  message_box.style.display = "none";
+  background_hover.style.display = "none";
 }
 function getCookie(cname) {
   let name = cname + "=";
@@ -230,6 +227,19 @@ function handleRenderInfoUser() {
       user_email.value = user.user[0].email;
       user_address.value = user.user[0].address;
     });
+}
+//handle buy product
+function handleConfirmBuyProduct() {
+  buying.addEventListener("click", () => {
+    if (total_money.innerHTML != 0 + `<u>đ</u>`) {
+      customer_info.style.display = "block";
+      cart_info.style.display = "none";
+    }
+  });
+  back_to_cart.addEventListener("click", () => {
+    cart_info.style.display = "block";
+    customer_info.style.display = "none";
+  });
 }
 function handleOrderSubmit() {
   customer_price_submit_btn.onclick = function () {
@@ -279,9 +289,49 @@ function handleOrderSubmit() {
     }
   };
 }
+//handle delete all product
+function handleDeleteAllProduct() {
+  cart_cancle_btn_action.addEventListener("click", () => {
+    if (total_money.innerHTML != 0 + `<u>đ</u>`) {
+      handleStyleDisplayBlock();
+      cancel.onclick = () => {
+        handleMessageDisplayNone();
+      };
+      agree.onclick = () => {
+        background_loading_waiting_cart.style.display = "block";
+        DeleteAll();
+        handleMessageDisplayNone();
+      };
+    }
+    function DeleteAll() {
+      let user = {
+        cart_user_id: getCookie("user-id"),
+      };
+      let option = {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      };
+      fetch(orderDetailApi + "/all", option)
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.message === "Delete all success") {
+            setTimeout(() => {
+              alert("Giỏ hàng đã được làm mới");
+              background_loading_waiting_cart.style.display = "none";
+              location.reload();
+            }, 1000);
+          }
+        });
+    }
+  });
+}
 getProductCart();
 handleCountDownInput();
 handleDeleteProductCart();
 handleConfirmBuyProduct();
 handleRenderInfoUser();
 handleOrderSubmit();
+handleDeleteAllProduct();

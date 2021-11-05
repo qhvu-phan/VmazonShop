@@ -263,7 +263,10 @@ login_user_continue_btn.addEventListener("click", () => {
     phone: login_user_username.value,
     passwords: login_user_password.value,
   };
-  loginUser(customer, "jwt_us");
+  background_loading_waiting.style.display = "block";
+  setTimeout(() => {
+    loginUser(customer, "jwt_us");
+  }, 1500);
 });
 function loginUser(user, accessToken) {
   let option = {
@@ -278,7 +281,7 @@ function loginUser(user, accessToken) {
     .then((response) => {
       if (response.message === "login success") {
         setCookie(accessToken, response.accessToken, 1);
-        alert("Đăng nhập thành công");
+        background_loading_waiting.style.display = "none";
         location.reload();
       } else {
         alert("Vui lòng kiểm tra lại thông tin đăng nhập");

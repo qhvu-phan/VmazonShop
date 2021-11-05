@@ -162,7 +162,7 @@ html {
 }
 .content {
   flex: 1;
-  max-height: 600px;
+  max-height: 1000px;
   overflow: auto;
   display: flex;
   justify-content: space-around;
@@ -428,4 +428,40 @@ html {
 .content-order-table {
   position: relative;
   top: 30px;
+  display: none;
+}
+.fa-edit {
+  margin-left: 5px;
+  font-size: 18px;
+  color: #008848;
+  cursor: pointer;
+}
+.order-update-status {
+  width: 140px;
+}
+.index_new_order {
+  display: inline-block;
+  text-align: center;
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  color: white;
+}
+.select-filter {
+  display: inline-block;
+  width: 80px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #333333;
+  color: #333333;
+  cursor: pointer;
+  transition: all 0.5s;
+}
+.select-filter:hover {
+  background-color: #008848;
+  color: #fff;
+  border: 1px solid #fff;
 }
