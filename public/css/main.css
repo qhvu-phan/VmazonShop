@@ -7,9 +7,10 @@ html {
   font-family: Arial, Helvetica, sans-serif;
 }
 #main {
-  width: 1280px;
+  width: auto;
   max-width: 100%;
   margin: 0 auto;
+  background-color: #e9edf0;
 }
 #header {
   width: 100%;
@@ -19,11 +20,14 @@ html {
   margin-top: 0;
 }
 #info {
-  display: flex;
-  justify-content: space-between;
-  margin: 0px 10px;
+  text-align: center;
+  font-size: 30px;
   height: 48px;
   line-height: 48px;
+}
+#info a {
+  text-decoration: none;
+  color: #fff;
 }
 #contact,
 #noti {
@@ -95,23 +99,30 @@ html {
   flex: 1;
 }
 #search .search {
-  width: 600px;
+  width: 1080px;
   border: 1px solid white;
-  border-radius: 25px;
+  font-size: 2rem;
+  border-radius: 10px;
   margin-right: 5px;
   outline: none;
 }
 .btn-search {
   cursor: pointer;
   position: absolute;
-  color: green;
-  right: 90px;
-  top: 2px;
+  color: #eee;
+  right: 20px;
+  font-size: 25px;
+  top: 4px;
 }
 #cart {
   width: 300px;
   cursor: pointer;
   position: relative;
+}
+#cart a {
+  text-decoration: none;
+  font-size: 30px;
+  color: #fff;
 }
 #container {
   display: flex;
@@ -123,13 +134,39 @@ html {
   min-height: 600px;
   border-right: 1px solid green;
   margin-top: 10px;
-  background-color: #fbfbfb;
+  background-color: #eee;
   color: green;
 }
 #content {
   flex: 1;
   max-height: 1000px;
   overflow: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  background-color: #fff;
+}
+.content-selection-type {
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #3333;
+  text-align: right;
+}
+.content-selection-type select {
+  outline: none;
+}
+.content-selection-type span {
+  color: #333333;
+  font-weight: 600;
+}
+.content {
+  flex: 1;
+  max-height: 600px;
+  overflow: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 #nav_list li {
   list-style-type: none;
@@ -146,20 +183,18 @@ html {
   background-color: palegoldenrod;
   cursor: pointer;
 }
-#content {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
+
 #conten-mem {
   margin: 10px 10px;
   max-width: 240px;
-  height: 280px;
+  max-height: 280px;
   padding: 5px;
   border: 1px solid green;
   border-radius: 10px;
   cursor: pointer;
   position: relative;
+}
+#conten-mem:hover {
 }
 #conten-mem-admin {
   margin: 10px 10px;
@@ -180,7 +215,7 @@ html {
   justify-content: space-around;
   font-size: 1.6rem;
 }
-#edit,
+.edit,
 #delete {
   color: white;
   background-color: green;
@@ -198,7 +233,6 @@ html {
   font-size: 1.6rem;
 }
 .price-buy button {
-  color: green;
   cursor: pointer;
 }
 .price-buy p {
@@ -285,9 +319,8 @@ html {
 #cart_list {
   position: absolute;
   left: -650px;
-  width: 600px;
-  height: 600px;
-  max-height: 700px;
+  width: 800px;
+  max-height: 800px;
   z-index: 50;
   overflow: auto;
   background-color: white;
@@ -302,15 +335,18 @@ html {
 #cart-mem {
   display: flex;
   justify-content: space-between;
+  width: 800px;
   height: 50px;
   z-index: 100;
 }
 #cart_list_mem {
-  height: 480px;
+  height: 500px;
+  max-height: 600px;
+  width: 800px;
   overflow: auto;
 }
 #description {
-  width: 400px;
+  width: 800px;
   display: flex;
   justify-content: space-around;
 }
@@ -331,28 +367,65 @@ html {
 }
 #select-buy {
   position: absolute;
-  top: -100px;
-  left: 250px;
-  width: 1000px;
-  height: 500px;
+  top: -200px;
+  left: 300px;
+  width: 1300px;
+  height: 700px;
   background-color: white;
   border: 2px solid green;
   border-radius: 10px;
   text-align: center;
   z-index: 1;
   display: none;
+  overflow: auto;
 }
 #select-buy .icon-close {
   width: 50px;
   height: 50px;
   font-size: 3.2rem;
   color: green;
-  margin-left: 960px;
+  margin-left: 1240px;
 }
-
+.cart-mem {
+  display: flex;
+  justify-content: space-between;
+  height: 200px;
+  z-index: 100;
+}
+.cart-delete {
+  width: 50px;
+}
+.cart-image {
+  width: 100px;
+}
+.cart-name {
+  width: 100px;
+}
+.cart-number {
+  width: 50px;
+}
+.quantity {
+  width: 50px;
+}
+#totalAmount {
+  margin-right: 100px;
+}
+#suggestion {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+.buy-button {
+  display: none;
+}
 .show {
   display: block !important;
 }
 .hide {
   display: none !important;
+}
+.content-order-table {
+  position: relative;
+  top: 30px;
 }

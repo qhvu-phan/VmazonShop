@@ -1,247 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/css/main.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/font/fontawesome-free-5.15.4-web/css/all.min.css"/>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="/font/fontawesome-free-5.15.4-web/css/all.min.css"
-    />
-    <title>Vmazon Shop</title>
-  </head>
-
-  <body>
+    <link rel="stylesheet" href="/css/index.css">
+    <title>Justin Store</title>
+</head>
+<body>
     <div id="main">
-      <div id="header">
-        <div id="info">
-          <ul id="contact">
-            <li class="contact-info">
-              <a href="">
-                <i class="far fa-envelope"></i>
-                qhvu.phan@gmail.com
-              </a>
-            </li>
-            <li class="contact-info">
-              <a href="#">
-                <i class="fab fa-facebook"></i>
-                facebook
-              </a>
-            </li>
-          </ul>
-          <ul id="noti">
-            <li class="noti-member">
-              <a href="#">
-                <i class="far fa-bell"></i>
-                Thông báo</a
-              >
-              <div class="notification">
-                <ul id="notification_list">
-                  <li class="notification_mem-header">Thông báo</li>
-                </ul>
-              </div>
-            </li>
-            <li class="noti-member">
-              <a href="#">
-                <i class="far fa-question-circle"></i>
-                Trợ giúp
-              </a>
-              <div class="notification">
-                <ul id="notification_list">
-                  <li class="notification_mem-header">Trợ giúp</li>
-                </ul>
-              </div>
-            </li>
-            <li id="register-user"class="noti-member">
-              <a id="register" href="#">Đăng ký</a>
-              <div class="register">
-                <div id="register-form">
-                  <p class="notification_mem-header">Thông tin đăng ký</p>
-                  <label>Tên đăng nhập:</label><br />
-                  <input type="text" placeholder="chữ,số" name="user" /><br />
-                  <label>Số điện thoại:</label><br />
-                  <input
-                    type="text"
-                    placeholder="Số điện thoại"
-                    name="phone"
-                  /><br />
-                  <lable>Địa chỉ:</lable><br />
-                  <input
-                    type="text"
-                    placeholder="Điện chỉ"
-                    name="address"
-                  /><br />
-                  <label>Mật khẩu</label><br />
-                  <input
-                    type="password"
-                    placeholder="Mật khẩu"
-                    name="password"
-                  /><br />
-                  <label>Nhập lại mật khẩu:</label><br />
-                  <input
-                    type="password"
-                    placeholder="Xác nhận mật khẩu"
-                    name="passwords"
-                  /><br />
-                  <button id="register-form" onclick="registerUser()">
-                    Đăng ký
-                  </button>
-                  <button id="close-register" onclick="closeRegister()">
-                    Đóng
-                  </button>
-                </div>
-              </div>
-            </li>
-            <li id="login-user" class="noti-member">
-              <a id="login" class="" href="#">Đăng nhập</a>
-              <div class="login">
-                <div id="login-form">
-                  <p class="notification_mem-header">Đăng nhập</p>
-                  <label>Tên đăng nhập:</label><br />
-                  <input
-                    type="text"
-                    placeholder="chữ,số"
-                    name="username_login"
-                  /><br />
-                  <label>Mật khẩu</label><br />
-                  <input
-                    type="password"
-                    placeholder="Mật khẩu"
-                    name="passwords_login"
-                  /><br />
-                  <button onclick="login()">Đăng nhập</button>
-                </div>
-              </div>
-            </li>
-            <li id="logout-user" class="noti-member hide">
-              <a href="http://localhost:5000">Đăng xuất</a>
-            </li>
-            <li id="login-username" class="noti-member hide">
-              <input id="user_id" type="text" class="hide">
-              <a id="user-login" href="#">Username</a>
-            </li>
-          </ul>
+        <div class="header">
+            <%- include('topbar.ejs') %>
         </div>
-        <div id="website_search_buy">
-          <div id="website">
-            <a id="home" href="http://localhost:5000">Vmazon</a>
-          </div>
-          <div id="search">
-            <input class="search" type="text" onfocus="this.value=''" oninput="searchProduct()" />
-            <i id="btn-search" onclick="search_product()" class="fas fa-search btn-search"></i>
-          </div>
-          <div id="cart">
-            <div id="show-cart"><i class="fas fa-shopping-cart" onclick="show_cart()"></i></div>
-            <div id="cart_list" class="class">
-              <div id="cart_list_mem">
-              <p id="info-cart">Thông tin sản phẩm</p>
-              <div id="cart-mem">
-                <div id="description">
-                  <label for="">Hình sản phẩm</label>
-                  <label for="">Tên sản phẩm</label>
-                  <label for="">Số lượng</label>
-                </div>
-                <div id="total">Tổng tiền</div>
-              </div>
+        <div class="content">
+            <div class="content-slide">
+                <%- include('slide.ejs') %>
             </div>
-              <div id="cart-mem" class="total-amount">
-                <div id="description">
-                  <lable>Tổng tiền:</lable>
-                </div>
-                <div id="total"></div>
-              </div>
-              <div id="info-customer">
-                <p>Thông tin khách hàng</p>
-                <label for="">Phan Quang Huy Vũ</label>
-                <Label>|</Label>
-                <label for="">0767958005</label>
-                <p>Địa chỉ: KDC 30, Nguyễn Văn Linh, HL , NK , CT</p>
-              </div>
+            <div class="content-discount-code">
+                <%- include('discount_code.ejs') %>
             </div>
-          </div>
+            <div class="content-hot-product">
+                <%- include('hot_product.ejs') %>
+            </div>
+            <div class="content-product">
+                <%- include('product.ejs') %>
+            </div>
         </div>
-      </div>
-      <div id="container">
-        <div id="navigation">
-          <ul id="nav_list">
-            <p  class="nav-mem-header" onclick="renderAllProduct()">Sản phẩm</p>
-            <li class="nav-mem" onclick="renderProductTypeof('1')">Rau xanh các loại</li>
-            <li class="nav-mem" onclick="renderProductTypeof('2')">Củ , quả các loại</li>
-            <li class="nav-mem" onclick="renderProductTypeof('3')">Thịt các loại</li>
-            <li class="nav-mem" onclick="renderProductTypeof('5')">Cá các loại</li>
-            <li class="nav-mem" onclick="renderProductTypeof('4')">Phụ phẩm các loại</li>
-            <li id="nav-mem-buy"class="nav-mem">
-              <p id="open-buy">Mua hàng thông minh</p>
-              <div id="select-buy" class="select-buy">
-                <div class="icon-close"><i id="fa-times-circle"class="far fa-times-circle"></i></div>
-                <label for="">Vui lòng điền số tiền: </label>
-                <input type="text"> <br><br>
-                <label for="">Vui lòng chọn loại thực phẩm: </label> <br>
-                <label for="">Rau xanh các loại <input type="checkbox"></label> <br>
-                <label for="">Củ, quả các loại <input type="checkbox"></label><br>
-                <label for="">Thịt các loại <input type="checkbox"></label><br>
-                <label for="">Cá các loại <input type="checkbox"></label><br>
-                <label for="">Phụ phẩm các loại <input type="checkbox"></label> <br>
-                <button>Bắt đầu mua</button>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div id="content">
-          <script>
-            var select = document.querySelector("#login");
-            select.addEventListener("click", () => {
-              var add = document.querySelector(".login");
-              add.classList.add("show");
-            });
-            var select1 = document.querySelector("#register");
-            select1.addEventListener("click", () => {
-              var add = document.querySelector(".register");
-              add.classList.add("show");
-            });
-            var select_buy = document.querySelector("#open-buy");
-              select_buy.addEventListener("click", () => {
-                var show = document.querySelector("#select-buy")
-                show.classList.add("show")
-              })
-            var close_select_buy = document.querySelector(".icon-close")
-              close_select_buy.addEventListener('click', () => {
-              let close = document.querySelector("#select-buy");
-              close.classList.remove("show");
-            })
-            var select2 = document.querySelector("#container");
-            select2.addEventListener("click", () => {
-              var add = document.querySelector(".login");
-              var add1 = document.querySelector(".register");
-              var show = document.querySelector(".class");
-              add.classList.remove("show");
-              add1.classList.remove("show");
-              show.classList.remove("show");
-            });
-            function closeRegister() {
-              var close = document.querySelector(".register");
-              close.classList.add("hide");
-              close.classList.remove("show");
-            }
-          </script>
-          <script src="/js/index.js"></script>
-        </div>
-      </div>
-      <div id="footer">
-        <div class="footer-info">
-          <div class="title-footer">Vmazon</div>
-          <p>Chất lượng làm nên thương hiệu</p>
-          <p>Hân hạnh được phục vụ</p>
-        </div>
-        <div class="footer-address">
-          <p class="address-footer">Địa chỉ: nhà trên đất</p>
-          <p>Thích thì mua không thích thì mua</p>
-          <p>Liên hệ thì liên hệ không liên hệ thì liên hệ</p>
-        </div>
-      </div>
     </div>
-  </body>
+</body>
 </html>
