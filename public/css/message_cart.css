@@ -1,10 +1,22 @@
+.meesage-cart-container {
+  position: relative;
+  width: 1600px;
+  height: 720px;
+  text-align: center;
+  background-color: #aaaaaa;
+  opacity: 0.9;
+}
+
 .message_cart-container {
+  position: relative;
+  display: inline-block;
   width: 400px;
   height: 120px;
   border: 1px solid #eee;
   border-radius: 5px;
   background-color: #fff;
   z-index: 10;
+  margin: 250px auto;
 }
 .message_cart-content {
   width: 380px;

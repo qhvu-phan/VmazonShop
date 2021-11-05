@@ -49,45 +49,77 @@ const change_password_code_value = document.querySelector(
 const change_password_continue_btn = document.querySelector(
   "#change_password-continue_btn"
 );
+const enter_otp_code_register_form = document.querySelector(
+  ".enter_otp_code_register"
+);
+const enter_code_register_continue_btn = document.querySelector(
+  "#enter_code_register-continue_btn"
+);
+const enter_otp_code_register_value = document.querySelector(
+  'input[name="enter-otp-code-register"]'
+);
+let background_loading_waiting = document.querySelector(
+  ".background-loading-waiting"
+);
 let otp_code = null;
 
+//handle change pass with verify otp
 function handleGetOtpChangePassword() {
   get_otp_continue_btn.onclick = function () {
-    let email = {
-      email: email_get_otp.value,
-    };
-    let option = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(email),
-    };
-    fetch(sentMailApi, option)
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.message === "success") {
-          otp_code = response.code;
-          alert("Mã OTP đã được gửi đến mail của bạn");
-          setCookie("user_email", email_get_otp.value, 1);
-          forget_user_register_form.style.display = "none";
-          enter_otp_code.style.display = "block";
-        } else {
-          alert("Lỗi hệ thống");
-        }
-      });
+    if (email_get_otp.value === "") {
+      alert("Vui lòng nhập email");
+    } else {
+      handleGetOtp(email_get_otp.value);
+    }
+    function handleGetOtp(email) {
+      background_loading_waiting.style.display = "block";
+      let value = {
+        email: email,
+      };
+      let option = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(value),
+      };
+      fetch(sentMailApi + "/getOTP", option)
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.message === "success") {
+            otp_code = response.code;
+            background_loading_waiting.style.display = "none";
+            setCookie("user_email", email_get_otp.value, 1);
+            forget_user_register_form.style.display = "none";
+            enter_otp_code.style.display = "block";
+          } else if (response.message === "Please check email") {
+            alert("Email không hợp lệ");
+            background_loading_waiting.style.display = "none";
+          } else if (response.message === "Email not found") {
+            alert("Email này chưa được sử dụng, vui lòng kiểm tra lại");
+            background_loading_waiting.style.display = "none";
+          } else {
+            alert("Lỗi hệ thống");
+            background_loading_waiting.style.display = "none";
+          }
+        });
+    }
   };
 }
-
 enter_code_continue_btn.onclick = function () {
-  if (parseInt(enter_otp_code_value.value) === otp_code) {
-    enter_otp_code.style.display = "none";
-    change_password_code_form.style.display = "block";
-  } else {
-    alert("OTP không đúng");
-  }
+  background_loading_waiting.style.display = "block";
+  setTimeout(() => {
+    if (parseInt(enter_otp_code_value.value) === otp_code) {
+      background_loading_waiting.style.display = "none";
+      enter_otp_code.style.display = "none";
+      change_password_code_form.style.display = "block";
+    } else {
+      alert("OTP không đúng");
+    }
+  }, 1500);
 };
 change_password_continue_btn.onclick = function () {
+  background_loading_waiting.style.display = "block";
   let password = {
     passwords: change_password_code_value.value,
   };
@@ -102,6 +134,7 @@ change_password_continue_btn.onclick = function () {
     .then((response) => response.json())
     .then((response) => {
       if (response.message === "success") {
+        background_loading_waiting.style.display = "none";
         alert("Cập nhật mật khẩu thành công");
         delete_cookie("user_email");
         location.reload();
@@ -110,23 +143,96 @@ change_password_continue_btn.onclick = function () {
       }
     });
 };
-login_user_continue_btn.addEventListener("click", () => {
-  let customer = {
-    phone: login_user_username.value,
-    passwords: login_user_password.value,
-  };
-  loginUser(customer, "jwt_us");
-});
+// handle register new user
 login_user_register_action.addEventListener("click", () => {
-  let info = {
-    username: login_user_name.value,
-    passwords: login_user_passwords.value,
-    email: login_user_email.value,
-    phone: login_user_phone.value,
-    address: login_user_address.value,
-  };
-  registerUser(info, "jwt_us");
+  background_loading_waiting.style.display = "block";
+  if (
+    login_user_name.value === "" ||
+    login_user_passwords.value === "" ||
+    login_user_email.value === "" ||
+    login_user_phone.value === "" ||
+    login_user_address.value === ""
+  ) {
+    alert("Vui lòng nhập đầy đủ thông tin");
+    background_loading_waiting.style.display = "none";
+  } else {
+    let info = {
+      username: login_user_name.value,
+      passwords: login_user_passwords.value,
+      email: login_user_email.value,
+      phone: login_user_phone.value,
+      address: login_user_address.value,
+    };
+    handleVerifyOtpRegister(info, "jwt_us");
+  }
 });
+function handleVerifyOtpRegister(info, user_token) {
+  let email = {
+    email: info.email,
+    phone: info.phone,
+  };
+  let option = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(email),
+  };
+  fetch(sentMailApi, option)
+    .then((response) => response.json())
+    .then((response) => {
+      background_loading_waiting.style.display = "none";
+      if (response.message === "success") {
+        otp_code = response.code;
+        handleVerifyOtp(info, user_token);
+        // alert("Mã OTP đã được gửi đến mail của bạn");
+        setCookie("user_email", email_get_otp.value, 1);
+        register_user_register_form.style.display = "none";
+        enter_otp_code_register_form.style.display = "block";
+      } else if (response.message === "Phone already exists") {
+        alert("Số điện thoại này đã được sử dụng");
+      } else if (response.message === "Email already exists") {
+        alert("Email này đã được sử dụng");
+      } else {
+        alert("Lỗi hệ thống");
+      }
+    });
+}
+function handleVerifyOtp(info, user_token) {
+  enter_code_register_continue_btn.onclick = function () {
+    if (enter_otp_code_register_value === "") {
+      alert("Vui lòng nhập mã OTP");
+    } else if (parseInt(enter_otp_code_register_value.value) === otp_code) {
+      enter_otp_code.style.display = "none";
+      background_loading_waiting.style.display = "block";
+      registerUser(info, user_token);
+    } else {
+      alert("OTP không đúng");
+    }
+  };
+}
+function registerUser(info, accessToken) {
+  let option = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(info),
+  };
+  fetch(loginApi + "/register", option)
+    .then((response) => response.json())
+    .then((response) => {
+      // background_loading_waiting.style.display = "none";
+      if (response.message === "register success") {
+        setCookie(accessToken, response.accessToken, 1);
+        alert("Đăng ký tài khoản thành công");
+        location.reload();
+      } else {
+        alert("Đăng ký thất bại");
+      }
+    });
+}
+// cookie function
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
@@ -151,6 +257,14 @@ function getCookie(cname) {
 function delete_cookie(name) {
   document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 }
+// handle login user
+login_user_continue_btn.addEventListener("click", () => {
+  let customer = {
+    phone: login_user_username.value,
+    passwords: login_user_password.value,
+  };
+  loginUser(customer, "jwt_us");
+});
 function loginUser(user, accessToken) {
   let option = {
     method: "POST",
@@ -171,27 +285,7 @@ function loginUser(user, accessToken) {
       }
     });
 }
-function registerUser(info, accessToken) {
-  let option = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(info),
-  };
-  fetch(loginApi + "/register", option)
-    .then((response) => response.json())
-    .then((response) => {
-      if (response.message === "register success") {
-        setCookie(accessToken, response.accessToken, 1);
-        alert("Resgister success!");
-        location.reload();
-      } else {
-        alert("Đăng ký thất bại");
-      }
-    });
-}
-
+// handle change form
 function handleChangeForm() {
   for (let i = 0; i < login_user_register_btn.length; i++) {
     login_user_register_btn[i].addEventListener("click", () => {

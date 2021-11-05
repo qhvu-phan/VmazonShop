@@ -30,7 +30,7 @@
                </div>
                <div class="login_user-password login-username-password">
                    <i class="fas fa-key login_user-icon"></i>
-                   <input id="login_user-password" class="login_user-input " type="text" placeholder="Mật khẩu">
+                   <input id="login_user-password" class="login_user-input " type="password" placeholder="Mật khẩu">
                </div>
                <div class="login_user-continue">
                    <button class="login_user-continue_btn">Tiếp tục</button>
@@ -64,24 +64,24 @@
             Quý khách vui lòng điền đầy đủ thông tin 
             </div>
             <div class="login_user-username login-username-name">
-                <i class="fas fa-phone-square-alt login_user-icon"></i>
-                <input id="login_user-name" class="login_user-input " type="text" placeholder="Họ và tên">
+                <i class="fas fa-user-circle login_user-icon"></i>
+                <input id="login_user-name" class="login_user-input " type="text" placeholder="Họ và tên" required>
             </div>
             <div class="login_user-password login-username-phone">
-                <i class="fas fa-key login_user-icon"></i>
-                <input id="login_user-phone" class="login_user-input " type="text" placeholder="Số điện thoại">
+                <i class="fas fa-phone-square-alt login_user-icon"></i>
+                <input id="login_user-phone" class="login_user-input " type="text" placeholder="Số điện thoại" required>
             </div>
             <div class="login_user-username login-username-email all_css_form">
-                <i class="fas fa-phone-square-alt login_user-icon"></i>
-                <input id="login_user-email" class="login_user-input " type="text" placeholder="Email">
+                <i class="fas far fa-envelope login_user-icon"></i>
+                <input id="login_user-email" class="login_user-input " type="text" placeholder="Email" required>
             </div>
             <div class="login_user-password login-username-passwords">
                 <i class="fas fa-key login_user-icon"></i>
-                <input id="login_user-passwords" class="login_user-input " type="text" placeholder="Mật khẩu">
+                <input id="login_user-passwords" class="login_user-input " type="password" placeholder="Mật khẩu" required>
             </div>
             <div class="login_user-username login-username-address all_css_form">
-                <i class="fas fa-phone-square-alt login_user-icon"></i>
-                <input id="login_user-address" class="login_user-input " type="text" placeholder="Địa chỉ cụ thể">
+                <i class="fas fa-map-marked-alt login_user-icon"></i>
+                <input id="login_user-address" class="login_user-input " type="text" placeholder="Địa chỉ cụ thể" required>
             </div>
             <div class="login_user-continue">
                 <button class="login_user-register_btn">Đăng ký</button>
@@ -100,7 +100,7 @@
               Nhập email để khôi phục mật khẩu 
             </div>
             <div class="login_user-username login-username-email">
-                <i class="fas fa-phone-square-alt login_user-icon"></i>
+                <i class="fas far fa-envelope login_user-icon"></i>
                 <input id="login_user-username" class="login_user-input " type="text" name="forget-password-email" placeholder="Email">
             </div>
             <div class="login_user-continue">
@@ -117,14 +117,28 @@
         </div>
         <div class="enter_otp_code">
             <div class="login_user-title">
-              Vui lòng nhập OTP
+              Vui lòng nhập mã OTP
             </div>
             <div class="login_user-username login-username-email">
-                <i class="fas fa-phone-square-alt login_user-icon"></i>
+                <i class="fas fa-mobile-alt login_user-icon"></i>
                 <input id="login_user-username" class="login_user-input " type="text" name="enter-otp-code" placeholder="Mã OTP">
             </div>
             <div class="login_user-continue">
                 <button id="enter_code-continue_btn" class="login_user-continue_btn">Tiếp tục</button>
+            </div>
+            <div class="login_user-no_acccount">
+            </div>
+        </div>
+        <div class="enter_otp_code_register">
+            <div class="login_user-title">
+              Vui lòng nhập mã OTP được gửi đến Email của bạn
+            </div>
+            <div class="login_user-username login-username-email">
+                <i class="fas fa-mobile-alt login_user-icon"></i>
+                <input id="login_user-username" class="login_user-input " type="text" name="enter-otp-code-register" placeholder="Mã OTP">
+            </div>
+            <div class="login_user-continue">
+                <button id="enter_code_register-continue_btn" class="login_user-continue_btn">Tiếp tục</button>
             </div>
             <div class="login_user-no_acccount">
             </div>
@@ -135,7 +149,7 @@
             </div>
             <div class="login_user-username login-username-email">
                 <i class="fas fa-phone-square-alt login_user-icon"></i>
-                <input id="login_user-username" class="login_user-input " type="text" name="change-password-code" placeholder="Mật khẩu mới">
+                <input id="login_user-username" class="login_user-input " type="password" name="change-password-code" placeholder="Mật khẩu mới">
             </div>
             <div class="login_user-continue">
                 <button id="change_password-continue_btn" class="login_user-continue_btn">Tiếp tục</button>
@@ -143,7 +157,10 @@
             <div class="login_user-no_acccount">
             </div>
         </div>
-        </div>
+        </div>    
+    </div>
+    <div class="background-loading">
+        <%- include('loading.ejs') %> 
     </div>
     <script src="/js/cart.js"></script>
     <script src="/js/product.js"></script>

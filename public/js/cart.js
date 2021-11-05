@@ -24,7 +24,7 @@ const back_to_cart = document.querySelector(".customer-back-cart");
 const customer_info = document.querySelector(".content-customer-container");
 const cart_info = document.querySelector(".content-cart-container");
 const confirmation_order = document.querySelector(".customer-price-submit");
-const message_cart_confirm = document.querySelector(".message_cart_confirm");
+const message_cart_confirm = document.querySelector(".meesage-cart-container");
 const cart_customer_id = document.querySelector(".cart-customer-id");
 const customer_price_submit_btn = document.querySelector(
   ".customer-price-submit_btn"
@@ -33,6 +33,9 @@ let user_address = document.querySelector("#customer-address");
 let user_name = document.querySelector("#customer-name");
 let user_phone = document.querySelector("#customer-phone");
 let user_email = document.querySelector("#customer-email");
+let background_loading_waiting_cart = document.querySelector(
+  ".background-loading-waiting"
+);
 function getProductCart() {
   listCarts = [];
   fetch(cartsApi + "/" + cart_customer_id.getAttribute("data-id"))
@@ -193,18 +196,13 @@ function handleRemoveProduct(data, id) {
 }
 function handleConfirmBuyProduct() {
   buying.addEventListener("click", () => {
-    customer_info.style.display = "block";
-    cart_info.style.display = "none";
+    if (total_money.innerHTML != 0 + `<u>đ</u>`) {
+      customer_info.style.display = "block";
+      cart_info.style.display = "none";
+    }
   });
   back_to_cart.addEventListener("click", () => {
     cart_info.style.display = "block";
-    customer_info.style.display = "none";
-  });
-}
-function handleConfirmationOrder() {
-  confirmation_order.addEventListener("click", () => {
-    message_cart_confirm.classList.remove("message-hide");
-    background_hover.style.display = "block";
     customer_info.style.display = "none";
   });
 }
@@ -235,46 +233,55 @@ function handleRenderInfoUser() {
 }
 function handleOrderSubmit() {
   customer_price_submit_btn.onclick = function () {
-    let data = {
-      order_address: user_address.value,
-    };
-    let option = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    };
-    fetch(ordersApi + "/" + getCookie("user-id"), option)
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.message === "success") {
-          let info = {
-            cart_user_id: response.order_code_customer,
-            cart_order_code: response.order_code,
-          };
-          let option_new = {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(info),
-          };
-          fetch(cartsApi + "/order", option_new)
-            .then((response) => response.json())
-            .then((response) => {
-              if (response.message !== "Order success") {
-                alert("Đặt hàng thất bại");
-              }
-            });
-        } else alert("Lỗi bước 1");
-      });
+    customer_info.style.display = "none";
+    background_loading_waiting_cart.style.display = "block";
+    setTimeout(() => {
+      handleOrder();
+    }, 1500);
+    function handleOrder() {
+      let data = {
+        order_address: user_address.value,
+      };
+      let option = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      };
+      fetch(ordersApi + "/" + getCookie("user-id"), option)
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.message === "success") {
+            let info = {
+              cart_user_id: response.order_code_customer,
+              cart_order_code: response.order_code,
+            };
+            let option_new = {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(info),
+            };
+            fetch(cartsApi + "/order", option_new)
+              .then((response) => response.json())
+              .then((response) => {
+                if (response.message !== "Order success") {
+                  alert("Đặt hàng thất bại");
+                } else {
+                  background_loading_waiting_cart.style.display = "none";
+                  message_cart_confirm.classList.remove("message-hide");
+                }
+              });
+          } else alert("Lỗi hệ thống");
+        });
+    }
   };
 }
 getProductCart();
 handleCountDownInput();
 handleDeleteProductCart();
 handleConfirmBuyProduct();
-handleConfirmationOrder();
 handleRenderInfoUser();
 handleOrderSubmit();

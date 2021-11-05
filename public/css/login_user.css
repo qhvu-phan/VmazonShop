@@ -47,6 +47,16 @@
   left: 100px;
   display: none;
 }
+.enter_otp_code_register {
+  position: relative;
+  background-color: #fff;
+  width: 555px;
+  height: 250px;
+  text-align: center;
+  top: 40px;
+  left: 100px;
+  display: none;
+}
 .login_user-title {
   height: 100px;
   font-size: 20px;

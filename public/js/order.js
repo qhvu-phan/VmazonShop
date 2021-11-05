@@ -5,6 +5,7 @@ const order_details_logout_btn = document.querySelector(
 );
 const order_customer_id = document.querySelector(".order-customer-id");
 let order_time = null;
+
 function delete_cookie(name) {
   document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 }
@@ -64,7 +65,7 @@ function handleRenderOrder(id) {
                 }">Chi tiết đơn hàng</td>
                 <td>${order.order_address}</td>
                 <td>${status}</td>
-                <td>${order.order_date}</td>
+                <td>${order.order_date.slice(0, 10)}</td>
              </tr>
               `;
       });
@@ -108,7 +109,7 @@ function handleRenderOrder(id) {
                   document.querySelector(".order-date_code");
                 let order_detail_date = document.querySelector(".order_date");
                 order_detail_code.innerHTML = order_detail.cart_order_code;
-                order_detail_date.innerHTML = order_time;
+                order_detail_date.innerHTML = order_time.slice(0, 10);
                 let total_money = 0;
                 let product_list = order_detail.product.map((product) => {
                   total_money += parseInt(

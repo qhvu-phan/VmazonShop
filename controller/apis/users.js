@@ -34,12 +34,7 @@ router.get("/:id", (req, res) => {
     }
   });
 });
-const check = [
-  middleware.checkUser,
-  middleware.checkPhone,
-  middleware.checkEmail,
-  middleware.bcrypt,
-];
+const check = [middleware.checkPhone, middleware.checkEmail, middleware.bcrypt];
 router.post("/register", check, (req, res) => {
   const visible_id = random.generate(20);
   const { username, passwords, email, phone, address } = req.body;
