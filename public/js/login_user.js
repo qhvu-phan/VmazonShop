@@ -191,6 +191,10 @@ function handleVerifyOtpRegister(info, user_token) {
         enter_otp_code_register_form.style.display = "block";
       } else if (response.message === "Phone already exists") {
         alert("Số điện thoại này đã được sử dụng");
+      } else if (response.message === "Please check phone") {
+        alert("Vui lòng kiểm tra lại số điện thoại");
+      } else if (response.message === "Please check email") {
+        alert("Vui lòng kiểm tra lại email");
       } else if (response.message === "Email already exists") {
         alert("Email này đã được sử dụng");
       } else {
@@ -285,6 +289,7 @@ function loginUser(user, accessToken) {
         location.reload();
       } else {
         alert("Vui lòng kiểm tra lại thông tin đăng nhập");
+        background_loading_waiting.style.display = "none";
       }
     });
 }
@@ -310,5 +315,3 @@ function handleChangeForm() {
 }
 handleGetOtpChangePassword();
 handleChangeForm();
-// handleVerifyOtp();
-// handleOrderDetailsBtn();

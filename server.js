@@ -34,6 +34,9 @@ app.get("/login_user_success", verifyToken.verifyTokenUser, (req, res) => {
 app.get("/admin1", verifyToken.verifyToken, (req, res) => {
   res.render("admin1.ejs", { username });
 });
+app.get("/admin", verifyToken.verifyToken, (req, res) => {
+  res.render("admin.ejs", { username });
+});
 app.get("/login", verifyToken.verifyTokenLogin, (req, res) => {
   res.render("login.ejs");
 });

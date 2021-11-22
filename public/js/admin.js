@@ -1,34 +1,34 @@
 var productApi = "http://localhost:5000/product";
 var imageApi = "http://localhost:5000/image";
 // handle controller
-var select = document.querySelector("#login");
-select.addEventListener("click", () => {
-  var add = document.querySelector(".login");
-  add.classList.add("show");
-});
-var addproduct = document.querySelector("#nav-header-add");
-addproduct.addEventListener("click", () => {
-  var add = document.querySelector("#addproduct");
-  add.classList.add("show");
-});
+// var select = document.querySelector("#login");
+// select.addEventListener("click", () => {
+//   var add = document.querySelector(".login");
+//   add.classList.add("show");
+// });
+// var addproduct = document.querySelector("#nav-header-add");
+// addproduct.addEventListener("click", () => {
+//   var add = document.querySelector("#addproduct");
+//   add.classList.add("show");
+// });
 
-var select2 = document.querySelector("#container");
-select2.addEventListener("click", () => {
-  var add = document.querySelector(".login");
-  var add1 = document.querySelector(".register");
-  add.classList.remove("show");
-  add1.classList.remove("show");
-});
-var select3 = document.querySelector("#close");
-select3.addEventListener("click", () => {
-  var add = document.querySelector(".addproduct");
-  add.classList.remove("show");
-});
-var select4 = document.querySelector("#closes");
-select4.addEventListener("click", () => {
-  var add = document.querySelector("#editproduct");
-  add.classList.remove("show");
-});
+// var select2 = document.querySelector("#container");
+// select2.addEventListener("click", () => {
+//   var add = document.querySelector(".login");
+//   var add1 = document.querySelector(".register");
+//   add.classList.remove("show");
+//   add1.classList.remove("show");
+// });
+// var select3 = document.querySelector("#close");
+// select3.addEventListener("click", () => {
+//   var add = document.querySelector(".addproduct");
+//   add.classList.remove("show");
+// });
+// var select4 = document.querySelector("#closes");
+// select4.addEventListener("click", () => {
+//   var add = document.querySelector("#editproduct");
+//   add.classList.remove("show");
+// });
 
 // handle function
 

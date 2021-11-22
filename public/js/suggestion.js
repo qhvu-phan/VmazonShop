@@ -63,9 +63,7 @@ function suggestion(money, select_type) {
                             <span>Tiền còn thừa:</span> 
                             <label for="">${response.money}<u> đ</u></label>
                         </div>
-                        <div class="suggestion-total-button">
-                            <button>Thêm vào giỏ</button>
-                        </div> `;
+                        `;
         description.innerHTML = text;
       } else if (response.message === "invalid type") {
         alert("Loại sản phẩm không tồn tại");
