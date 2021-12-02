@@ -13,17 +13,20 @@
     "nodemailer": "^6.7.0",
     "nodemon": "^2.0.12",
     "path": "^0.12.7",
-    "randomstring": "^1.2.1"
+    "randomstring": "^1.2.1",
+    "sequelize": "^6.12.0-alpha.1"
   },
   "name": "project_nlcs",
   "version": "1.0.0",
   "main": "server.js",
-  "devDependencies": {},
   "scripts": {
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "sequelize-cli": "^6.3.0"
+  }
 }
