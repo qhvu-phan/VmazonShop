@@ -11,12 +11,15 @@ const orders = require("./controller/apis/orders.js");
 const order_details = require("./controller/apis/order_details.js");
 const verifyToken = require("./controller/middleware/users.middleware");
 const { verify } = require("jsonwebtoken");
+const connectDB = require('./models/connectDB');
 app.use(express.static("public")); //set static file
 app.set("view engine", "ejs"); //use view engine
 app.set("views", "./view"); //use view engine
 
 app.use(cookieParser());
 app.use(express.json()); //use jsonfile
+
+connectDB();
 app.use(
   require("body-parser").urlencoded({
     extended: true,
