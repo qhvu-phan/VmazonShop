@@ -318,7 +318,13 @@
 .handle_product {
   position: absolute;
   top: 10px;
-  left: 100px;
+  left: 1000px;
+  display: none;
+}
+.handle_update-product {
+  position: absolute;
+  top: 10px;
+  left: 1000px;
   display: none;
 }
 .content-selection-type {

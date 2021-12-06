@@ -19,7 +19,7 @@ app.set("views", "./view"); //use view engine
 app.use(cookieParser());
 app.use(express.json()); //use jsonfile
 
-connectDB();
+// connectDB();
 app.use(
   require("body-parser").urlencoded({
     extended: true,
@@ -34,11 +34,8 @@ app.get("/login_user", verifyToken.verifyTokenUserLogin, (req, res) => {
 app.get("/login_user_success", verifyToken.verifyTokenUser, (req, res) => {
   res.render("login_user_success.ejs", { id: visible_id });
 });
-app.get("/admin1", verifyToken.verifyToken, (req, res) => {
-  res.render("admin1.ejs", { username });
-});
-app.get("/admin", verifyToken.verifyToken, (req, res) => {
-  res.render("admin.ejs", { username });
+app.get("/admin", verifyToken.verifyToken, (req, res) => {                                      
+  res.render("admin.ejs" , { username });                                              
 });
 app.get("/login", verifyToken.verifyTokenLogin, (req, res) => {
   res.render("login.ejs");

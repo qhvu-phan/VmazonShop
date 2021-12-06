@@ -127,7 +127,7 @@ let middleware = {
       const decoded = jwt.verify(token, process.env.ID);
       visible_id = decoded.visible_id;
       username = decoded.username;
-      res.redirect("/admin1");
+      res.redirect("/admin");
     } catch (error) {
       next();
     }

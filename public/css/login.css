@@ -3,15 +3,16 @@ html {
 }
 .login-main {
   background: linear-gradient(#008848, #057541);
-  width: 1600px;
+  width: 100%;
   height: 757px;
+  text-align: center;
 }
 .login-container {
   position: absolute;
   width: 1000px;
   height: 500px;
   top: 16%;
-  left: 18%;
+  left: 24%;
   text-align: center;
   margin: auto;
   display: flex;

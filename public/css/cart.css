@@ -160,16 +160,6 @@
   height: 10px;
   line-height: 10px;
 }
-.background-html-action {
-  position: absolute;
-  width: 1600px;
-  height: 700px;
-  top: 0px;
-  left: -420px;
-  background-color: #111111;
-  opacity: 0.8;
-  display: none;
-}
 .category {
   display: none;
 }
