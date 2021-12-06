@@ -17,8 +17,10 @@ const admin_content_handle_product_form = document.querySelector(
 );
 const select_type_all_btn = document.querySelector(".select_type_all_btn");
 const handle_product_container_form = document.querySelector(".handle_product");
+const handle_product_update_container_form = document.querySelector(".handle_update-product");
 const product_add_manager_btn = document.querySelector(".product_add-manager");
 const cancel_add_product_btn = document.querySelector(".cancel-add-product");
+const cancel_update_product_btn = document.querySelector(".cancel-update-product");
 let order_all = [];
 function showManagerOrder() {
   admin_manager_order_btn.addEventListener("click", () => {
@@ -36,6 +38,9 @@ function showManagerOrder() {
   cancel_add_product_btn.addEventListener("click", () => {
     handle_product_container_form.style.display = "none";
   });
+  cancel_update_product_btn.addEventListener('click', () => {
+    handle_product_update_container_form.style.display = "none";
+  })
 }
 function getAllOrder() {
   fetch(orderApi)
@@ -65,7 +70,7 @@ function getAllOrder() {
             order_customer: order.order_code_customer,
             order_address: order.order_address,
             order_status: order.order_status,
-            order_date: order.order_date.slice(0, 10),
+            // order_date: order.order_date.slice(0, 10),
           };
           order_all.push(orders);
           return ` <tr class="table_history-member">
@@ -82,7 +87,7 @@ function getAllOrder() {
                   <option value="3">Đã nhận</option>
                   <option value="4">Đã hủy</option>
                   </select><i class="fas fa-sync-alt"></i></td>
-                  <td>${order.order_date.slice(0, 10)}</td>
+                  <td>đang upadate lại</td>
                 </tr>`;
         });
         index_new_order.innerHTML = "(" + index + ")";
@@ -156,7 +161,7 @@ function handleRenderNewOrder(type) {
               <option value="3">Đã nhận</option>
               <option value="4">Đã hủy</option>
               </select><i class="fas fa-sync-alt"></i></td>
-              <td>${order.order_date}</td>
+              <td>đang update lại</td>
             </tr>
         `;
     }
@@ -237,21 +242,7 @@ function deleteProduct(id) {
   var upload = document.querySelector(".delete-item-" + id);
   upload.remove();
 }
-function editProduct(id) {
-  let name = document.querySelector('input[name="pro_names"]').value;
-  let type = document.querySelector(".pro_types").value;
-  let nutritional = document.querySelector(
-    'input[name="pro_descriptions"]'
-  ).value;
-  let price = document.querySelector('input[name="pro_prices"]').value;
-  var image = document.querySelector('input[name="image_files"]').value;
-  let data = {
-    pro_name: name,
-    pro_type: type,
-    pro_nutritional: nutritional,
-    pro_price: price,
-    image_path: image,
-  };
+function editProduct(id,data) {
   let option = {
     method: "PATCH",
     headers: {
@@ -276,16 +267,30 @@ function editProduct(id) {
           alert("Lỗi hệ thống vui lòng thử lại sau");
       }
       getProduct(renderProduct);
-      var add = document.querySelector("#editproduct");
-      add.classList.remove("show");
+      handle_product_update_container_form.style.display = "none";
     });
 }
 function handleEditProduct(id) {
-  let show = document.querySelector(".handle_update-product");
-  show.classList.add("show");
-  let update = document.querySelector("#updates");
-  update.onclick = () => {
-    editProduct(id);
+  console.log(id);
+  handle_product_update_container_form.style.display = "block";
+  let update = document.querySelector(".update-product");
+  update.onclick = () => { 
+    let name = document.querySelector('input[name="pro_name_update"]').value;
+    let type = document.querySelector(".pro_types_update").value;
+    let nutritional = document.querySelector(
+    'input[name="pro_description_update"]'
+  ).value;
+    let price = document.querySelector('input[name="pro_price_update"]').value;
+    var image = document.querySelector('input[name="image_file_update"]').value;
+    let data = {
+      pro_name: name,
+      pro_type: type,
+      pro_nutritional: nutritional,
+      pro_price: price,
+      image_path: image,
+    };
+    editProduct(id,data);
+    console.log(data);
   };
 }
 // handle create product
@@ -361,8 +366,9 @@ function postProduct(data) {
 }
 
 function handleCrateProduct() {
-  var submitBtn = document.querySelector(".create-product");
-  submitBtn.onclick = function () {
+  // var submitBtn = document.querySelector(".create-product");
+  // submitBtn.onclick = function () {
+    console.log("run");
     var name = document.querySelector('input[name="pro_name"]').value;
     var type = document.querySelector(".pro_types").value;
     var nutritional = document.querySelector(
@@ -380,9 +386,20 @@ function handleCrateProduct() {
       };
       postProduct(data);
     }
-  };
+  // };
 }
-
+//handle logout
+function delete_cookie(name) {
+  document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+}
+function handleLogout() {
+  const logout = document.querySelector(".logout-btn");
+  logout.addEventListener("click", () => {
+    delete_cookie("jwt_ad");
+    location.reload();
+  });
+}
+handleLogout();
 showManagerOrder();
 handleRenderOrderBtn();
 getAllOrder();

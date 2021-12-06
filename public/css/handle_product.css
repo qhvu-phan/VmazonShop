@@ -1,19 +1,19 @@
 .handle-product-container {
-  position: relative;
+  position: absolute;
   width: 800px;
   height: 450px;
   top: 120px;
-  margin: auto;
+  left: -850px;
   background-color: #fff;
   border: 1px solid #333333;
   box-shadow: 5px 5px 5px;
 }
 .handle_update-product-container {
-  position: relative;
+  position: absolute;
   width: 800px;
   height: 450px;
   top: 120px;
-  margin: auto;
+  left: -850px;
   background-color: #fff;
   border: 1px solid #333333;
   box-shadow: 5px 5px 5px;

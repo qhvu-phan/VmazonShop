@@ -56,7 +56,8 @@
 }
 .topbar-search_product_item {
   position: absolute;
-  left: 588px;
-  top: 50px;
+  left: 34%;
+  top: 0px;
+  z-index: 20;
   display: none;
 }
