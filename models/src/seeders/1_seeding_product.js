@@ -254,7 +254,7 @@ module.exports = {
         pro_name: 'Thị ba chỉ bò',
         pro_type: '3',
         pro_nutritional:'200',
-        pro_price: '22000',
+        pro_price: '220000',
         createdAt: new Date(),
         updatedAt: new Date()
       },{
@@ -262,7 +262,7 @@ module.exports = {
         pro_name: 'thịt bò mỹ nhập khẩu',
         pro_type: '3',
         pro_nutritional:'220',
-        pro_price: '25000',
+        pro_price: '250000',
         createdAt: new Date(),
         updatedAt: new Date()
       },{
@@ -270,7 +270,7 @@ module.exports = {
         pro_name: 'thịt bò mỹ',
         pro_type: '3',
         pro_nutritional:'220',
-        pro_price: '25000',
+        pro_price: '250000',
         createdAt: new Date(),
         updatedAt: new Date()
       },{

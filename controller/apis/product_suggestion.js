@@ -34,7 +34,7 @@ router.post("/:type", (req, res) => {
             pro_type: pro_type,
             pro_nutritional: pro_nutritional,
             pro_description: pro_description,
-            pro_price: pro_price,
+            pro_price: parseFloat(pro_price),
             quantity: 0,
             nutritional: parseFloat((pro_nutritional / pro_price).toFixed(4)),
           };
@@ -52,15 +52,16 @@ router.post("/:type", (req, res) => {
               }
             }
             // sort max price
-            for (let k = 0; k < listProducts.length - 1; k++) {
-              for (let v = k + 1; v < listProducts.length; v++) {
-                if (listProducts[v].pro_price > listProducts[k].pro_price) {
-                  let temp = listProducts[v];
-                  listProducts[v] = listProducts[k];
-                  listProducts[k] = temp;
+            for (let i = 0; i <= listProducts.length - 1; i++) {
+              for (let j = i + 1; j < listProducts.length; j++) {
+                if (listProducts[j].pro_price > listProducts[i].pro_price) {
+                  let temp = listProducts[j];
+                  listProducts[j] = listProducts[i];
+                  listProducts[i] = temp;
                 }
               }
             }
+            console.log(listProducts);
             let x = listProducts.length - 1;
             let count = 0;
             if (money > listProducts[x].pro_price) {
