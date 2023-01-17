@@ -14,8 +14,7 @@ module.exports = {
       },
       order_code_customer: {
         type: Sequelize.STRING,
-        allowNull: false,
-        references: { model: 'users', key: 'visible_id' },
+        allowNull: false
       },
       order_address: {
         type: Sequelize.STRING,
