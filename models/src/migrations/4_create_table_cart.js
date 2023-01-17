@@ -15,12 +15,10 @@ module.exports = {
       cart_user_id: {
         type: Sequelize.STRING,
         allowNull: false,
-        references: { model: 'users', key: 'visible_id'},
       },
       cart_order_code: {
         type: Sequelize.STRING,
         allowNull: true,
-        references: { model: 'orders', key: 'order_code'},
       },
       cart_pro_id: {
         type: Sequelize.STRING,

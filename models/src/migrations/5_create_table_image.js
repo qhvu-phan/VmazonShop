@@ -15,7 +15,6 @@ module.exports = {
       image_pro_id: {
         type: Sequelize.STRING,
         allowNull: false,
-        references: { model: 'product', key: 'visible_id'},
       },
       image_name: {
         type: Sequelize.STRING,

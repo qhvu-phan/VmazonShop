@@ -9,7 +9,12 @@ let mysql = require('mysql2');
 let conn = mysql.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
-  password: process.env.DB_PASS
+  password: process.env.DB_PASS,
+  dialectOptions: {
+    ssl: {
+      rejectUnauthorized: true,
+    },
+  },
 });
 function initApp() {
   let sql2 = "create database bachhoachangsen"

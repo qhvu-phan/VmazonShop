@@ -19,7 +19,7 @@ app.set("views", "./view"); //use view engine
 app.use(cookieParser());
 app.use(express.json()); //use jsonfile
 
-// connectDB();
+ //connectDB();
 app.use(
   require("body-parser").urlencoded({
     extended: true,
