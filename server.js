@@ -28,6 +28,9 @@ app.use(
 app.get("/suggestion", (req, res) => {
   res.render("suggestion.ejs");
 });
+app.get("/voicesearch", (req, res) => {
+  res.render("voice_search.ejs");
+});
 app.get("/login_user", verifyToken.verifyTokenUserLogin, (req, res) => {
   res.render("login_user.ejs");
 });

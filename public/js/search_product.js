@@ -62,6 +62,7 @@ function searchProduct(value) {
      `;
     }
   });
+  search_container.style.display = "block";
   listProduct.innerHTML = html.join("");
 }
 function handleBuyProduct(id) {
@@ -88,5 +89,56 @@ function handleBuyProduct(id) {
       }
     });
 }
+class SpeechRecognitionApi{
+  constructor(options) {
+      const SpeechToText = window.speechRecognition || window.webkitSpeechRecognition;
+      this.speechApi = new SpeechToText();
+      this.speechApi.continuous = true;
+      this.speechApi.interimResults = false;
+      this.output = options.output ? options.output : document.createElement('div');
+      console.log(this.output)
+      this.speechApi.onresult = (event)=> { 
+          console.log(event);
+          var resultIndex = event.resultIndex;
+          var transcript = event.results[resultIndex][0].transcript;
+
+          console.log('transcript>>', transcript);
+          console.log(this.output)
+          searchProduct(transcript);   
+          search_container.style.display = "block";
+          this.output.value = transcript;
+          
+             
+      }
+  }
+  init(){
+      this.speechApi.start();
+  }
+  stop(){
+      this.speechApi.stop();
+  }
+}
+
+window.onload = function(){
+  var speech = new SpeechRecognitionApi({
+      output: document.querySelector('.topbar-search-input')
+  })
+
+  let temp = 0;
+  let micro = document.querySelector('.fa-microphone-alt');
+  
+  micro.addEventListener('click', function () {
+      if(temp == 0) {
+          temp = 1;
+          micro.style.color = 'red'
+          speech.init()
+      } else {
+          temp = 0;
+          micro.style.color = '#808080'
+          speech.stop()
+      } 
+  })
+}
+
 getProductCart();
 handleEventOninput();

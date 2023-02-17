@@ -278,13 +278,13 @@
 .customer-time_receive {
   text-align: left;
   margin-top: 10px;
-  text-indent: 10px;
   background-color: #fff;
 }
 .customer-time_title {
   height: 40px;
   line-height: 40px;
   font-size: 18px;
+  text-indent: 10px;
 }
 .customer-time-schedule {
   width: 580px;
@@ -294,8 +294,33 @@
   border-radius: 5px;
   padding: 3px 0;
 }
+.customer-time_note-container{
+  display: flex;
+  justify-content: space-around;
+}
 .customer-time_note {
   margin-top: 10px;
+  display: flex;
+}
+.cash-button {
+  border: 1px solid white;
+  border-radius: 10px;
+  font-size: 20px;
+  color: #fff;
+  width: 250px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+.cash-online {
+  margin-left: 10px;
+  background-color: #0081bd;
+  cursor: pointer;
+}
+.cash-delivery{
+  margin-left: 10px;
+  background-color: #656565;
+  cursor: pointer;
 }
 .customer-time-textarea {
   font-size: 14px;

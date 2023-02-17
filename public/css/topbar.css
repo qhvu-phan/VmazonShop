@@ -42,16 +42,17 @@ html {
   outline: none;
   text-indent: 10px;
   position: relative;
-  top: 8px;
+  top: 0px;
   left: 10px;
   font-size: 14px;
 }
 .topbar-search-btn {
   position: relative;
-  top: -20px;
-  left: 175px;
+  top: 2px;
+  left: -20px;
   color: #dddddd;
   font-size: 18px;
+  cursor: pointer;
 }
 .topbar-home {
   width: 160px;
